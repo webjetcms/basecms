@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<poolman><management-mode>local</management-mode>
+
+    <!--SWITCHER-START Webjet 8 demo -->
+    <datasource>
+        <dbname>iwcm</dbname>
+        <jndiName>jndi-iwcm</jndiName>
+        <driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://mysql-devel.srv.iway.local/demo8_web</url>
+
+        <username>demo8_web</username>
+        <password>v4KKr30S1gPCTRHv8dUy</password>
+    </datasource>
+    <!--SWITCHER-END-->
+
+</poolman>

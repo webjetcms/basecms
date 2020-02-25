@@ -1,0 +1,17 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+bin/
+
+#WebJET imgcache a tmp adresar
+**/WEB-INF/imgcache
+**/WEB-INF/tmp
+
+#node_modules nepotrebujeme
+node_modules/
+
+#lokalne JSP subory
+localconf.jsp
+scratchpad.jsp
