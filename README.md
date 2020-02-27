@@ -25,5 +25,6 @@ Po forku tohto projektu je mozne robit synchronizaciu z upstream servera:
 
 git remote add upstream git@gitlab.web.iway.local:webjet/basecms.git
 git fetch upstream
+git merge upstream/master
 
 a nasledne si mergnut zmeny z upstream/master
