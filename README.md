@@ -18,3 +18,12 @@ gradle appStop
 
 **vybuildovanie distribucneho WAR archivu**
 gradle war
+
+GIT fork update
+---------------
+Po forku tohto projektu je mozne robit synchronizaciu z upstream servera:
+
+git remote add upstream git@gitlab.web.iway.local:webjet/basecms.git
+git fetch upstream
+
+a nasledne si mergnut zmeny z upstream/master
