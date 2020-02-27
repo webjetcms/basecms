@@ -68,6 +68,7 @@ compileJava {
     options.incremental = true
     options.fork = true
     options.failOnError = true
+    options.encoding = "windows-1250"
 }
 
 artifactory {
