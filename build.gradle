@@ -88,7 +88,7 @@ gretty {
     // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
     servletContainer = 'tomcat85'
     contextPath = ''  
-    httpPort = 8080
+    httpPort = 80
     //hard mod spusti WJ rovno z src/main/webapp co zrychli start (netreba kopirovat JSP subory niekde inde)
     inplaceMode = 'hard'
     //scanovania pre hotswap
