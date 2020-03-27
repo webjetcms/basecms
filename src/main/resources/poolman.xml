@@ -6,11 +6,11 @@
     <datasource>
         <dbname>iwcm</dbname>
         <jndiName>jndi-iwcm</jndiName>
-        <driver>com.mysql.jdbc.Driver</driver>
-        <url>jdbc:mysql://mysql-devel.srv.iway.local/demo8_web</url>
+        <driver>oracle.jdbc.OracleDriver</driver>
+        <url>jdbc:oracle:thin:@oradb.dev.iway.local:1521/pdb12c1.dev.iway.local</url>
 
-        <username>demo8_web</username>
-        <password>v4KKr30S1gPCTRHv8dUy</password>
+        <username>NN_2020_WEB</username>
+        <password>TODO, cakam na DB adminov</password>
     </datasource>
     <!--SWITCHER-END-->
 
