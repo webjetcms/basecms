@@ -61,6 +61,9 @@ configurations {
     grettyRunnerTomcat85 {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
+    grettyRunnerTomcat9 {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
 }
 
 java {
@@ -90,7 +93,7 @@ artifactory {
 gretty {
     // supported values:
     // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
-    servletContainer = 'tomcat85'
+    servletContainer = 'tomcat9'
     contextPath = ''  
     httpPort = 80
     //hard mod spusti WJ rovno z src/main/webapp co zrychli start (netreba kopirovat JSP subory niekde inde)
