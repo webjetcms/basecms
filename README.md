@@ -1,3 +1,11 @@
+Sem zadaj meno projektu
+=======================
+Sem zadaj popis projektu
+
+
+
+[comment]: <> (--- Needituj nic za touto ciarou, text nizsie sa ti bude aktualizovat z basecms ---)
+
 WebJET CMS
 ==========
 

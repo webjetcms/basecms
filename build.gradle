@@ -22,6 +22,8 @@ repositories {
 
 war {
     zip64 = true
+    exclude('**/node_modules/**')
+    exclude('**/src/**')
 }
 
 ext {
