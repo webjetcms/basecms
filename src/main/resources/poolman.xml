@@ -10,7 +10,7 @@
         <url>jdbc:oracle:thin:@oradb.dev.iway.local:1521/pdb12c1.dev.iway.local</url>
 
         <username>NN_2020_WEB</username>
-        <password>TODO, cakam na DB adminov</password>
+        <password>m3dovn1ky</password>
     </datasource>
     <!--SWITCHER-END-->
 
