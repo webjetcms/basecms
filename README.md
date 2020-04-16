@@ -54,6 +54,11 @@ Poznamka: URL meno projektu som schvalne zvolil aj s menom skupiny, cize nnweb20
 
 Po vytvoreni projektu mozete skontrolovat prava v Settings/Members, odporucam ludi definovat priamo na skupine, nie na projekte.
 
+Nasledne upravte meno projektu v subore settings.gradle (vsetko malymi pismenami bez medzier):
+```
+rootProject.name = 'menoprojektu'
+```
+
 Naklonovanie do lokalneho workspace
 -----------------------------------
 Odporucam si kvoli poriadku v lokalnom workspace vytvarat podadresar pre klienta a az do neho naklonovat projekt. Cize nieco ako:
