@@ -1,5 +1,6 @@
 # Ignore Gradle project-specific cache directory
 .gradle
+.settings/org.eclipse.buildship.core.prefs
 
 # Ignore Gradle build output directory
 build
