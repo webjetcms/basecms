@@ -2,6 +2,9 @@
 .gradle
 .settings/org.eclipse.buildship.core.prefs
 
+#temp bordel
+**/.DS_Store
+
 # Ignore Gradle build output directory
 build
 bin/
