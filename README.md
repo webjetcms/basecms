@@ -78,6 +78,7 @@ Ak teda v basecms upravime konfiguraciu v build.gradle mozete si to fetchnut a m
 
 ```
 git remote add upstream git@gitlab.web.iway.local:webjet/basecms.git
+git pull
 git fetch upstream
 git merge upstream/master
 ..kontrola suborov..
