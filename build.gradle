@@ -24,6 +24,15 @@ war {
     zip64 = true
 }
 
+task buildWarAndExplode(dependsOn : war, type : Copy){
+    def workingDir = "explodedWar"
+    def zipFile = file("build/libs/webjet.war")
+    from zipTree(zipFile)
+    into workingDir
+
+}
+
+
 ext {
     webjetVersion = "8.7-SNAPSHOT";    
 }
