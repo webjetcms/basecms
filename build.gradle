@@ -21,7 +21,8 @@ repositories {
 }
 
 war {
-    zip64 = true
+    zip64 = true;
+    archiveName 'webjet.war';
 }
 
 task buildWarAndExplode(dependsOn : war, type : Copy){
