@@ -18,7 +18,7 @@ build:
   artifacts:
     paths: 
       #- explodedWar #exploded warko webjetu
-      - build/libs/$PROJECT_NAME.war
+      - "build/libs/$PROJECT_NAME.war"
     expire_in: 2 days
       
       
