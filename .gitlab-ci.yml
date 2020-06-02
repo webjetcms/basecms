@@ -16,7 +16,7 @@ build:
   artifacts:
     paths: 
       #- explodedWar #exploded warko webjetu
-      - build/libs/webjet.war
+      - build/libs/nnweb2020.war
     expire_in: 2 days
       
       

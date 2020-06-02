@@ -29,7 +29,7 @@ war {
 //CI-CD tasky
 task explodeWar(type : Copy){
     def workingDir = "explodedWar"
-    def zipFile = file("build/libs/webjet.war")
+    def zipFile = file("build/libs/nnweb2020.war")
     from zipTree(zipFile)
     into workingDir
 
