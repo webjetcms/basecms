@@ -28,20 +28,15 @@ war {
 
 //CI-CD tasky
 task explodeWar(type : Copy){
-    def workingDir = "explodedWar"
-    def zipFile = file("build/libs/nnweb2020.war")
+    def workingDir = "build/explodedWar"
+    def zipFile = file("build/libs/${rootProject.name}.war")
     from zipTree(zipFile)
     into workingDir
 
 }
-
 task rsyncExplodedWar(dependsOn : explodeWar,  type: Exec) {
-     commandLine "ls","-R";
-     commandLine "pwd";
-     commandLine "du","-h","explodedWar";
-     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","explodedWar","/www/tomcat_au27/webapps/nn2020","tomcat_au27.service","tomcat"
+     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","build/explodedWar","/www/tomcat_au27/webapps/${rootProject.name}","tomcat_au27.service","tomcat"
 }
-
 
 ext {
     webjetVersion = "8.7-SNAPSHOT";    
