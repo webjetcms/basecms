@@ -25,7 +25,8 @@ war {
     archiveName 'webjet.war';
 }
 
-task buildWarAndExplode(dependsOn : war, type : Copy){
+//CI-CD tasky
+task explodeWar(type : Copy){
     def workingDir = "explodedWar"
     def zipFile = file("build/libs/webjet.war")
     from zipTree(zipFile)
@@ -33,11 +34,12 @@ task buildWarAndExplode(dependsOn : war, type : Copy){
 
 }
 
-task rSyncExploded( type: Exec) {
-     //commandLine "ls","-R";
-     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","explodedWar","/www/tomcat_au27/webapps","tomcat_au27.service","tomcat"
+task rsyncExplodedWar(dependsOn : explodeWar,  type: Exec) {
+     commandLine "ls","-R";
+     commandLine "pwd";
+     commandLine "du","-h","explodedWar";
+     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","explodedWar","/www/tomcat_au27/webapps/webjet8v9","tomcat_au27.service","tomcat"
 }
-
 
 
 ext {
