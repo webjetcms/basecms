@@ -7,7 +7,10 @@ variables:
 
 before_script:
   # ziskaj meno projektu zo settings.gradle
-  - export PROJECT_NAME=$(grep -E "rootProject.name " settings.gradle | cut -d "'" -f2)
+  - eval export PROJECT_NAME=$(grep -E "rootProject.name " settings.gradle | cut -d "'" -f2)
+
+job1:
+  script: echo $PROJECT_NAME
 
 build:
   only:
