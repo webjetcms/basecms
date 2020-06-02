@@ -32,7 +32,7 @@ build:
       
 deploy:
   stage: deploy
-  script: gradle explodeAndRsync
+  script: gradle rSyncExploded
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
