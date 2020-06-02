@@ -4,29 +4,22 @@
 # isolated from any previous builds.
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-
-before_script:
-  # ziskaj meno projektu zo settings.gradle
-  - eval export PROJECT_NAME=$(grep -E "rootProject.name " settings.gradle | cut -d "'" -f2)
-
-job1:
-  script: echo $PROJECT_NAME
-
+ 
 build:
   only:
     - master
   stage: build
-  script: gradle war
+  script: 
+    - gradle war
   
   artifacts:
     paths: 
-      #- explodedWar #exploded warko webjetu
-      - "build/libs/$PROJECT_NAME.war"
+      - "build/libs/*.war"
     expire_in: 2 days
-      
       
 deploy:
   only:
     - master
   stage: deploy
-  script: gradle rsyncExplodedWar
+  script:
+    - gradle rsyncExplodedWar
