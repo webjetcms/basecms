@@ -10,16 +10,20 @@ before_script:
  # - export GRADLE_USER_HOME=`pwd`/.gradle
 
 build:
+  only:
+    - master
   stage: build
   script: gradle war
   
   artifacts:
     paths: 
       #- explodedWar #exploded warko webjetu
-      - build/libs/nnweb2020.war
+      - build/libs/*.war
     expire_in: 2 days
       
       
 deploy:
+  only:
+    - master
   stage: deploy
   script: gradle rsyncExplodedWar
