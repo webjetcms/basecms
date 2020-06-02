@@ -35,7 +35,7 @@ task buildWarAndExplode(dependsOn : war, type : Copy){
 
 task rSyncExploded( type: Exec) {
      //commandLine "ls","-R";
-     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","explodedWar","/www/tomcat_au27/webapps","tomcat_au27.service","tomcat_au27"
+     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","explodedWar","/www/tomcat_au27/webapps","tomcat_au27.service","tomcat"
 }
 
 
