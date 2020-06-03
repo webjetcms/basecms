@@ -22,6 +22,20 @@ repositories {
 
 war {
     zip64 = true
+    exclude('**/node_modules/**')
+    exclude('**/src/**')
+}
+
+//CI-CD tasky
+task explodeWar(type : Copy){
+    def workingDir = "build/explodedWar"
+    def zipFile = file("build/libs/${rootProject.name}.war")
+    from zipTree(zipFile)
+    into workingDir
+
+}
+task rsyncExplodedWar(dependsOn : explodeWar,  type: Exec) {
+     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","build/explodedWar","/www/tomcat_au27/webapps/${rootProject.name}","tomcat_au27.service","tomcat"
 }
 
 ext {
@@ -66,10 +80,12 @@ configurations {
     }
 }
 
+/*
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+*/
 
 compileJava {
     options.incremental = true

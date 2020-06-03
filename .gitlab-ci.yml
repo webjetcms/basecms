@@ -1,0 +1,25 @@
+# Disable the Gradle daemon for Continuous Integration servers as correctness
+# is usually a priority over speed in CI environments. Using a fresh
+# runtime for each build is more reliable since the runtime is completely
+# isolated from any previous builds.
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+ 
+build:
+  only:
+    - master
+  stage: build
+  script: 
+    - gradle war
+  
+  artifacts:
+    paths: 
+      - "build/libs/*.war"
+    expire_in: 2 days
+      
+deploy:
+  only:
+    - master
+  stage: deploy
+  script:
+    - gradle rsyncExplodedWar
