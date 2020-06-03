@@ -1,0 +1,152 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%; }
+
+.ly-amp {
+  /* styling */ }
+  .ly-amp {
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    padding: 50px 0 0 0; }
+  .ly-amp .icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: #155724;
+    fill: #155724;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    margin: auto;
+    font-size: 20px; }
+  .ly-amp .amp-alert {
+    display: block;
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding-left: 40px;
+    position: relative;
+    font-size: 14px;
+    margin-top: 15px;
+    background: #e7ffef;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb; }
+  .ly-amp .amp-alert .link {
+    color: #6f6f6f;
+    font-size: 13px; }
+  .ly-amp img {
+    max-width: 100%; }
+  .ly-amp amp-img.logo {
+    margin-bottom: 0;
+    margin-top: 9px;
+    margin-left: 27px; }
+  .ly-amp .content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px; }
+  .ly-amp p,
+  .ly-amp ul,
+  .ly-amp amp-img {
+    margin-bottom: 25px; }
+  .ly-amp ul#menu {
+    margin-bottom: 0; }
+  .ly-amp nav {
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 990; }
+  .ly-amp nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: -webkit-transform .75s ease-in-out;
+    transition: -webkit-transform .75s ease-in-out;
+    -o-transition: transform .75s ease-in-out;
+    transition: transform .75s ease-in-out;
+    transition: transform .75s ease-in-out, -webkit-transform .75s ease-in-out;
+    -webkit-transition: transform .75s ease-in-out;
+    margin-bottom: 0; }
+  .ly-amp nav > ul > li {
+    position: fixed;
+    right: 36px;
+    top: 0px;
+    z-index: 991;
+    line-height: 40px; }
+  .ly-amp nav > ul > li > ul {
+    position: fixed;
+    top: 0;
+    right: -240px;
+    width: 240px;
+    bottom: 0;
+    background: #f7f7f7;
+    z-index: 990;
+    padding-top: 36px;
+    border-left: 1px solid #ddd;
+    overflow-y: scroll;
+    margin-bottom: 0; }
+  .ly-amp nav > ul > li:hover > ul {
+    transform: translate3d(-240px, 0, 0);
+    -webkit-transform: translate3d(-240px, 0, 0); }
+  .ly-amp nav > ul > li span {
+    width: 25px;
+    height: 2px;
+    background: #000;
+    display: block;
+    position: relative;
+    top: 10px;
+    margin-top: 6px; }
+  .ly-amp #closemenu {
+    position: fixed;
+    top: -40px;
+    left: auto;
+    right: 25px;
+    height: 40px;
+    z-index: 999;
+    line-height: 40px;
+    font-size: 36px;
+    -webkit-transition: -webkit-transform .05s ease-in-out;
+    transition: -webkit-transform .05s ease-in-out;
+    -o-transition: transform .05s ease-in-out;
+    transition: transform .05s ease-in-out;
+    transition: transform .05s ease-in-out, -webkit-transform .05s ease-in-out;
+    -webkit-transition: transform .05s ease-in-out;
+    -webkit-transition-delay: 0.70s;
+    -o-transition-delay: 0.70s;
+    transition-delay: 0.70s; }
+  .ly-amp nav ul:hover ~ #closemenu {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0); }
+  .ly-amp nav a {
+    color: #4A8DDD; }
+  .ly-amp nav > ul > li > ul > li > ul {
+    margin-bottom: 0; }
+  .ly-amp nav > ul > li > ul > li {
+    font-size: 16px;
+    padding: 8px 0 8px 8px;
+    border-bottom: 1px solid #ddd; }
+  .ly-amp nav > ul > li > ul > li > a {
+    display: block;
+    text-decoration: none;
+    padding: 0;
+    line-height: 25px;
+    font-weight: bold;
+    color: #404040; }
+  .ly-amp nav > ul > li > ul > li > ul > li {
+    font-size: 16px;
+    line-height: 26px; }
+  .ly-amp nav > ul > li > ul > li > ul > li > a {
+    text-decoration: none;
+    color: #404040; }
+  .ly-amp footer {
+    text-align: center;
+    color: #FFF;
+    background: #2d2d2d;
+    padding: 15px; }
