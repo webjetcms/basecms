@@ -24,6 +24,15 @@ war {
     zip64 = true
     exclude('**/node_modules/**')
     exclude('**/src/**')
+    exclude('**/tmp/**')
+    exclude('**/*.md')
+    exclude('**/*.log')
+    exclude('**/.npmrc')
+    exclude('**/package-lock.json')
+    exclude('**/package.json')
+    exclude('**/webpack*.js')
+    exclude('**/WEB-INF/imgcache/**')
+    exclude('**/scss/**')
 }
 
 //CI-CD tasky
