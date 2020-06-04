@@ -35,7 +35,7 @@ task explodeWar(type : Copy){
 
 }
 task rsyncExplodedWar(dependsOn : explodeWar,  type: Exec) {
-     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","build/explodedWar","/www/tomcat_au27/webapps/${rootProject.name}","tomcat_au27.service","tomcat"
+     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","build/explodedWar","/www/tomcat_au27/webapps/${rootProject.name}","tomcat9.service","tomcat"
 }
 
 ext {
