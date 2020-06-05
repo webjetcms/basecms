@@ -5,7 +5,7 @@
 
         <div class="o-layout__col-xxl-3">
             <div class="block">
-                <h2 class="colored" data-component="ColoredText"><a href="https://www.eisis.nn.cz/eisis/">eISIS Portál<br>pro poradce</a></h2>
+                <h2 data-component="ColoredText"><a href="https://www.eisis.nn.cz/eisis/">eISIS Portál<br>pro poradce</a></h2>
                 <p>Informace <br>pod jednou støechou</p>
                 <div class="image--roundedcorners">
                     <img src="https://www.nn-brand.com/downloads/5e504f34af3de/lg_NN-tab_nav_furniture4.png.png"/>
@@ -16,7 +16,7 @@
 
         <div class="o-layout__col-xxl-3">
             <div class="block">
-                <h2 class="colored" data-component="ColoredText"><a href="/pro-poradce/zkouska-odborne-zpusobilosti/">Zkouška <br>odborné zpùsobilosti</a></h2>
+                <h2 data-component="ColoredText"><a href="/pro-poradce/zkouska-odborne-zpusobilosti/">Zkouška <br>odborné zpùsobilosti</a></h2>
                 <p>Stránka ke zkoušce <br>odborné zpùsobilosti</p>
                 <div class="image--roundedcorners">
                     <img src="https://www.nn-brand.com/downloads/5e542690a9d66/lg_NN-tab_nav_study1_copy.ai.png"/>

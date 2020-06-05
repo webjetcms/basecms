@@ -5,7 +5,7 @@
 
         <div class="o-layout__col-xxl-9">
 
-            <h2 class="colored" data-component="ColoredText">Seznam spoleènosti</h2>
+            <h2 data-component="ColoredText">Seznam spoleènosti</h2>
 
             <div class="c-expander-list" data-module="expanderlist" id="expanderlist_accordeon" >
 

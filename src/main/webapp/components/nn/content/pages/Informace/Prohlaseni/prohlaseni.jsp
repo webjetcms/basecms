@@ -12,7 +12,7 @@
                 Internetové stránky jsou urèeny pøedevším k rychlému získání pøehledu o poslání, èinnosti, produktech jednotlivých spoleèností NN, a dále pak k uveøejòování informací pro klienty, k prodeji finanèních produktù èlenù NN Group N.V. a k dalším úèelùm, které mohou vyplývat ze smluvních ujednání s klienty nebo z regulace a dozoru ze strany pøíslušných správních orgánù.
             </p>
 
-            <h2 class="colored" data-component="ColoredText">Odpovìdnost provozovatele stránek</h2>
+            <h2 data-component="ColoredText">Odpovìdnost provozovatele stránek</h2>
 
             <div class="o-layout">
                 <div class="o-layout__row">
@@ -34,7 +34,7 @@
 
             <p>Prohlášení týkající se internetových stránek platí pøimìøenì i pro všechny ostatní stránky, na které tyto internetové stránky odkazují. NN MS nezodpovídá za obsah takových ostatních stránek, na které tyto internetové stránky odkazují, jelikož se jejich obsah mìní bez vìdomí NN MS. Propojení uživatele na tyto ostatní stránky probíhá na jeho nebezpeèí a NN MS ani NN není odpovìdná za obsah stránek, na které se uživatel po takto uskuteènìném propojení dostane.</p>
 
-            <h2 class="colored" data-component="ColoredText">Práva uživatele stránek a ochrana stránek autorským právem</h2>
+            <h2 data-component="ColoredText">Práva uživatele stránek a ochrana stránek autorským právem</h2>
             <p>
                 Informace uvedené na tìchto internetových stránkách mùže uživatel využívat, ukládat, pøedávat dále, rozmnožovat je nebo odkazovat na nì prostøednictvím hypertextových odkazù, a to zpùsobem neodporujícím obecnì závazným právním pøedpisùm a nepoškozujícím dobré jméno kterékoliv ze spoleèností NN. </p><p>Pøi užívání bere uživatel na vìdomí, že URL jednotlivých souèástí internetových stránek NN nemusí být za všech okolností stejná. Užívá-li uživatel internetové stránky jako zdroj informací, je povinen to uvést, pøièemž nesmí za žádných okolností tyto informace mìnit a soubor s informacemi musí být otevøen vždy v novém oknì prohlížeèe.
             </p>

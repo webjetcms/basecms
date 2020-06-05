@@ -5,7 +5,7 @@
 
         <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block">
-                <h2 class="colored" data-component="ColoredText"><a href="/informace/mapa-stranek/">Mapa stránek</a></h2>
+                <h2 data-component="ColoredText"><a href="/informace/mapa-stranek/">Mapa stránek</a></h2>
                 <p>Strukturovaný pøehled</p>
                 <div class="image--roundedcorners">
                     <img src="https://www.nn-brand.com/downloads/5e542690a9d66/lg_NN-tab_nav_overview.ai.png"/>
@@ -16,7 +16,7 @@
             
             <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
                 <div class="block">
-                    <h2 class="colored" data-component="ColoredText"><a href="/informace/cookies/">Cookies</a></h2>
+                    <h2 data-component="ColoredText"><a href="/informace/cookies/">Cookies</a></h2>
                     <p>Zásady používání cookies</p>
                     <div class="image--roundedcorners">
                         <img src="https://www.nn-brand.com/downloads/5e542690a9d66/lg_NN-tab_nav_overview.ai.png"/>
@@ -27,7 +27,7 @@
             
             <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
                 <div class="block">
-                    <h2 class="colored" data-component="ColoredText"><a href="/informace/prohlaseni/">Prohlášení</a></h2>
+                    <h2 data-component="ColoredText"><a href="/informace/prohlaseni/">Prohlášení</a></h2>
                     <p>Disclaimer</p>
                     <div class="image--roundedcorners">
                         <img src="https://www.nn-brand.com/downloads/5e542690a9d66/lg_NN-tab_nav_overview.ai.png"/>

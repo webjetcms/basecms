@@ -153,7 +153,7 @@
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn.cz/images/cz/o-nas/pojisteni.jpg"/>
                             </div>
-                            <h2 class="colored" data-component="ColoredText">Pojištìní</h2>
+                            <h2 data-component="ColoredText">Pojištìní</h2>
                             <p>Svou nabídkou životního pojištìní vám NN pomáhá pøekonávat neèekané situace, vèetnì tìch nejtìžších. Nebo když se zraníte èi onemocníte a nebudete moci delší dobu pracovat, pomùžeme finanènì zajistit vás a vaše blízké.</p>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn.cz/images/cz/o-nas/penzijni-produkty.jpg"/>
                             </div>
-                            <h2 class="colored" data-component="ColoredText">Penzijní produkty</h2>
+                            <h2 data-component="ColoredText">Penzijní produkty</h2>
                             <p>NN pøipravilo širokou škálu penzijních služeb a produktù, které vás finanènì zajistí pro dobu zaslouženého odpoèinku.</p>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn.cz/images/cz/o-nas/investice.jpg"/>
                             </div>
-                            <h2 class="colored" data-component="ColoredText">Investice</h2>
+                            <h2 data-component="ColoredText">Investice</h2>
                             <p>NN svým zákazníkùm nabízí øešení a služby, které jim vyhovují. Bez ohledu na  to, co se právì dìje na trzích, mají naši klienti pøístup k široké škále flexibilních produktù vhodných pro každou situaci. Investice spravuje spoleènost NN Investment Partners.</p>
                         </div>
                     </div>

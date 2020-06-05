@@ -28,7 +28,7 @@
         <div class="o-layout__row">
 
             <div class="o-layout__col-xl-3">
-                <h2 class="colored" data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/vitejte-nn/">Vítejte <br>v NN</a></h2>
+                <h2 data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/vitejte-nn/">Vítejte <br>v NN</a></h2>
                 <hr class="divider--orange">
                 <p>Od historie <br>po souèasnost</p>
                 <%-- <div class="image--roundedcorners">
@@ -38,7 +38,7 @@
             </div>
 
             <div class="o-layout__col-xl-3">
-                <h2 class="colored" data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/nase-spolecnosti/">Naše <br>spoleènosti</a></h2>
+                <h2 data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/nase-spolecnosti/">Naše <br>spoleènosti</a></h2>
                 <hr class="divider--orange">
                 <p>Informace o spoleènostech <br>NN v ÈR</p>
                 <%-- <div class="image--roundedcorners">
@@ -50,7 +50,7 @@
             </div>
 
             <div class="o-layout__col-xl-3">
-                <h2 class="colored" data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/nase-vedeni/">Naše <br>vedení</a></h2>
+                <h2 data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/nase-vedeni/">Naše <br>vedení</a></h2>
                 <hr class="divider--orange">
                 <p>Informace o èlenech <br>vedení spoleènosti</p>
                 <%-- <div class="image--roundedcorners">
@@ -62,7 +62,7 @@
             </div>
 
             <div class="o-layout__col-xl-3">
-                <h2 class="colored" data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/nase-hodnoty/">Naše <br>hodnoty</a></h2>
+                <h2 data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/nase-hodnoty/">Naše <br>hodnoty</a></h2>
                 <hr class="divider--orange">
                 <p>Pravidla podle kterıch <br>se v NN øídíme</p>
                 <%-- <div class="image--roundedcorners">
@@ -81,7 +81,7 @@
 
     <div class="o-layout__col-xl-4">
       <div class="block">
-        <h2 class="colored" data-component="ColoredText">
+        <h2 data-component="ColoredText">
           <a href="/spolecnost-nn/o-spolecnosti/spolecenska-odpovednost/">Spoleèenská odpovìdnost</a>
         </h2>
         <p>Veøejnì prospìšné projekty a charita</p>
@@ -94,7 +94,7 @@
 
     <div class="o-layout__col-xl-4">
       <div class="block">
-        <h2 class="colored" data-component="ColoredText">
+        <h2 data-component="ColoredText">
           <a href="/spolecnost-nn/o-spolecnosti/projekt-cena-zivota/">Projekt „Cena ivota"</a>
         </h2>
         <p>Na èem v ivotì opravdu záleí?</p>
@@ -128,7 +128,7 @@
 
     <div class="o-layout__col-xl-4">
       <div class="block">
-        <h2 class="colored" data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/zpravy-hospodareni/">Zprávy o hospodaøení</a></h2>
+        <h2 data-component="ColoredText"><a href="/spolecnost-nn/o-spolecnosti/zpravy-hospodareni/">Zprávy o hospodaøení</a></h2>
         <hr class="divider--orange">
         <p>Vıroèní a pololetní zprávy</p>
         <%-- <div class="image--roundedcorners">
@@ -142,7 +142,7 @@
 
     <div class="o-layout__col-xl-4">
       <div class="block">
-        <h2 class="colored" data-component="ColoredText"><a href="/spolecnost-nn/tiskove-centrum/">Tiskové centrum</a></h2>
+        <h2 data-component="ColoredText"><a href="/spolecnost-nn/tiskove-centrum/">Tiskové centrum</a></h2>
         <hr class="divider--orange">
         <p>Tiskové zprávy a novinky ze spoleènosti</p>
         <%-- <div class="image--roundedcorners">
@@ -164,7 +164,7 @@
             <div class="block block--ultra-light-gray">
 
                 <div class="block">
-                    <h2 class="colored" data-component="ColoredText">Kariéra v NN</h2>
+                    <h2 data-component="ColoredText">Kariéra v NN</h2>
                     <h3 class="colored" data-component="ColoredText">Jací jsme?</h3>
                     <p>Moná znáte pojišovnu jako instituci, <br>které víc ne na lidech záleí na roèních obratech.</p><p>U nás takhle nehrajeme.</p><p>Pracovat v NN znamená stát se souèástí spoleènosti, <br>jejím cílem je poskytovat finanèní sluby s lidskım rozmìrem.</p>
                     <p><a href="#" class="c-link">Volné pracovní pozice</a></p>

@@ -7,7 +7,7 @@
 
         <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block block--bordered-left">
-                <h2 class="colored" data-component="ColoredText">Rizikové<br>životní pojištìní</h2>
+                <h2 data-component="ColoredText">Rizikové<br>životní pojištìní</h2>
                 <h4>Pojištìní životních situací <br>dle vašich potøeb</h4>
                 <div class="image--roundedcorners">
                 <img src="https://pojistovna.nn.cz/images/cz/banners/2019/nn_blue-mini.jpg"/>
@@ -20,7 +20,7 @@
 
         <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block block--bordered-left">
-                <h2 class="colored" data-component="ColoredText">Investièní<br>životní pojištìní</h2>
+                <h2 data-component="ColoredText">Investièní<br>životní pojištìní</h2>
                 <h4>Finanèní ochrana pro pøípad nenadálých událostí</h4>
                 <div class="image--roundedcorners">
                 <img src="https://pojistovna.nn.cz/images/cz/slider/zivotni-pojisteni-nn-smart-mini.jpg"/>
@@ -33,7 +33,7 @@
 
         <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block block--bordered-left">
-                <h2 class="colored" data-component="ColoredText">Neživotní<br>pojištìní</h2>
+                <h2 data-component="ColoredText">Neživotní<br>pojištìní</h2>
                 <h4>Ochraòte svùj domov, <br>auto nebo zavazadla</h4>
                 <div class="image--roundedcorners">
                 <img src="https://pojistovna.nn.cz/images/cz-pojistovna/banners/nn-zivot-2-mini.jpg"/>
@@ -59,7 +59,7 @@
     <div class="o-layout__row">
 
             <div class="o-layout__col-xxl-4">
-                <h2 class="colored" data-component="ColoredText">Fondy životního pojištìní</h2>
+                <h2 data-component="ColoredText">Fondy životního pojištìní</h2>
                 <hr class="divider--orange">
                 <ul class="c-list">
                     <li class="c-list__item"><a href="#" class="c-link">Vývoj fondù životního pojištìní</a></li>
@@ -70,7 +70,7 @@
             </div>
 
             <div class="o-layout__col-xxl-4">
-                <h2 class="colored" data-component="ColoredText">Pro klienty</h2>
+                <h2 data-component="ColoredText">Pro klienty</h2>
                 <hr class="divider--orange">
                 <ul class="c-list">
                     <li class="c-list__item"><a href="#" class="c-link">Jak nahlásit pojistnou událost</a></li>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="o-layout__col-xxl-4">
-                <h2 class="colored" data-component="ColoredText">Pro klienty NN Blue</h2>
+                <h2 data-component="ColoredText">Pro klienty NN Blue</h2>
                 <hr class="divider--orange">
                 <ul class="c-list">
                     <li class="c-list__item"><a href="#" class="c-link">Pojistná událost</a></li>

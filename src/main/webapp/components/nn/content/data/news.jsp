@@ -1,7 +1,7 @@
 <%@ page pageEncoding="windows-1250" %>
 <div class="block block--bordered-left">
 
-    <h2 class="colored" data-component="ColoredText">Aktuální zprávy</h2>
+    <h2 data-component="ColoredText">Aktuální zprávy</h2>
 
     <ul class="list--dates">
         <li>

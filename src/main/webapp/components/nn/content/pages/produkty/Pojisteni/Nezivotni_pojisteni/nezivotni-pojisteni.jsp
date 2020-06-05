@@ -17,7 +17,7 @@
 
                     <div class="o-layout__col-xxl-3">
                         <div class="block">
-                            <h2 class="colored" data-component="ColoredText"><a href="#">Pojištìní<br>vozidel</a></h2>
+                            <h2 data-component="ColoredText"><a href="#">Pojištìní<br>vozidel</a></h2>
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn-brand.com/downloads/5e504f34af3de/lg_NN-tab_nav_car.png.png"/>
                             </div>
@@ -27,7 +27,7 @@
 
                     <div class="o-layout__col-xxl-3">
                         <div class="block">
-                            <h2 class="colored" data-component="ColoredText"><a href="#">Pojištìní<br>majetku</a></h2>
+                            <h2 data-component="ColoredText"><a href="#">Pojištìní<br>majetku</a></h2>
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn-brand.com/downloads/5e504f34af3de/lg_lg_NN-tab_nav_home.png.png"/>
                             </div>
@@ -37,7 +37,7 @@
 
                     <div class="o-layout__col-xxl-3">
                         <div class="block">
-                            <h2 class="colored" data-component="ColoredText"><a href="#">Pojištìní<br>odpovìdnosti</a></h2>
+                            <h2 data-component="ColoredText"><a href="#">Pojištìní<br>odpovìdnosti</a></h2>
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn-brand.com/downloads/5e504f34af3de/lg_NN-tab_nav_invest.png.png"/>
                             </div>
@@ -47,7 +47,7 @@
 
                     <div class="o-layout__col-xxl-3">
                         <div class="block">
-                            <h2 class="colored" data-component="ColoredText"><a href="#">Cestovní<br>pojištìní</a></h2>
+                            <h2 data-component="ColoredText"><a href="#">Cestovní<br>pojištìní</a></h2>
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn-brand.com/downloads/5e504f34af3de/lg_NN-tab_nav_health.png.png"/>
                             </div>

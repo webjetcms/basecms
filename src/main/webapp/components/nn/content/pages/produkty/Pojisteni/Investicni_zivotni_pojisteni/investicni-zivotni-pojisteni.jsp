@@ -10,7 +10,7 @@
 
                     <div class="o-layout__col-xxl-4">
                         <div class="block">
-                            <h2 class="colored" data-component="ColoredText"><a href="/pojisteni/investicni-zivotni-pojisteni/nn-smart/">NN Smart</a></h2>
+                            <h2 data-component="ColoredText"><a href="/pojisteni/investicni-zivotni-pojisteni/nn-smart/">NN Smart</a></h2>
                             <p>Pojištìní rizik pro celou rodinu<br>na jedné smlouvì</p>
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn-brand.com/downloads/5e542690a9d66/lg_NN-tab_nav_vacation1.png.png"/>
@@ -21,7 +21,7 @@
 
                     <div class="o-layout__col-xxl-4">
                         <div class="block">
-                            <h2 class="colored" data-component="ColoredText"><a href="/pojisteni/investicni-zivotni-pojisteni/nn-blue/">NN Blue</a></h2>
+                            <h2 data-component="ColoredText"><a href="/pojisteni/investicni-zivotni-pojisteni/nn-blue/">NN Blue</a></h2>
                             <p>Chraòte svùj <br>životní styl</p>
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn-brand.com/downloads/5e504f34af3de/lg_NN-tab_nav_Informalcare.png.png"/>
@@ -32,7 +32,7 @@
 
                     <div class="o-layout__col-xxl-4">
                         <div class="block">
-                            <h2 class="colored" data-component="ColoredText"><a href="/pojisteni/rizikove-zivotni-pojisteni/pripojisteni/">Pøipojištìní</a></h2>
+                            <h2 data-component="ColoredText"><a href="/pojisteni/rizikove-zivotni-pojisteni/pripojisteni/">Pøipojištìní</a></h2>
                             <p>Vyberte si oblast pøipojištìní,<br>která vás zajímá</p>
                             <div class="image--roundedcorners">
                                 <img src="https://www.nn-brand.com/downloads/5e542690a9d66/lg_NN-tab_nav_products.png.png"/>

@@ -1,6 +1,6 @@
 <%@ page pageEncoding="windows-1250" %>
 <div class="block">
-   <h2 class="colored" data-component="ColoredText">Nejnovìjší èlánky</h2>
+   <h2 data-component="ColoredText">Nejnovìjší èlánky</h2>
    <span class="footnote">01.04.2020</span>
    <h3 class="colored" data-component="ColoredText"><a href="#">Obyèejní hrdinové souèasnosti –&nbsp;švadlenky a šièi</a></h3>
    <span class="footnote">27.03.2020</span>

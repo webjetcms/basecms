@@ -1,7 +1,7 @@
 <%@ page pageEncoding="windows-1250" %>
 <div class="block block--bordered-left">
     <div class="c-contact u-margin-bottom--none">
-        <h2 class="colored" data-component="ColoredText">Více informací</h2>
+        <h2 data-component="ColoredText">Více informací</h2>
         <p>Kontaktujte specialisty<br>na firemní klientelu.</p>
         <ul class="c-contact__contact-list">
             <li class="c-contact__item">

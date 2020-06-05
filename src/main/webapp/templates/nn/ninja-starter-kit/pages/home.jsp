@@ -9,7 +9,7 @@
 
         <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block block--bordered-left">
-                <h2 class="colored" data-component="ColoredText">Pojištìní</h2>
+                <h2 data-component="ColoredText">Pojištìní</h2>
                 <h4>Jistota<br>pro život</h4>
                 <div class="image--roundedcorners">
                 <img src="https://www.nn.cz/images/cz/hp/95011919_l.jpg"/>
@@ -21,7 +21,7 @@
             
             <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block block--bordered-left">
-                <h2 class="colored" data-component="ColoredText">Penze</h2>
+                <h2 data-component="ColoredText">Penze</h2>
                 <h4>Doplòkové<br>penzijní spoøení</h4>
                 <div class="image--roundedcorners">
                 <img src="https://www.nn.cz/images/cz/banners/penze_279x187.jpg"/>
@@ -33,7 +33,7 @@
             
             <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block block--bordered-left">
-                <h2 class="colored" data-component="ColoredText">Investice</h2>
+                <h2 data-component="ColoredText">Investice</h2>
                 <h4>Správa<br>investièního majetku</h4>
                 <div class="image--roundedcorners">
                 <img src="https://www.nn.cz/images/cz/hp/ma27577_l.jpg"/>

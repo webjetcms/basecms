@@ -14,7 +14,7 @@
         <div class="o-layout__col-xl-4">
             <div class="block block--ultra-light-gray">
                 <div class="c-contact u-margin-bottom--none">
-                    <h2 class="colored" data-component="ColoredText">Více informací</h2>
+                    <h2 data-component="ColoredText">Více informací</h2>
                     <p>Rádi vám poradíme<br>a&nbsp;zodpovíme vaše dotazy.</p>
                     <ul class="c-contact__contact-list">
                         <li class="c-contact__item">

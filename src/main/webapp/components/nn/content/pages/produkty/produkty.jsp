@@ -5,7 +5,7 @@
 
         <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block">
-                <h2 class="colored" data-component="ColoredText"><a href="/pojisteni/">Pojištìní</a></h2>
+                <h2 data-component="ColoredText"><a href="/pojisteni/">Pojištìní</a></h2>
                 <h4>Jistota<br>pro život</h4>
                 <div class="image--roundedcorners">
                 <img src="https://www.nn-brand.com/downloads/5e504f34af3de/lg_NN-tab_nav_health.png.png"/>
@@ -17,7 +17,7 @@
             
             <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block">
-                <h2 class="colored" data-component="ColoredText"><a href="/penze/">Penze</a></h2>
+                <h2 data-component="ColoredText"><a href="/penze/">Penze</a></h2>
                 <h4>Doplòkové<br>penzijní spoøení</h4>
                 <div class="image--roundedcorners">
                 <img src="https://www.nn-brand.com/downloads/5e542690a9d66/lg_NN-tab_nav_pension1.png.png"/>
@@ -29,7 +29,7 @@
             
             <div class="o-layout__col-xxl-3 o-layout__col-xl-4">
             <div class="block">
-                <h2 class="colored" data-component="ColoredText"><a href="/investice/">Investice</a></h2>
+                <h2 data-component="ColoredText"><a href="/investice/">Investice</a></h2>
                 <h4>Správa<br>investièního majetku</h4>
                 <div class="image--roundedcorners">
                 <img src="https://www.nn-brand.com/downloads/5e542690a9d66/lg_NN-tab_nav_saving.png.png"/>

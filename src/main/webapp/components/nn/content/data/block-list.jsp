@@ -156,7 +156,7 @@
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--check"></span><strong>Pojištìní rizik pro celou rodinu</strong> – 2 dospìlé osoby a&nbsp;až 10 dìtí na&nbsp;jedné smlouvì</span></li>
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--check"></span><strong>Úhradu nákladù</strong> spojených nejen s&nbsp;léèbou, ale také s&nbsp;nesplaceným úvìrem <br>èi ztrátou zamìstnání v&nbsp;pøípadì vážného úrazu nebo invalidity</span></li>
 </ul>
-<ul class="c-list-icon c-list-icon--small">
+<ul class="c-list-icon c-list-icon--medium">
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--check"></span><strong>Finanèní zabezpeèení vašich nejbližších</strong> až do&nbsp;té míry,<br>že za vás splatí hypotéku èi úvìr v&nbsp;pøípadì závažných situací</span></li>
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--check"></span><strong>Flexibilitu</strong> v&nbsp;typu pojištìných rizik, která si poskládáte podle svých potøeb,<br>a&nbsp;mìníte je bez poplatkù</span></li>
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--check"></span><strong>Pojištìní rizik pro celou rodinu</strong> – 2 dospìlé osoby a&nbsp;až 10 dìtí na&nbsp;jedné smlouvì</span></li>
@@ -179,12 +179,36 @@
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Pojištìní rizik pro celou rodinu</strong> – 2 dospìlé osoby a&nbsp;až 10 dìtí na&nbsp;jedné smlouvì</span></li>
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Úhradu nákladù</strong> spojených nejen s&nbsp;léèbou, ale také s&nbsp;nesplaceným úvìrem <br>èi ztrátou zamìstnání v&nbsp;pøípadì vážného úrazu nebo invalidity</span></li>
 </ul>
+<ul class="c-list-icon c-list-icon--medium">
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Finanèní zabezpeèení vašich nejbližších</strong> až do&nbsp;té míry,<br>že za vás splatí hypotéku èi úvìr v&nbsp;pøípadì závažných situací</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Flexibilitu</strong> v&nbsp;typu pojištìných rizik, která si poskládáte podle svých potøeb,<br>a&nbsp;mìníte je bez poplatkù</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Pojištìní rizik pro celou rodinu</strong> – 2 dospìlé osoby a&nbsp;až 10 dìtí na&nbsp;jedné smlouvì</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Úhradu nákladù</strong> spojených nejen s&nbsp;léèbou, ale také s&nbsp;nesplaceným úvìrem <br>èi ztrátou zamìstnání v&nbsp;pøípadì vážného úrazu nebo invalidity</span></li>
+</ul>
+<ul class="c-list-icon c-list-icon--large">
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Finanèní zabezpeèení vašich nejbližších</strong> až do&nbsp;té míry,<br>že za vás splatí hypotéku èi úvìr v&nbsp;pøípadì závažných situací</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Flexibilitu</strong> v&nbsp;typu pojištìných rizik, která si poskládáte podle svých potøeb,<br>a&nbsp;mìníte je bez poplatkù</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Pojištìní rizik pro celou rodinu</strong> – 2 dospìlé osoby a&nbsp;až 10 dìtí na&nbsp;jedné smlouvì</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--cross-thin"></span><strong>Úhradu nákladù</strong> spojených nejen s&nbsp;léèbou, ale také s&nbsp;nesplaceným úvìrem <br>èi ztrátou zamìstnání v&nbsp;pøípadì vážného úrazu nebo invalidity</span></li>
+</ul>
 
 <div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
     <h2 class="h2--secondary">List with client</h2>
     <p class="u-margin--none">Text</p>
 </div>
 <ul class="c-list-icon">
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Finanèní zabezpeèení vašich nejbližších</strong> až do&nbsp;té míry,<br>že za vás splatí hypotéku èi úvìr v&nbsp;pøípadì závažných situací</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Flexibilitu</strong> v&nbsp;typu pojištìných rizik, která si poskládáte podle svých potøeb,<br>a&nbsp;mìníte je bez poplatkù</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Pojištìní rizik pro celou rodinu</strong> – 2 dospìlé osoby a&nbsp;až 10 dìtí na&nbsp;jedné smlouvì</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Úhradu nákladù</strong> spojených nejen s&nbsp;léèbou, ale také s&nbsp;nesplaceným úvìrem <br>èi ztrátou zamìstnání v&nbsp;pøípadì vážného úrazu nebo invalidity</span></li>
+</ul>
+<ul class="c-list-icon c-list-icon--medium">
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Finanèní zabezpeèení vašich nejbližších</strong> až do&nbsp;té míry,<br>že za vás splatí hypotéku èi úvìr v&nbsp;pøípadì závažných situací</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Flexibilitu</strong> v&nbsp;typu pojištìných rizik, která si poskládáte podle svých potøeb,<br>a&nbsp;mìníte je bez poplatkù</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Pojištìní rizik pro celou rodinu</strong> – 2 dospìlé osoby a&nbsp;až 10 dìtí na&nbsp;jedné smlouvì</span></li>
+    <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Úhradu nákladù</strong> spojených nejen s&nbsp;léèbou, ale také s&nbsp;nesplaceným úvìrem <br>èi ztrátou zamìstnání v&nbsp;pøípadì vážného úrazu nebo invalidity</span></li>
+</ul>
+<ul class="c-list-icon c-list-icon--large">
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Finanèní zabezpeèení vašich nejbližších</strong> až do&nbsp;té míry,<br>že za vás splatí hypotéku èi úvìr v&nbsp;pøípadì závažných situací</span></li>
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Flexibilitu</strong> v&nbsp;typu pojištìných rizik, která si poskládáte podle svých potøeb,<br>a&nbsp;mìníte je bez poplatkù</span></li>
     <li class="c-list-icon__item u-font-decoration-none"><span class="c-list-icon__text"><span class="c-icon c-list-icon__icon c-icon--pict-client"></span><strong>Pojištìní rizik pro celou rodinu</strong> – 2 dospìlé osoby a&nbsp;až 10 dìtí na&nbsp;jedné smlouvì</span></li>
@@ -205,37 +229,16 @@
 
 
 <div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
-    <h2 class="h2--secondary">Accordion</h2>
+    <h2 class="h2--secondary">List with links to document</h2>
     <p class="u-margin--none">Text</p>
 </div>
-<div class="c-expander-list" data-module="expanderlist" id="expanderlist_accordeon">
-  <div class="c-expander-list__item" data-role="expander">
-    <div class="c-expander-list__item__toggle c-expander-list__item__toggle" data-role="toggle">
-      <span class="c-expander-list__item__toggle__icon"></span>
-      <span class="c-expander-list__item__toggle__title">Accordion A</span>
-    </div>
-    <div class="c-expander-list__item__content-outer" data-role="content-outer">
-      <div class="c-expander-list__item__content-inner" data-role="content-inner">
-        <p>
-            Content A
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="c-expander-list__item" data-role="expander">
-  	<div class="c-expander-list__item__toggle c-expander-list__item__toggle" data-role="toggle">
-  		<span class="c-expander-list__item__toggle__icon"></span>
-  		<span class="c-expander-list__item__toggle__title">Accordion B</span>
-  	</div>
-  	<div class="c-expander-list__item__content-outer" data-role="content-outer">
-  		<div class="c-expander-list__item__content-inner" data-role="content-inner">
-        <p>
-            Content B
-        </p>
-      </div>
-  	</div>
-  </div>
-</div>
+<ul class="link-list link-list--download">
+    <li class="pdf"><a href="#"> Názov dokumentu A (0,2 mb) </a></li>
+    <li class="pdf"><a href="#"> Názov dokumentu B (1,7 mb) </a></li>
+    <li class="pdf"><a href="#"> Názov dokumentu C (1,7 mb) </a></li>
+</ul>
+
+
 
 
 
@@ -377,7 +380,7 @@
  </div>
 
 
- <div class="block u-color-background--light-grey u-margin-top u-padding--20">
+ <div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
      <h2 class="h2--secondary">Alert info</h2>
      <p class="u-margin--none">Text</p>
  </div>
@@ -388,7 +391,7 @@
  </div>
 
 
- <div class="block u-color-background--light-grey u-margin-top u-padding--20">
+ <div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
      <h2 class="h2--secondary">Full width block grey</h2>
      <p class="u-margin--none">Text</p>
  </div>
@@ -396,6 +399,119 @@
     <p>Content</p>
 </div>
 
+
+<div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
+    <h2 class="h2--secondary">Page messages type 1: Critical</h2>
+    <p class="u-margin--none">Text</p>
+</div>
+<div class="c-notification c-notification--error c-notification--large-icon c-notification--urgent">
+    <h2 data-component="ColoredText">Uw aanvraag is niet goed verlopen</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim 070-2232233
+    </p>
+    <p class="u-margin--none"><a href="/foo" class="c-button"><span>Call to action</span></a></p>
+   </div>
+   
+   <div class="c-notification c-notification--information c-notification--large-icon c-notification--urgent">
+    <h2 data-component="ColoredText">Uw aanvraag is nog in behandeling</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim 070-2232233
+    </p>
+    <p class="u-margin--none"><a href="/foo" class="c-button"><span>Call to action</span></a></p>
+   </div>
+   
+   <div class="c-notification c-notification--success c-notification--large-icon c-notification--urgent">
+    <h2 data-component="ColoredText">Uw aanvraag is succesvol afgerond</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim 070-2232233
+    </p>
+    <p class="u-margin--none"><a href="/foo" class="c-button"><span>Call to action</span></a></p>
+   </div>
+   
+   <div class="c-notification c-notification--warning c-notification--large-icon c-notification--urgent">
+    <h2 data-component="ColoredText">Uw aanvraag is niet goed verlopen</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim 070-2232233
+    </p>
+    <p class="u-margin--none"><a href="/foo" class="c-button"><span>Call to action</span></a></p>
+   </div>
+
+
+
+
+<div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
+    <h2 class="h2--secondary">Page messages type 2: Important but not urgent</h2>
+    <p class="u-margin--none">Text</p>
+</div>
+<div class="c-notification c-notification--error c-notification--urgent">
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim 070-2232233
+</p>
+<p class="u-margin--none"><a href="/foo" class="c-link u-font-bold"><span>Call to action</span></a></p>
+</div>
+
+<div class="c-notification c-notification--information c-notification--urgent">
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim 070-2232233
+</p>
+<p class="u-margin--none"><a href="/foo" class="c-link u-font-bold"><span>Call to action</span></a></p>
+</div>
+
+<div class="c-notification c-notification--success c-notification--urgent">
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim 070-2232233
+</p>
+<p class="u-margin--none"><a href="/foo" class="c-link u-font-bold"><span>Call to action</span></a></p>
+</div>
+
+<div class="c-notification c-notification--warning c-notification--urgent">
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim 070-2232233
+</p>
+<p class="u-margin--none"><a href="/foo" class="c-link u-font-bold"><span>Call to action</span></a></p>
+</div>
+
+
+<div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
+    <h2 class="h2--secondary">Accordion</h2>
+    <p class="u-margin--none">Text</p>
+</div>
+<div class="c-expander-list" data-module="expanderlist" id="expanderlist_accordeon">
+  <div class="c-expander-list__item" data-role="expander">
+    <div class="c-expander-list__item__toggle c-expander-list__item__toggle" data-role="toggle">
+      <span class="c-expander-list__item__toggle__icon"></span>
+      <span class="c-expander-list__item__toggle__title">Accordion A</span>
+    </div>
+    <div class="c-expander-list__item__content-outer" data-role="content-outer">
+      <div class="c-expander-list__item__content-inner" data-role="content-inner">
+        <p>
+            Content A
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="c-expander-list__item" data-role="expander">
+  	<div class="c-expander-list__item__toggle c-expander-list__item__toggle" data-role="toggle">
+  		<span class="c-expander-list__item__toggle__icon"></span>
+  		<span class="c-expander-list__item__toggle__title">Accordion B</span>
+  	</div>
+  	<div class="c-expander-list__item__content-outer" data-role="content-outer">
+  		<div class="c-expander-list__item__content-inner" data-role="content-inner">
+        <p>
+            Content B
+        </p>
+      </div>
+  	</div>
+  </div>
+</div>
 
 
 <div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
@@ -480,7 +596,7 @@
  </div>
 
 
- <div class="block u-color-background--light-grey u-margin-top u-padding--20">
+ <div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
      <h2 class="h2--secondary">Promo block rounded image</h2>
      <p class="u-margin--none">Text</p>
  </div>
@@ -495,7 +611,7 @@
     <p><a href="#" class="c-link">Zjistit více</a></p>
 </div>
 
- <div class="block u-color-background--light-grey u-margin-top u-padding--20">
+ <div class="block u-color-background--light-grey u-margin-top--80 u-padding--20 u-border-radius-2">
      <h2 class="h2--secondary">Quotes</h2>
      <p class="u-margin--none">Text</p>
  </div>

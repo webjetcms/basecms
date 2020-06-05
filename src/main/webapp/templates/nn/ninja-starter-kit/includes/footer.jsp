@@ -8,7 +8,7 @@
 
 		<ul class="footer-link-list-group" data-component="FooterSection">
 			<li>
-				<h5>Pojištìní</h5>
+				<h5>Produkty</h5>
 				<ul class="link-list">
 					<li><a href="/pojisteni/">Pojištìní</a></li>
 					<li><a href="/penze/">Penze</a></li>

@@ -73,7 +73,7 @@
 
 <div class="block">
 
-    <h2 class="colored" data-component="ColoredText">Kontakty na Obchodní místa NN</h2>
+    <h2 data-component="ColoredText">Kontakty na Obchodní místa NN</h2>
 
     <div class="block block--border">
         <p><strong>!!Google mapa!!</strong></p>
