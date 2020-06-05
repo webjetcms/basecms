@@ -4,21 +4,20 @@
   <div class="o-layout__row">
 
     <div class="o-layout__col-xl-4">
-      <div class="blockss">
         <div class="image--roundedcorners">
           <img src="https://www.nn-brand.com/downloads/5e1ceb988e538/lg_NN_extra_RZ.jpg.jpg" />
         </div>
-      </div>
     </div>
 
     <div class="o-layout__col-xl-4">
-        <p class="u-font-size-xxxxl u-color--medium-orange">&#x275B;&#x275B;</p>
-        <h2 class="h2--secondary">Zaèínáme u vás</h2>
-        <p class="u-font-bold u-font-size-xl">
-          Vše, co dìláme, <br>se odvíjí od potøeb<br>zákazníka.
-        </p>
+        <div class="block">
+          <p class="u-font-size-xxxxl u-color--medium-orange">&#x275B;&#x275B;</p>
+          <h2 class="h2--secondary">Zaèínáme u vás</h2>
+          <p class="u-font-bold u-font-size-xl">
+            Vše, co dìláme, <br>se odvíjí od potøeb<br>zákazníka.
+          </p>
+        </div>
     </div>
-
 
   </div>
 </div>
