@@ -53,6 +53,11 @@ ext {
 
 dependencies {
 
+    modules {
+        module("org.apache.struts:struts-core") { replacedBy("sk.iway:webjet", "mame integrovane") }
+        module("org.apache.struts:struts-taglib") { replacedBy("sk.iway:webjet", "mame integrovane") }
+    }
+
     compile("sk.iway:webjet:${webjetVersion}")
     compile("sk.iway:webjet:${webjetVersion}:admin")    
     compile("sk.iway:webjet:${webjetVersion}:components")
