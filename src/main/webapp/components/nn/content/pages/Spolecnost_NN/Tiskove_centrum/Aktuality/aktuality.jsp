@@ -1,5 +1,4 @@
 <%@ page pageEncoding="windows-1250" %>
-<%@ include file="../../../../data/banner.jsp" %>
 
 <div class="o-layout">
     <div class="o-layout__row">
@@ -45,6 +44,25 @@
                 <p><a href="#" class="c-link">Zistit více</a></p>
             </div>
 
+            <div class="block">
+                <div class="c-pagination">
+                    <ul class="c-pagination__list">
+                        <li class="c-pagination__item c-pagination__button-back"><a class="c-button c-button--back" aria-label="vorige pagina"><span class="c-icon c-icon--angle-left c-button--back__icon" aria-hidden="true"></span></a></li>
+                        <li class="c-pagination__item"><a class="c-pagination__link" aria-label="pagina 1">1</a></li>
+                        <li class="c-pagination__item"><a class="c-pagination__link" aria-label="vorige pagina groep">&hellip;</a>
+                        </li>
+                        <li class="c-pagination__item"><a class="c-pagination__link" aria-label="pagina 13">13</a></li>
+                        <li class="c-pagination__item"><a class="c-pagination__link" aria-label="pagina 14">14</a></li>
+                        <li class="c-pagination__item"><a class="c-pagination__link is-active" aria-label="pagina 15">15</a></li>
+                        <li class="c-pagination__item"><a class="c-pagination__link" aria-label="pagina 16">16</a></li>
+                        <li class="c-pagination__item"><a class="c-pagination__link" aria-label="pagina 17">17</a></li>
+                        <li class="c-pagination__item"><a class="c-pagination__link" aria-label="volgende pagina groep">&hellip;</a></li>
+                        <li class="c-pagination__item"><a class="c-pagination__link" aria-label="pagina 22">22</a></li>
+                        <li class="c-pagination__item c-pagination__button-next"><a class="c-button c-button--next" aria-label="Volgende pagina"><span class="c-icon c-icon--angle-right c-button--next__icon" aria-hidden="true"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
         <div class="o-layout__col-xxl-4">
             <div class="block block--bordered-left">
@@ -57,5 +75,6 @@
         </div>
     </div>
 </div>
+
 
 <%@ include file="../../../../data/press-center-contact.jsp" %>

@@ -8,18 +8,19 @@
 
 		<ul class="footer-link-list-group" data-component="FooterSection">
 			<li>
-				<h5>NN v ÈR</h5>
+				<h5>Pojištìní</h5>
 				<ul class="link-list">
-					<li><a href="#">Naše spoleènosti</a></li>
-					<li><a href="#">Naše vedení</a></li>
-					<li><a href="#">Kariera</a></li>
+					<li><a href="/pojisteni/">Pojištìní</a></li>
+					<li><a href="/penze/">Penze</a></li>
+					<li><a href="/investice/">Investice</a></li>
 				</ul>
 			</li>
 			<li>
-				<h5>Tiskové centrum</h5>
+				<h5>Spoleènost NN</h5>
 				<ul class="link-list">
-					<li><a href="/spolecnost-nn/tiskove-centrum/tiskove-zpravy/">Tiskové zprávy</a></li>
-					<li><a href="/spolecnost-nn/tiskove-centrum/aktuality/">Aktuality</a></li>
+					<li><a href="/spolecnost-nn/o-spolecnosti/">O spoleènosti</a></li>
+					<li><a href="/spolecnost-nn/tiskove-centrum/">Tiskové centrum</a></li>
+					<li><a href="/spolecnost-nn/kariera/">Kariéra</a></li>
 				</ul>
 			</li>
 			<li>
@@ -65,10 +66,10 @@
 	<div class="footer-section-wrapper">
         <div class="icons icons--trust-builder">
 		    <div class="c-list-icon c-list-icon--medium">
-                <a href="#" class="c-list-icon__link"><span aria-hidden="true" class="c-icon c-icon--facebook c-list-icon__icon u-color--medium-grey"></span></a>
-                <a href="#" class="c-list-icon__link"><span aria-hidden="true" class="c-icon c-icon--twitter c-list-icon__icon u-color--medium-grey"></span></a>
-                <a href="#" class="c-list-icon__link"><span aria-hidden="true" class="c-icon c-icon--linkedin c-list-icon__icon u-color--medium-grey"></span></a>
-                <a href="#" class="c-list-icon__link"><span aria-hidden="true" class="c-icon c-icon--google-plus c-list-icon__icon u-color--medium-grey"></span></a>
+                <a target="_blank" href="https://www.facebook.com/nnpojistovna" class="c-list-icon__link"><span aria-hidden="true" class="c-icon c-icon--facebook c-list-icon__icon u-color--medium-grey"></span></a>
+                <a target="_blank" href="https://twitter.com/nnczech" class="c-list-icon__link"><span aria-hidden="true" class="c-icon c-icon--twitter c-list-icon__icon u-color--medium-grey"></span></a>
+                <a target="_blank" href="https://www.linkedin.com/company/nn" class="c-list-icon__link"><span aria-hidden="true" class="c-icon c-icon--linkedin c-list-icon__icon u-color--medium-grey"></span></a>
+                <a target="_blank" href="https://www.youtube.com/user/INGPojistovna" class="c-list-icon__link"><span aria-hidden="true" class="c-icon c-icon--google-plus c-list-icon__icon u-color--medium-grey"></span></a>
             </div>
         </div>
 	</div>

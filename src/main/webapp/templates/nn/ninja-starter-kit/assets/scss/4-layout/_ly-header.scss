@@ -4,6 +4,23 @@
     min-height: 50vh;
 }
 
+a[href="#"]::after {
+    content: "!";
+    animation-duration: 200ms;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    color:green;
+}
+ @keyframes blink {
+    from {
+       opacity: 1;
+    }
+    to {
+       opacity: 0;
+    }
+}
+
 h2.colored {
     &:hover {
         > a {

@@ -1,6 +1,5 @@
 <%@ page pageEncoding="windows-1250" %>
 
-<%@ include file="data/banner.jsp" %>
 <%@ include file="includes/breadcrumb.jsp" %>
 <%@ include file="includes/browser-support.jsp" %>
 <%@ include file="data/alert-covid-19.jsp" %>

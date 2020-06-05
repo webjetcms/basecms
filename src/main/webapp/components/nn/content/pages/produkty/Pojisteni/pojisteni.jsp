@@ -11,7 +11,7 @@
                 <img src="https://www.nn-brand.com/downloads/5e504f34af3de/lg_NN-tab_nav_health_insurance_collective.ai.png"/>
                 </div>
                 <%-- <p>Pojištìní rizik pro celou rodinu na jedné smlouvì.</p> --%>
-                <p><a href="/pojisteni/rizikove-zivotni-pojisteni/nn-zivot/" class="c-link">NN ivo</a></p>
+                <p><a href="/pojisteni/rizikove-zivotni-pojisteni/nn-zivot/" class="c-link">NN ivot</a></p>
                 <p><a href="#" class="c-link">Pøipojištìní</a></p>
             </div>
         </div>

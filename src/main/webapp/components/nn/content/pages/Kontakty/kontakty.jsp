@@ -1,7 +1,5 @@
 <%@ page pageEncoding="windows-1250" %>
 
-<%@ include file="../../data/banner.jsp" %>
-
 <div class="block">
     <div class="o-layout">
         <div class="o-layout__row">
@@ -11,10 +9,7 @@
                 <p>Chcete se sejít s naším poradcem, nebo se jen na nìco zeptat? <br>Využijte služeb naší Klientské linky.</p>
                 <ul class="c-contact__contact-list">
                     <li class="c-contact__item">
-                        <a href="#">
-                            <span class="c-contact__icon c-icon--pict-website"></span>
-                            Kontaktní formuláø
-                        </a>
+                        <a href="/kontakty/kontaktni-formular/"><span class="c-contact__icon c-icon--pict-website"></span>Kontaktní formuláø</a>
                     </li>
                     <li class="c-contact__item">
                         <a href="#">
@@ -44,11 +39,15 @@
                 <div class="u-margin-bottom--5 u-font-size-xl" data-component="ColoredText">
                     Bezplatná klientská linka
                 </div>
-                <p class="u-font-size-xl">800 127 127</p>
+                <p class="u-font-size-xl">
+                    <a href="tel:800 127 127">800 127 127</a>
+                </p>
                 <div class="u-margin-bottom--5 u-font-size-xl" data-component="ColoredText">
                     Èíslo pro volání ze zahranièí
                 </div>
-                <p class="u-font-size-xl">+420 257 471 059</p>
+                <p class="u-font-size-xl">
+                    <a href="tel:+420 257 471 059">+420 257 471 059</a>
+                </p>
                 <p>V pracovních dnech <br>od&nbsp;7:00 do&nbsp;19:00 hodin. <br><a href="/kontakty/klientska-linka.html">Aká je cena hovoru?</a></p>
             </div>
             
@@ -57,7 +56,7 @@
                     E-mailový kontakt
                 </div>
                 <p class="u-font-size-xl">
-                    <a href="#">klient@nn.cz</a>
+                    <a href="mailto:klient@nn.cz">klient@nn.cz</a>
                 </p>
                 <div class="u-margin-bottom--5 u-font-size-xl" data-component="ColoredText">Korespondenèní adresa</div>
                 <p class="u-font-size-xl">
@@ -91,9 +90,9 @@
                 <h4 class="u-margin-bottom--5">Kontaktní osoba</h4>
                 <p>Daniela Kohoutová</p>
                 <p>
-                    <span class="c-icon c-icon--app u-color--medium-orange"></span> 222 715 481<br>
-                    <span class="c-icon c-icon--app u-color--medium-orange"></span> 222 715 481<br>
-                    <span class="c-icon c-icon--laptop u-color--medium-orange"></span> daniela.kohoutova@nn.cz
+                    <span class="c-icon c-icon--app u-color--medium-orange"></span> <a href="tel:222 715 481">222 715 481</a><br>
+                    <span class="c-icon c-icon--app u-color--medium-orange"></span> <a href="tel:222 715 481">222 715 481</a><br>
+                    <span class="c-icon c-icon--laptop u-color--medium-orange"></span> <a href="mailto:daniela.kohoutova@nn.cz">daniela.kohoutova@nn.cz</a>
                 </p>
 
                 <h4 class="u-margin-bottom--5">Spojení MHD</h4>
@@ -113,9 +112,9 @@
                 <h4 class="u-margin-bottom--5">Kontaktní osoba</h4>
                 <p>Jana Kratochvílová</p>
                 <p>
-                    <span class="c-icon c-icon--app u-color--medium-orange"></span> 266 055 610<br>
-                    <span class="c-icon c-icon--app u-color--medium-orange"></span> 724 464 151<br>
-                    <span class="c-icon c-icon--laptop u-color--medium-orange"></span> jana.kratochvilova@nn.cz
+                    <span class="c-icon c-icon--app u-color--medium-orange"></span> <a href="tel:266 055 610">266 055 610</a><br>
+                    <span class="c-icon c-icon--app u-color--medium-orange"></span> <a href="tel:724 464 151">724 464 151</a><br>
+                    <span class="c-icon c-icon--laptop u-color--medium-orange"></span> <a href="mailto:jana.kratochvilova@nn.cz">jana.kratochvilova@nn.cz</a>
                 </p>
 
                 <h4 class="u-margin-bottom--5">Spojení MHD</h4>

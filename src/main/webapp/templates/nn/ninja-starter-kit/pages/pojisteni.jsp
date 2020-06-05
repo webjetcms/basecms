@@ -1,6 +1,5 @@
 <%@ page pageEncoding="windows-1250" %>
 
-<%@ include file="data/banner.jsp" %>
 <%@ include file="includes/browser-support.jsp" %>
 
 <div class="o-layout">
@@ -65,7 +64,6 @@
                 <ul class="c-list">
                     <li class="c-list__item"><a href="#" class="c-link">Vývoj fondù životního pojištìní</a></li>
                     <li class="c-list__item"><a href="#" class="c-link">Základní fondy</a></li>
-                    <li class="c-list__item"><a href="#" class="c-link">Fondy GE Money Bank</a></li>
                     <li class="c-list__item"><a href="#" class="c-link">Investièní strategie</a></li>
                     <li class="c-list__item"><a href="#" class="c-link">Strategie životního cyklu</a></li>
                 </ul>

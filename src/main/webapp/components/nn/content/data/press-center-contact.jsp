@@ -11,16 +11,10 @@
                     <p>Ester Fleischerová</p>
                     <ul class="c-contact__contact-list">
                         <li class="c-contact__item">
-                            <a href="#">
-                                <span class="c-contact__icon c-icon--pict-call"></span>
-                                +420 2 5747 3788
-                            </a>
+                            <a href="tel:+420 2 5747 3788"><span class="c-contact__icon c-icon--pict-call"></span>+420 2 5747 3788</a>
                         </li>
                         <li class="c-contact__item">
-                            <a href="#">
-                                <span class="c-contact__icon c-icon--pict-mail"></span>
-                                ester.fleischerova@nn.cz
-                            </a>
+                            <a href="mailto:ester.fleischerova@nn.cz"><span class="c-contact__icon c-icon--pict-mail"></span>ester.fleischerova@nn.cz</a>
                         </li>
                     </ul>
                 </div>
@@ -32,16 +26,10 @@
                     <p>Martin Tesaø</p>
                     <ul class="c-contact__contact-list">
                         <li class="c-contact__item">
-                            <a href="#">
-                                <span class="c-contact__icon c-icon--pict-call"></span>
-                                +420 739 482 734
-                            </a>
+                            <a href="tel:+420 739 482 734"><span class="c-contact__icon c-icon--pict-call"></span>+420 739 482 734</a>
                         </li>
                         <li class="c-contact__item">
-                            <a href="#">
-                                <span class="c-contact__icon c-icon--pict-mail"></span>
-                                martin.tesar@my.cz
-                            </a>
+                            <a href="mailto:martin.tesar@my.cz"><span class="c-contact__icon c-icon--pict-mail"></span>martin.tesar@my.cz</a>
                         </li>
                     </ul>
                 </div>

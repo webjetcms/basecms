@@ -1,8 +1,5 @@
 <%@ page pageEncoding="windows-1250" %>
 
-<%@ include file="../../../../../data/banner.jsp" %>
-
-
 <div class="o-layout">
     <div class="o-layout__row">
 

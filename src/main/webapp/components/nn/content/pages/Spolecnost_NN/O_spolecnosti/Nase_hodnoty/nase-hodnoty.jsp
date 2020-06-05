@@ -25,13 +25,13 @@
             <div class="block block--bordered-left">
                 <h4>O spoleènosti</h4>
                 <ul class="link-list link-list--secundarynav">
-                    <li><a href="http://iwcm.interway.sk/spolecnost-nn/o-spolecnosti/vitejte-nn/">Vítejte v NN</a></li>
-                    <li><a href="http://iwcm.interway.sk/spolecnost-nn/o-spolecnosti/nase-spolecnosti/">Naše spoleènosti</a></li>
-                    <li><a href="http://iwcm.interway.sk/spolecnost-nn/o-spolecnosti/nase-vedeni/">Naše vedení</a></li>
-                    <li><a href="http://iwcm.interway.sk/spolecnost-nn/o-spolecnosti/nase-hodnoty/" class="is-active">Naše hodnoty</a></li>
-                    <li><a href="http://iwcm.interway.sk/spolecnost-nn/o-spolecnosti/spolecenska-odpovednost/">Spoleèenská odpovìdnost</a></li>
-                    <li><a href="http://iwcm.interway.sk/spolecnost-nn/o-spolecnosti/projekt-cena-zivota/">Projekt „Cena života"</a></li>
-                    <li><a href="http://iwcm.interway.sk/spolecnost-nn/o-spolecnosti/zpravy-hospodareni/">Zprávy o hospodaøení</a></li>
+                    <li><a href="/spolecnost-nn/o-spolecnosti/vitejte-nn/">Vítejte v NN</a></li>
+                    <li><a href="/spolecnost-nn/o-spolecnosti/nase-spolecnosti/">Naše spoleènosti</a></li>
+                    <li><a href="/spolecnost-nn/o-spolecnosti/nase-vedeni/">Naše vedení</a></li>
+                    <li><a href="/spolecnost-nn/o-spolecnosti/nase-hodnoty/" class="is-active">Naše hodnoty</a></li>
+                    <li><a href="/spolecnost-nn/o-spolecnosti/spolecenska-odpovednost/">Spoleèenská odpovìdnost</a></li>
+                    <li><a href="/spolecnost-nn/o-spolecnosti/projekt-cena-zivota/">Projekt „Cena života"</a></li>
+                    <li><a href="/spolecnost-nn/o-spolecnosti/zpravy-hospodareni/">Zprávy o hospodaøení</a></li>
                 </ul>
             </div>
         </div>
