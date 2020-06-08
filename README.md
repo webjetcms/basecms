@@ -2,6 +2,7 @@ NN REDIZAJN
 =======================
 Sem zadaj popis projektu
 
+TESTOVACI POPIS
 
 
 <!--- Needituj nic za touto ciarou, text nizsie sa ti bude aktualizovat z basecms --->
