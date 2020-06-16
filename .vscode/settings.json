@@ -1,7 +1,7 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "git.ignoreLimitWarning": true,
-    
+    "editor.tabSize": 3,    
     "[java]": {
         "files.encoding": "windows1250"
     },
