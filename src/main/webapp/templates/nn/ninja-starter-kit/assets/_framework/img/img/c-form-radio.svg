@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	version="1.1" x="0" y="0" width="24" height="2700">
+	<defs>
+		<style>
+			.fill-orange {
+				fill: #ea650d;
+			}
+			.stroke-grey-l {
+				stroke: #CAC7C7;
+			}
+			.stroke-grey-el {
+				stroke: #F1EDEB;
+			}
+			.fill-white {
+				fill: #FFFFFF;
+			}
+			.fill-grey-el {
+				fill: #F1EDEB;
+			}
+		</style>
+		<filter id="drop-shadow" x="-50%" y="-40%" width="200%" height="200%">
+			<feOffset dx="0" dy="2" />
+			<feGaussianBlur stdDeviation="3" result="offset-blur" />
+			<feFlood flood-color="#000000" flood-opacity="0.25" result="color" />
+			<feComposite operator="in" in="color" in2="offset-blur" result="shadow" />
+			<feComposite operator="over" in="SourceGraphic" in2="shadow" />
+		</filter>
+		<circle id="circle" stroke-width="1" cx="15" cy="9" r="7.5" />
+		<circle id="circle-small" cx="15" cy="9" r="4.5" />
+	</defs>
+	<g id="default" transform="translate(-5,0)">
+		<use xlink:href="#circle" class="stroke-grey-l fill-white" />
+	</g>
+	<g id="selected" transform="translate(-5,500)">
+		<use xlink:href="#circle" class="stroke-grey-l fill-white" />
+		<use xlink:href="#circle-small" class="fill-orange" />
+	</g>
+	<g id="disabled-selected" transform="translate(-5,1000)">
+		<use xlink:href="#circle" class="stroke-grey-el fill-white" />
+		<use xlink:href="#circle-small" class="fill-grey-el" />
+	</g>
+	<g id="disabled" transform="translate(-5,1500)">
+		<use xlink:href="#circle" class="stroke-grey-el fill-white" />
+	</g>
+</svg>
