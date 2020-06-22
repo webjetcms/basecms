@@ -44,7 +44,26 @@ task explodeWar(type : Copy){
 
 }
 task rsyncExplodedWar(dependsOn : explodeWar,  type: Exec) {
-     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","build/explodedWar","/www/tomcat_au27/webapps/${rootProject.name}","tomcat9.service","tomcat"
+     commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","build/explodedWar","/www/tomcat_au27/webapps/${rootProject.name}","tomcat_au27.service","tomcat_au27"
+}
+
+//testovanie
+task npminstalltest {
+    doLast {
+        exec {
+            workingDir 'src/test/webapp/'
+            commandLine 'npm', 'install'
+        }        
+    }
+}
+
+task rune2etest {
+    doLast {        
+        exec {
+            workingDir 'src/test/webapp/'
+            commandLine 'npx', 'codeceptjs', 'run', '--steps'
+        }        
+    }
 }
 
 ext {
