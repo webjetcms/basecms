@@ -1,0 +1,18 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "Automatizovane testovanie",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Lubos Balat, InterWay, a. s.",
+  "license": "ISC",
+  "dependencies": {
+    "@codeceptjs/ui": "^0.3.6",
+    "acorn": "^7.2.0",
+    "codeceptjs": "^2.6.3",
+    "mochawesome": "^6.1.1",
+    "playwright": "^0.12.1"
+  }
+}

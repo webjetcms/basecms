@@ -20,6 +20,10 @@ repositories {
    }
 }
 
+ext {
+    webjetVersion = "8.8-SNAPSHOT";    
+}
+
 war {
     zip64 = true
     exclude('**/node_modules/**')
@@ -64,10 +68,6 @@ task rune2etest {
             commandLine 'npx', 'codeceptjs', 'run', '--steps'
         }        
     }
-}
-
-ext {
-    webjetVersion = "8.7-SNAPSHOT";    
 }
 
 dependencies {
