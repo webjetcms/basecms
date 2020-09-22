@@ -122,6 +122,35 @@ Prakticky identicky postup je aj pre skopirovanie ukazkovych sablon typu http://
 - databaza ukazkovych sablon je na mysql-devel, je potrebne spravit jej dump (kedze mysql-devel sa nezalohuje) a restornut do novo vytvorenej databazy podla mena projektu
 - odporucam pridat konfiguracnu premennu ```logInstallName``` s menom projektu. Vyhoda je v tom, ze komponenty sa budu citat z adresarov logInstallName ak existuju, inak sa budu citat z povodneho installName. Viete tak lahko customizovat komponenty pre vasu instalaciu.
 
+Pre cistenie dat v databaze mozete ako zaklad pouzit nasledovne SQL prikazy:
+
+```sql
+#zmazanie nepotrebnych dat
+TRUNCATE TABLE _adminlog_;
+TRUNCATE TABLE documents_history;
+TRUNCATE TABLE emails;
+TRUNCATE TABLE monitoring;
+
+#ak nutne nepotrebujete formulare odporucam zmazat aj tie
+TRUNCATE TABLE forms;
+TRUNCATE TABLE forms_archive;
+
+#nastavenie multidomainAdminHostu na iwcm.interway.sk
+UPDATE _conf_ SET value="iwcm.interway.sk" WHERE name="multiDomainAdminHost";
+
+#ak lokalne nepouzivate SSL mozete ho tymto vypnut
+UPDATE _conf_ SET value="false" WHERE name="adminRequireSSL";
+UPDATE documents SET require_ssl=false;
+
+#pre istotu zmena email adries, aby sa nieco neposlalo kde sa nema
+UPDATE users SET email=concat(login, '@donotwork.interway.sk') WHERE email NOT LIKE '%@interway.sk';
+
+#vypnutie CRON uloh nastavenim pola rok do minulosti, ktore sa odkazuju na http adresu
+UPDATE crontab SET year=2013 WHERE extrainfo LIKE '%http%';
+
+#po starte este zmazte staru statistiku cez Ovladaci panel->Mazanie dat->Statistika
+```
+
 GIT fork update
 ---------------
 Po forku tohto projektu je mozne robit synchronizaciu z upstream servera (cize zmeny z basecms). 
