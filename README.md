@@ -78,7 +78,7 @@ Pre zriadenie cistej instalacie WebJETu (novej databazy) je potrebne:
 - zriadit novu databazu na mysql-devel serveri. Je na to script na DEV serveroch: ```dba-newdb.sh meno-databazy```, na servre asi nemate pristup, takze je potrebne poziadat adminov o vytvorrenie danej DB a zaslanie prihlasovacieho hesla. Meno databazy zvykneme pouzivat v tvare:
    - INSTALL_NAME_web (napr. interway_web) pre tabulky WebJET CMS
    - INSTALL_NAME_data (napr. interway_data) pre tabulky zakazkovych modulov
-- v subore ```src/main/resources/poolman.xml``` je potrebne zadat JDBC cestu k databaze (tagy driver a url) a prihlasovacie udaje (tagy username a password).
+- v subore ```src/main/resources/poolman.xml``` je potrebne zadat JDBC cestu k databaze (tagy driver a url) a prihlasovacie udaje (tagy username a password). Ak sa pouziva aj _data databaza je zduplikujte tag datasource a upravte dbname na INSTALL_NAME_data a prislusne udaje v tagoch url, username a password.
 - spustit app server cez ```gradle appRun```, pri starte vypise chybu z dovodu, ze databaza je prazdna
 - naplnte DB schemu podla postupu na stranke http://docs.webjetcms.sk/#/install-config/install-webjet/ od casti Naplnenie DB schémy
 - po naplneni DB schemy sa nemusi vzdy app server restartnut, ak sa dlhsie nic nedeje, jednoducho ho zastavte a nastartujte nanovo, nasledne uz by vam malo fungovat prihlasenie do administracie
@@ -115,7 +115,7 @@ Ak este neexistuje DEV databaza (kopirujete novu z produkcie):
 Nasledne ked mate databazu pripravenu:
 - do forknuteho projektu skopirovat Java triedy (```sk.iway.INSTALL_NAME```), komponenty (```/components/INSTALL_NAME```), sablony (```/templates/INSTALL_NAME```) daneho projektu a pripadne aspon zakladne obrazky (typu ```/images/css``` aby sa zobrazila homepage a substranky s obrazkami layoutu)
 - casto sa stava, ze su zavislosti medzi projektami a potom nejdu triedy skompilovat. To odporucam riesit refaktorom kodu tak, aby v projekte INSTALL_NAME nebola zavislost na package mimo tohto projektu. Danu metodu a triedu odporucam skopirovat do package sk.iway.INSTALL_NAME a refaktorovat zavislosti
-- v subore ```src/main/resources/poolman.xml``` je potrebne zadat JDBC cestu k databaze (tagy driver a url) a prihlasovacie udaje (tagy username a password). Bud podla povodneho projektu v SVN ak robite migraciu alebo podla novo zriadenej databazy.
+- v subore ```src/main/resources/poolman.xml``` je potrebne zadat JDBC cestu k databaze (tagy driver a url) a prihlasovacie udaje (tagy username a password). Bud podla povodneho projektu v SVN ak robite migraciu alebo podla novo zriadenej databazy. Ak sa pouziva aj _data databaza je zduplikujte tag datasource a upravte dbname na INSTALL_NAME_data a prislusne udaje v tagoch url, username a password.
 
 Prakticky identicky postup je aj pre skopirovanie ukazkovych sablon typu http://idsk.webjetcms.sk. Rozdiel je v:
 
