@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
 
-  <filter>
+<filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>sk.iway.iwcm.SetCharacterEncodingFilter</filter-class>
     <init-param>
@@ -13,10 +17,6 @@
   <filter>
     <filter-name>Virtual Path Filter</filter-name>
     <filter-class>sk.iway.iwcm.PathFilter</filter-class>
-    <init-param>
-        <param-name>customPath</param-name>
-        <param-value>/Users/jeeff/Documents/DISK_E/webapps-server</param-value>
-    </init-param>    
   </filter>
   
   <filter>
@@ -24,16 +24,6 @@
 		<filter-name>StripesFilter</filter-name>
 		<filter-class>net.sourceforge.stripes.controller.StripesFilterIway</filter-class>
 	</filter>
-	
-	<filter>
-    <filter-name>ContextFilter</filter-name>
-    <filter-class>sk.iway.iwcm.system.context.ContextFilter</filter-class>
-  </filter>
-  
-  <filter-mapping>
-     <filter-name>ContextFilter</filter-name>
-     <url-pattern>/*</url-pattern>
-  </filter-mapping>
 
   <filter-mapping>
      <filter-name>Set Character Encoding</filter-name>
@@ -44,12 +34,13 @@
 		<filter-name>StripesFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 	
 	<filter-mapping>
 		<filter-name>StripesFilter</filter-name>
 		<servlet-name>StripesDispatcher</servlet-name>
-		<dispatcher>REQUEST</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 
   <filter-mapping>
@@ -67,12 +58,7 @@
   <servlet>
      <servlet-name>iwcminit</servlet-name>
      <servlet-class>sk.iway.iwcm.InitServlet</servlet-class>
-     <!--     <init-param>-->
-<!--       <param-name>useSMTPServer</param-name>-->
-<!--       <param-value>false</param-value>-->
-<!--     </init-param>                                 -->
      <load-on-startup>1</load-on-startup>
-     
   </servlet>
 
   <!-- Standard Action Servlet Configuration (with debugging) -->
@@ -148,29 +134,28 @@
   </welcome-file-list>
 
   <error-page>
-    <error-code>400</error-code>
-    <location>/404.jsp</location>
-  </error-page> 
-    
+        <error-code>400</error-code>
+        <location>/404.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>403</error-code>
+      <location>/404.jsp</location>
+  </error-page>
+
   <error-page>
     <error-code>404</error-code>
-    <location>/404.jsp</location>
+      <location>/404.jsp</location>
   </error-page>
   
   <error-page>
     <error-code>500</error-code>
     <location>/500.jsp</location>
   </error-page>
- 
-  <mime-mapping>
-     <extension>swf</extension>
-     <mime-type>application/x-shockwave-flash</mime-type>
-  </mime-mapping> 
-  
-  <mime-mapping>
-     <extension>mp4</extension>
-     <mime-type>video/mp4</mime-type>
-  </mime-mapping> 
 
+    <error-page>
+        <exception-type>org.springframework.security.web.firewall.RequestRejectedException</exception-type>
+        <location>/500.jsp</location>
+    </error-page>
 
 </web-app>
