@@ -122,6 +122,8 @@ Prakticky identicky postup je aj pre skopirovanie ukazkovych sablon typu http://
 - databaza ukazkovych sablon je na mysql-devel, je potrebne spravit jej dump (kedze mysql-devel sa nezalohuje) a restornut do novo vytvorenej databazy podla mena projektu
 - odporucam pridat konfiguracnu premennu ```logInstallName``` s menom projektu. Vyhoda je v tom, ze komponenty sa budu citat z adresarov logInstallName ak existuju, inak sa budu citat z povodneho installName. Viete tak lahko customizovat komponenty pre vasu instalaciu.
 
+Zvazte tiez nastavenie pre externe ukladanie suborov, pri migracii z SVN mozete mat subory priamo v GITe, alebo pouzivate externe ulozistko. Jedna sa o konfiguracne premenne ```enableStaticFilesExternalDir``` a ```cloudStaticFilesDir```.
+
 Pre cistenie dat v databaze mozete ako zaklad pouzit nasledovne SQL prikazy:
 
 ```sql
