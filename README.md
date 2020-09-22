@@ -71,12 +71,40 @@ git clone git@gitlab.web.iway.local:menoklienta/projekt.git
 cd projekt
 ```
 
+Zriadenie "cistej" instalacie
+-----------------------------
+Pre zriadenie cistej instalacie WebJETu (novej databazy) je potrebne:
+
+- zriadit novu databazu na mysql-devel serveri. Je na to script na DEV serveroch: ```dba-newdb.sh meno-databazy```, na servre asi nemate pristup, takze je potrebne poziadat adminov o vytvorrenie danej DB a zaslanie prihlasovacieho hesla. Meno databazy zvykneme pouzivat v tvare:
+   - INSTALL_NAME_web (napr. interway_web) pre tabulky WebJET CMS
+   - INSTALL_NAME_data (napr. interway_data) pre tabulky zakazkovych modulov
+- v subore ```src/main/resources/poolman.xml``` je potrebne zadat JDBC cestu k databaze (tagy driver a url) a prihlasovacie udaje (tagy username a password).
+- spustit app server cez ```gradle appRun```, pri starte vypise chybu z dovodu, ze databaza je prazdna
+- naplnte DB schemu podla postupu na stranke http://docs.webjetcms.sk/#/install-config/install-webjet/ od casti Naplnenie DB schémy
+- po naplneni DB schemy sa nemusi vzdy app server restartnut, ak sa dlhsie nic nedeje, jednoducho ho zastavte a nastartujte nanovo, nasledne uz by vam malo fungovat prihlasenie do administracie
+
+Priklady tagov driver a url pre podporovane databazy:
+
+```
+#MariaDB/MySQL
+   <driver>com.mysql.jdbc.Driver</driver>
+   <url>jdbc:mysql://meno.db.servera/meno_databazy</url>
+
+#Microsoft SQL - dokumentacia http://jtds.sourceforge.net/faq.html#urlFormat
+   <driver>net.sourceforge.jtds.jdbc.Driver</driver>
+   <url>jdbc:jtds:sqlserver://meno.db.servera:1433/meno_databazy;encoding=utf-8</url>
+
+#Oracle
+   <driver>oracle.jdbc.OracleDriver</driver>
+   <url>jdbc:oracle:thin:@meno.db.servera:1521/meno.sql.instancie</url>
+```
+
 Migracia existujuceho projektu v SVN
 ----------------------------------------
 Ak mate existujuci projekt v SVN (alebo niekde) je potrebne vykonat dodatocne kroky po naforkovani basecms projektu:
 
 - skopirovat zalohu DB zo servis.srv.iway.local/Tomcat-SQLdump
-- zriadit novu databazu na mysql-devel serveri (je na to script na DEV serveroch: ```dba-newdb.sh meno-databazy```, na servre asi nemate pristup, takze je potrebne poziadat adminov o vytvorrenie danej DB a zaslanie prihlasovacieho hesla). Admini vam pripadne vedia do danej DB skopirovat rovno aj zalohu.
+- zriadit novu databazu na mysql-devel serveri. Je na to script na DEV serveroch: ```dba-newdb.sh meno-databazy```, na servre asi nemate pristup, takze je potrebne poziadat adminov o vytvorrenie danej DB a zaslanie prihlasovacieho hesla. Admini vam pripadne vedia do danej DB skopirovat rovno aj zalohu. Niektore instalacie pouzivaju 2 databazy - meno_web a meno_data, nezabudnite vytvorit a skopirovat obe.
 - skopirovanu DB z produkcie je potrebne precistit (vymazat data):
    - zmazat (idealne cez truncate table) tabulky _adminlog_, email, documents_history
    - skontrolovat ulohy na pozadi v tabulke crontab, overit na ulohach domenu (aby sa nestalo, ze sa zavola 2x na domenu produkcie), idealne co najviac uloh zmazat
