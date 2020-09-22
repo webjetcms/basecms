@@ -71,6 +71,24 @@ git clone git@gitlab.web.iway.local:menoklienta/projekt.git
 cd projekt
 ```
 
+Migracia existujuceho projektu v SVN
+----------------------------------------
+Ak mate existujuci projekt v SVN (alebo niekde) je potrebne vykonat dodatocne kroky po naforkovani basecms projektu:
+
+- skopirovat zalohu DB zo servis.srv.iway.local/Tomcat-SQLdump
+- zriadit novu databazu na mysql-devel serveri (je na to script na DEV serveroch: ```dba-newdb.sh meno-databazy```, na servre asi nemate pristup, takze je potrebne poziadat adminov o vytvorrenie danej DB a zaslanie prihlasovacieho hesla). Admini vam pripadne vedia do danej DB skopirovat rovno aj zalohu.
+- skopirovanu DB z produkcie je potrebne precistit (vymazat data):
+   - zmazat (idealne cez truncate table) tabulky _adminlog_, email, documents_history
+   - skontrolovat ulohy na pozadi v tabulke crontab, overit na ulohach domenu (aby sa nestalo, ze sa zavola 2x na domenu produkcie), idealne co najviac uloh zmazat
+   - zmazat tabulky statistik (ja ich oznacim a zmazem cele tabulky konciace na _YYYY_MM), statistiky mozete lahko zmazat aj cez modul Mazanie dat vo WebJETe
+- do forknuteho projektu skopirovat Java triedy (```sk.iway.INSTALL_NAME```), komponenty (```/components/INSTALL_NAME```), sablony (```/templates/INSTALL_NAME```) daneho projektu a pripadne aspon zakladne obrazky (typu ```/images/css``` aby sa zobrazila homepage a substranky s obrazkami layoutu)
+- casto sa stava, ze su zavislosti medzi projektami a potom nejdu triedy skompilovat. To odporucam riesit refaktorom kodu tak, aby v projekte INSTALL_NAME nebola zavislost na package mimo tohto projektu. Danu metodu a triedu odporucam skopirovat do package sk.iway.INSTALL_NAME a refaktorovat zavislosti
+
+Prakticky identicky postup je aj pre skopirovanie ukazkovych sablon typu http://idsk.webjetcms.sk. Rozdiel je v:
+
+- databaza ukazkovych sablon je na mysql-devel, je potrebne spravit jej dump (kedze mysql-devel sa nezalohuje)
+- odporucam pridat konfiguracnu premennu ```logInstallName``` s menom projektu. Vyhoda je v tom, ze komponenty sa budu citat z adresarov logInstallName ak existuju, inak sa budu citat z povodneho installName. Viete tak lahko customizovat komponenty pre vasu instalaciu.
+
 GIT fork update
 ---------------
 Po forku tohto projektu je mozne robit synchronizaciu z upstream servera (cize zmeny z basecms). 
