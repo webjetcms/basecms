@@ -156,6 +156,11 @@ INSERT INTO _conf_ (name, value) VALUES ('adminEnableIPs','127.0.0.1,10.,192.168
 DELETE FROM _conf_ WHERE name='webEnableIPs';
 INSERT INTO _conf_ (name, value) VALUES ('webEnableIPs','#localhost,127.0.0.1,10.,192.168.,#interway,85.248.107.8,195.168.35.4,195.168.35.5,#klient,');
 
+#nastavenie logLevelu na debug a pre package sk.iway.iwcm.io na INFO
+UPDATE _conf_ SET value='debug' WHERE name='logLevel';
+DELETE FROM _conf_ WHERE name='logLevels';
+INSERT INTO _conf_ (name, value) VALUES ('logLevels', 'sk.iway.iwcm.io=INFO')
+
 #po starte este zmazte staru statistiku cez Ovladaci panel->Mazanie dat->Statistika
 ```
 
