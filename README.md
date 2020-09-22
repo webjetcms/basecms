@@ -148,6 +148,12 @@ UPDATE users SET email=concat(login, '@donotwork.interway.sk') WHERE email NOT L
 #vypnutie CRON uloh nastavenim pola rok do minulosti, ktore sa odkazuju na http adresu
 UPDATE crontab SET year=2013 WHERE extrainfo LIKE '%http%';
 
+#nastavenie pristupov len pre IWAY adresy
+DELETE FROM _conf_ WHERE name='adminEnableIPs';
+INSERT INTO _conf_ (name, value) VALUES ('adminEnableIPs','127.0.0.1,10.,192.168.,195.168.35.4,195.168.35.5');
+DELETE FROM _conf_ WHERE name='webEnableIPs';
+INSERT INTO _conf_ (name, value) VALUES ('webEnableIPs','#localhost,127.0.0.1,10.,192.168.,#interway,85.248.107.8,195.168.35.4,195.168.35.5,#klient,');
+
 #po starte este zmazte staru statistiku cez Ovladaci panel->Mazanie dat->Statistika
 ```
 
