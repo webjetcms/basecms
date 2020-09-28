@@ -39,10 +39,10 @@ FORK projektu basecms do zakaznickeho projektu
 ==============================================
 Tento postup popisuje fork projektu basecms do zakaznickeho projektu. Gitlab Community neumoznuje toto spravit v jednom kroku, postup je teda zlozitejsi. Forknutemu projektu je potrebne zmenit cestu a potom ho presunut do cieloveho workspace.
 
-- prihlaste sa do Gitlabu a najskor overte, ci existuje zakaznicka skupina (horne menu Groups, napr. NN alebo Uniqa), ak nie, je najskor potrebne vytvori tu. Poziadajte LBA o jej vytvorenie.
+- prihlaste sa do Gitlabu a najskor overte, ci existuje zakaznicka skupina (horne menu Groups, napr. NN alebo Uniqa), ak nie, je najskor potrebne vytvori [novu zakaznicku skupinu](https://gitlab.web.iway.local/groups/new).
 - prejdite do projektu basecms https://gitlab.web.iway.local/webjet/basecms
 - kliknite na moznost fork https://gitlab.web.iway.local/webjet/basecms/-/forks/new
-- POZOR: ako namespace musite zvolit vase meno, nie priamo cielovu zakaznicku skupinu (napr. NN alebo Uniqa), tam sa projekt presunie az po jeho nastaveni
+- POZOR: ako **namespace** musite zvolit **vase meno**, nie priamo cielovu zakaznicku skupinu (napr. NN alebo Uniqa), tam sa projekt presunie az po jeho nastaveni
 - zvolte namespace podla vasho mena, napr. Lubos Balat, projekt basecms sa sem forkne
 - v menu kliknite na Settings/General a upravte meno projektu, popis a zvolte obrazok avataru (ak nemate, stiahnite si obrazok z grupy), kliknite na Save changes
 - stale v casti Settings/General kliknite na Expand vedla moznosti Advanced (uplne dole), v casti Change path upravte URL cestu z basecms na meno projektu (bez medzier, diakritiky, velkych pismen, napr. nnweb2020) a kliknite na Change path
