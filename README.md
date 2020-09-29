@@ -100,7 +100,7 @@ Priklady tagov driver a url pre podporovane databazy:
 ```
 
 Migracia existujuceho projektu v SVN
-----------------------------------------
+------------------------------------
 Ak mate existujuci projekt v SVN (alebo niekde) je potrebne vykonat dodatocne kroky po naforkovani basecms projektu:
 
 Ak este neexistuje DEV databaza (kopirujete novu z produkcie):
@@ -177,3 +177,43 @@ git merge upstream/master
 ..kontrola suborov..
 git push
 ```
+
+Zriadenie prostredia na TAU-XXX
+-------------------------------
+Pre zriadenie prostredia na tau-xxx je potrebne:
+
+- na serveri vytvorit adresar pre WebJET, cize nieco ako:
+```sh
+mkdir /www/tomcat_au27/webapps/menoprojektu
+chowm tomcat_au27:tomcat_au27 /www/tomcat_au27/webapps/menoprojektu
+chmod g+w /www/tomcat_au27/webapps/menoprojektu
+```
+  - tomcat_au27 = meno aplikacneho servera
+  - menoprojektu = hodnota z [settings.gradle](settings.gradle), verim, ze ste ju pri forku projektu nezabudli zmenit z basecms na skutocne meno projektu
+- upravit konfiguraciu Tomcatu:
+```sh
+nano /www/tomcat_au27/conf/server.xml
+
+#pridat na koniec pred </Engine> element
+      <Host name="menoprojektu.tau27.iway.sk" debug="0" appBase="webapps2" unpackWARs="false" autoDeploy="false">
+        <Context path="" docBase="../webapps/menoprojektu" reloadable="true" debug="0" swallowOutput="true">
+            <Resources allowLinking="true" />
+        </Context>
+        <Valve className="org.apache.catalina.valves.RemoteIpValve" 
+                remoteIpHeader="x-forwarded-for" protocolHeader="x-forwarded-proto" />
+      </Host>
+```
+
+- nastavit Git pipeline na skopirovanie projektu z Gitlabu do daneho adresara:
+  - skopirovat ukazkovy subor [gitlab-ci-sample.yml](.gitlab-ci-sample.yml) do gitlab-ci.yml
+  - upravit kod v [build.gradle](build.gradle) v tasku rsyncExplodedWar:
+   ```
+      commandLine "/usr/local/bin/wj-rsync.sh","webjet4.dev.iway.sk","build/explodedWar","/www/tomcat_au27/webapps/${rootProject.name}","tomcat_au27.service","tomcat_au27"
+   ```
+   - webjet4.dev.iway.sk = meno servera
+   - /www/tomcat_au27/webapps/${rootProject.name} = meno adresara, pricom ${rootProject.name} sa berie z [settings.gradle](settings.gradle)
+   - tomcat_au27.service = meno sluzby, na ktorej sa vykona restart
+   - tomcat_au27 = meno usera, pod ktorym sa subory skopiruju
+   - pipeline je potrebne spustit manualne v Gitlabe v menu CI-CD a overit, ze sa subory nakopirovali po builde na server do adresara /www/tomcat_au27/webapps/menoprojektu
+
+- restartnut Tomcat
