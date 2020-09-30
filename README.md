@@ -50,6 +50,8 @@ v ukážke je to verzia 8.8-SNAPSHOT, pričom SNAPSHOT znamená, že sa jedná a
 
 Zoznam všetkých dostupných verzií nájdete na našom [artifactory/maven serveri](http://maven.web.iway.local/ui/repos/tree/General/gradle-dev-local%2Fsk%2Fiway%2Fwebjet) v sekcii Artifactory/Artifacts po rozkliknutí package gradle-dev-local/sk/iway/webjet.
 
+POZOR: verzia SNAPSHOT nie je automatický nočný build (nightly build). Ak nastave zmena priamo v SVN kóde WebJET CMS je potrebné požiadať produktový tím o buildnutie novej snapshot verzie WebJET CMS.
+
 FORK projektu basecms do zakaznickeho projektu
 ==============================================
 Tento postup popisuje fork projektu basecms do zakaznickeho projektu. Gitlab Community neumoznuje toto spravit v jednom kroku, postup je teda zlozitejsi. Forknutemu projektu je potrebne zmenit cestu a potom ho presunut do cieloveho workspace.
