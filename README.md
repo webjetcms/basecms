@@ -21,7 +21,7 @@ gradle compileJava
 
 **kompilacia vratane refreshu kniznic (hlavne ked sa zmeni SNAPSHOT verzia WJ)**
 ```
-gradle compileJava --refresh-dependencies --info 
+gradle compileJava --refresh-dependencies --info
 ```
 
 **Tomcat**
@@ -34,6 +34,23 @@ gradle appStop
 ```
 gradle war
 ```
+
+Aktualizácia WebJETu
+--------------------
+
+V súbore [build.gradle](build.gradle) je sekcia ```ext``` v ktorej je nastavená verzia WebJET CMS použitá v projekte:
+
+```javascript
+ext {
+    webjetVersion = "8.8-SNAPSHOT";
+}
+```
+
+v ukážke je to verzia 8.8-SNAPSHOT, pričom SNAPSHOT znamená, že sa jedná a najnovšiu verziu radu 8.8. Najnovšia verzia môže vždy obsahovať rozpracovanú funkcionalitu, takže zvážte jej použitie podľa súboru /admin/changelog.txt vo WebJETe.
+
+Zoznam všetkých dostupných verzií nájdete na našom [artifactory/maven serveri](http://maven.web.iway.local/ui/repos/tree/General/gradle-dev-local%2Fsk%2Fiway%2Fwebjet) v sekcii Artifactory/Artifacts po rozkliknutí package gradle-dev-local/sk/iway/webjet.
+
+POZOR: verzia SNAPSHOT nie je automatický nočný build (nightly build). Ak nastave zmena priamo v SVN kóde WebJET CMS je potrebné požiadať produktový tím o buildnutie novej snapshot verzie WebJET CMS.
 
 FORK projektu basecms do zakaznickeho projektu
 ==============================================
@@ -166,7 +183,7 @@ INSERT INTO _conf_ (name, value) VALUES ('logLevels', 'sk.iway.iwcm.io=INFO')
 
 GIT fork update
 ---------------
-Po forku tohto projektu je mozne robit synchronizaciu z upstream servera (cize zmeny z basecms). 
+Po forku tohto projektu je mozne robit synchronizaciu z upstream servera (cize zmeny z basecms).
 Ak teda v basecms upravime konfiguraciu v build.gradle mozete si to fetchnut a mergnut s pripadnymi vasimi zmenami.
 
 ```
@@ -199,7 +216,7 @@ nano /www/tomcat_au27/conf/server.xml
         <Context path="" docBase="../webapps/menoprojektu" reloadable="true" debug="0" swallowOutput="true">
             <Resources allowLinking="true" />
         </Context>
-        <Valve className="org.apache.catalina.valves.RemoteIpValve" 
+        <Valve className="org.apache.catalina.valves.RemoteIpValve"
                 remoteIpHeader="x-forwarded-for" protocolHeader="x-forwarded-proto" />
       </Host>
 ```
