@@ -11,7 +11,6 @@ Sem zadaj popis projektu
 
 <!-- code_chunk_output -->
 
-- [Sem zadaj meno projektu](#sem-zadaj-meno-projektu)
 - [WebJET CMS](#webjet-cms)
   - [Gradle prikazy](#gradle-prikazy)
   - [Aktualizácia WebJETu](#aktualizácia-webjetu)
@@ -218,7 +217,7 @@ Pre zriadenie prostredia na tau-xxx je potrebne:
 - na serveri vytvorit adresar pre WebJET, cize nieco ako:
 ```sh
 mkdir /www/tomcat_au27/webapps/menoprojektu
-chowm tomcat_au27:tomcat_au27 /www/tomcat_au27/webapps/menoprojektu
+chown tomcat_au27:tomcat_au27 /www/tomcat_au27/webapps/menoprojektu
 chmod g+w /www/tomcat_au27/webapps/menoprojektu
 ```
   - tomcat_au27 = meno aplikacneho servera
@@ -236,6 +235,8 @@ nano /www/tomcat_au27/conf/server.xml
                 remoteIpHeader="x-forwarded-for" protocolHeader="x-forwarded-proto" />
       </Host>
 ```
+
+**TIP:** zriadenie adresára by malo byť možné aj priamo vytvorením adresára cez \\servis\Webapps-XXX a konfigurácie Tomcatu je možné upravovať cez \\servis\\TomcatConf, čiže bez SSH prístupu na server.
 
 - nastavit Git pipeline na skopirovanie projektu z Gitlabu do daneho adresara:
   - skopirovat ukazkovy subor [gitlab-ci-sample.yml](.gitlab-ci-sample.yml) do gitlab-ci.yml
