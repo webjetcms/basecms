@@ -5,24 +5,40 @@ Sem zadaj popis projektu
 
 
 <!--- Needituj nic za touto ciarou, text nizsie sa ti bude aktualizovat z basecms --->
-WebJET CMS
-==========
+# WebJET CMS
 
-Zakladny projekt pre WebJET CMS
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
-Gradle prikazy
---------------
-Pridanim --info ziskate podrobnejsie informacie o behu prikazu
+<!-- code_chunk_output -->
 
-**kompilacia projektu**
+- [WebJET CMS](#webjet-cms)
+  - [Gradle prikazy](#gradle-prikazy)
+  - [Aktualizácia WebJETu](#aktualizácia-webjetu)
+- [FORK projektu basecms do zakaznickeho projektu](#fork-projektu-basecms-do-zakaznickeho-projektu)
+  - [Naklonovanie do lokalneho workspace](#naklonovanie-do-lokalneho-workspace)
+  - [Zriadenie "cistej" instalacie](#zriadenie-cistej-instalacie)
+  - [Migracia existujuceho projektu v SVN](#migracia-existujuceho-projektu-v-svn)
+  - [GIT fork update](#git-fork-update)
+  - [Zriadenie prostredia na TAU-XXX](#zriadenie-prostredia-na-tau-xxx)
+
+<!-- /code_chunk_output -->
+
+Základný projekt pre WebJET CMS
+
+## Gradle prikazy
+Pridaním --info získate podrobnejšie informácie o behu príkazu
+
+**kompilácia projektu**
 ```
 gradle compileJava
 ```
 
-**kompilacia vratane refreshu kniznic (hlavne ked sa zmeni SNAPSHOT verzia WJ)**
+**kompilácia vrátane refreshu knižníc (hlavne keď sa zmení SNAPSHOT verzia WJ)**
 ```
 gradle compileJava --refresh-dependencies --info
 ```
+
+Vo vašom IDE môžu byť potrebné ďaľšie kroky pre aktualizáciu knižníc tak, aby zmenu videlo aj IDE. Napr. vo VS Code je potrebné daný gradle príkaz vykonať z Gradle konzoly (v ľavej lište je ikona Gradle). Otvorte v taskoch uzol other, kliknite pravým na ```compileJava``` a zvoľte možnosť ```Run Task With Args```. Ako argumenty použite ```--refresh-dependencies --info```. Prípadne si rovno cez možnosť ```Pin Task With Args``` príkaz aj s argumentami uložte do vlastného zoznamu.
 
 **Tomcat**
 ```
@@ -35,8 +51,7 @@ gradle appStop
 gradle war
 ```
 
-Aktualizácia WebJETu
---------------------
+## Aktualizácia WebJETu
 
 V súbore [build.gradle](build.gradle) je sekcia ```ext``` v ktorej je nastavená verzia WebJET CMS použitá v projekte:
 
@@ -52,9 +67,9 @@ Zoznam všetkých dostupných verzií nájdete na našom [artifactory/maven serv
 
 POZOR: verzia SNAPSHOT nie je automatický nočný build (nightly build). Ak nastave zmena priamo v SVN kóde WebJET CMS je potrebné požiadať produktový tím o buildnutie novej snapshot verzie WebJET CMS.
 
-FORK projektu basecms do zakaznickeho projektu
-==============================================
-Tento postup popisuje fork projektu basecms do zakaznickeho projektu. Gitlab Community neumoznuje toto spravit v jednom kroku, postup je teda zlozitejsi. Forknutemu projektu je potrebne zmenit cestu a potom ho presunut do cieloveho workspace.
+# FORK projektu basecms do zakaznickeho projektu
+
+Tento postup popisuje fork projektu basecms do zákazníckeho projektu. Gitlab Community neumožňuje toto spraviť v jednom kroku, postup je teda zložitejší. Forknutému projektu je potrebné zmeniť cestu a potom ho presunúť do cieľového workspace.
 
 - prihlaste sa do Gitlabu a najskor overte, ci existuje zakaznicka skupina (horne menu Groups, napr. NN alebo Uniqa), ak nie, je najskor potrebne vytvori [novu zakaznicku skupinu](https://gitlab.web.iway.local/groups/new).
 - prejdite do projektu basecms https://gitlab.web.iway.local/webjet/basecms
@@ -76,8 +91,8 @@ Nasledne upravte meno projektu v subore settings.gradle (vsetko malymi pismenami
 rootProject.name = 'menoprojektu'
 ```
 
-Naklonovanie do lokalneho workspace
------------------------------------
+## Naklonovanie do lokalneho workspace
+
 Odporucam si kvoli poriadku v lokalnom workspace vytvarat podadresar pre klienta a az do neho naklonovat projekt. Cize nieco ako:
 
 ```
@@ -88,8 +103,8 @@ git clone git@gitlab.web.iway.local:menoklienta/projekt.git
 cd projekt
 ```
 
-Zriadenie "cistej" instalacie
------------------------------
+## Zriadenie "cistej" instalacie
+
 Pre zriadenie cistej instalacie WebJETu (novej databazy) je potrebne:
 
 - zriadit novu databazu na mysql-devel serveri. Je na to script na DEV serveroch: ```dba-newdb.sh meno-databazy```, na servre asi nemate pristup, takze je potrebne poziadat adminov o vytvorrenie danej DB a zaslanie prihlasovacieho hesla. Meno databazy zvykneme pouzivat v tvare:
@@ -116,8 +131,8 @@ Priklady tagov driver a url pre podporovane databazy:
    <url>jdbc:oracle:thin:@meno.db.servera:1521/meno.sql.instancie</url>
 ```
 
-Migracia existujuceho projektu v SVN
-------------------------------------
+## Migracia existujuceho projektu v SVN
+
 Ak mate existujuci projekt v SVN (alebo niekde) je potrebne vykonat dodatocne kroky po naforkovani basecms projektu:
 
 Ak este neexistuje DEV databaza (kopirujete novu z produkcie):
@@ -181,8 +196,8 @@ INSERT INTO _conf_ (name, value) VALUES ('logLevels', 'sk.iway.iwcm.io=INFO')
 #po starte este zmazte staru statistiku cez Ovladaci panel->Mazanie dat->Statistika
 ```
 
-GIT fork update
----------------
+## GIT fork update
+
 Po forku tohto projektu je mozne robit synchronizaciu z upstream servera (cize zmeny z basecms).
 Ak teda v basecms upravime konfiguraciu v build.gradle mozete si to fetchnut a mergnut s pripadnymi vasimi zmenami.
 
@@ -195,14 +210,14 @@ git merge upstream/master
 git push
 ```
 
-Zriadenie prostredia na TAU-XXX
--------------------------------
+## Zriadenie prostredia na TAU-XXX
+
 Pre zriadenie prostredia na tau-xxx je potrebne:
 
 - na serveri vytvorit adresar pre WebJET, cize nieco ako:
 ```sh
 mkdir /www/tomcat_au27/webapps/menoprojektu
-chowm tomcat_au27:tomcat_au27 /www/tomcat_au27/webapps/menoprojektu
+chown tomcat_au27:tomcat_au27 /www/tomcat_au27/webapps/menoprojektu
 chmod g+w /www/tomcat_au27/webapps/menoprojektu
 ```
   - tomcat_au27 = meno aplikacneho servera
@@ -220,6 +235,8 @@ nano /www/tomcat_au27/conf/server.xml
                 remoteIpHeader="x-forwarded-for" protocolHeader="x-forwarded-proto" />
       </Host>
 ```
+
+**TIP:** zriadenie adresára by malo byť možné aj priamo vytvorením adresára cez \\servis\Webapps-XXX a konfigurácie Tomcatu je možné upravovať cez \\servis\\TomcatConf, čiže bez SSH prístupu na server.
 
 - nastavit Git pipeline na skopirovanie projektu z Gitlabu do daneho adresara:
   - skopirovat ukazkovy subor [gitlab-ci-sample.yml](.gitlab-ci-sample.yml) do gitlab-ci.yml
