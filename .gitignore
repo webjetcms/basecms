@@ -20,3 +20,6 @@ node_modules/
 #lokalne JSP subory
 localconf.jsp
 scratchpad.jsp
+
+#log files
+.log
