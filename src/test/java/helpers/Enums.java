@@ -14,4 +14,20 @@ public class Enums {
         EDIT_FOLDER,
         CREATE_PAGE
     }
+
+    public enum EditDialog{
+        SUBMIT,
+        CANCEL
+    }
+
+    public enum FolderManipulation{
+        EDIT_FOLDER,
+        ADD_SUBFOLDER
+    }
+
+    public enum OperatingSystem{
+        WIN,
+        LINUX,
+        MAC
+    }
 }

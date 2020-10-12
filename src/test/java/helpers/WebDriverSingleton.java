@@ -7,8 +7,18 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class WebDriverSingleton {
     private static WebDriver driver;
 
-    private static void initialize(){
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+    private static void initialize(Enums.OperatingSystem system){
+        switch (system){
+            case WIN:
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/win/chromedriver.exe");
+                break;
+            case LINUX:
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/linux/chromedriver");
+                break;
+            case MAC:
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/mac/chromedriver");
+                break;
+        }
         System.setProperty("headless", "false"); // You can set this property elsewhere
         String headless = System.getProperty("headless");
         if("true".equals(headless)) {
@@ -20,14 +30,14 @@ public class WebDriverSingleton {
             options.addArguments("--incognito");
             driver = new ChromeDriver(options);
             driver.manage().window().maximize();
-        };
+        }
 
 
     }
 
     public static WebDriver getWebDriverInstance(){
         if (driver==null){
-            initialize();
+            initialize(Enums.OperatingSystem.WIN);
         }
         return driver;
     }
