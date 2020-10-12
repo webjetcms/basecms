@@ -30,7 +30,4 @@ public class WebPagesPage extends BasePage {
     private final NavigationTile navigationTile;
     private final WebPagesMainStructureTile webPagesMainStructureTile;
     private final WebPagesEditFormTile webPagesEditFormTile;
-
-
-    //locators
 }

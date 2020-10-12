@@ -121,7 +121,7 @@ public class WebPagesMainStructureTile extends BasePage {
         return names;
     }
 
-    private WebElement findFolder(String id){
+    WebElement findFolder(String id){
         idInputBox.clear();
         idInputBox.sendKeys(id);
         idInputBox.sendKeys(Keys.ENTER);

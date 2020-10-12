@@ -17,6 +17,11 @@ public class PreferencesTabDialog extends BasePage {
         waitForElementToAppear(loggedMenuType);
     }
 
+    public void setFolderName(String folderName) {
+        folderNameInput.clear();
+        folderNameInput.sendKeys(folderName);
+    }
+
     public String getFolderNameInput() {
         return folderNameInput.getAttribute("value");
     }

@@ -1,27 +1,32 @@
 package pages.dialogs;
 
 import helpers.BasePage;
+import helpers.Enums;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.WebPagesPage;
 import pages.tiles.WebPagesMainStructureTile;
 
 import java.util.Set;
 
 public class EditFolderDialog extends BasePage {
+    PreferencesTabDialog preferences;
+
 
     public EditFolderDialog() {
         windowsHandle(WebPagesMainStructureTile.mainWindow);
+        preferences = new PreferencesTabDialog();
+        String url = driver.getCurrentUrl();
+        if (!url.contains("myParentGroupId")){
+            waitForElementToAppear(historyTab);
+        }
         waitForElementToAppear(preferencesTab);
         waitForElementToAppear(advancedTab);
         waitForElementToAppear(accessTab);
         waitForElementToAppear(publicationTab);
-        waitForElementToAppear(historyTab);
         waitForElementToAppear(submitButton);
         waitForElementToAppear(cancelButton);
         waitForElementToAppear(helpButton);
 
-        PreferencesTabDialog preferences = new PreferencesTabDialog();
 
         this.folderName = preferences.getFolderNameInput();
         this.navbarName = preferences.getNavbarInput();
@@ -34,12 +39,22 @@ public class EditFolderDialog extends BasePage {
     public String parentFolderName;
     public String urlDirName;
 
-    public void close() {
-        cancelButton.click();
+    public void setFolderName(String folderName){
+        preferences.setFolderName(folderName);
+    }
+
+    public void leaveEditDialog(Enums.EditDialog action){
+        switch (action) {
+            case SUBMIT:
+                submitButton.click();
+                break;
+            case CANCEL:
+                cancelButton.click();
+                break;
+        }
         driver.switchTo().window(WebPagesMainStructureTile.mainWindow);
         waitForPageLoaded();
     }
-
 
     private void windowsHandle(String mainWindow){
         Set<String> wins = driver.getWindowHandles();
@@ -65,7 +80,6 @@ public class EditFolderDialog extends BasePage {
     private WebElement submitButton;
     @FindBy(id = "btnCancel")
     private WebElement cancelButton;
-
     @FindBy(id = "btnHelp")
     private WebElement helpButton;
 
