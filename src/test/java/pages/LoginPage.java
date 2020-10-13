@@ -9,7 +9,9 @@ import static helpers.Config.*;
 
 
 public class LoginPage extends BasePage {
-
+    /**
+     * Login to WebJet
+     */
     public void login() {
         UserModel user = new UserModel(getUsername(),getPassword());
         waitForElementToAppear(username);

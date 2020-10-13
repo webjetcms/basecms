@@ -21,8 +21,8 @@ public class WebPageTest extends BaseTest{
 
         //add folder
         webPage = new WebPagesPage();
-        //folderId = webPage.getWebPagesMainStructureTile().createMainFolder();
-        folderId = "22";
+        folderId = webPage.getWebPagesMainStructureTile().createMainFolder();
+        //folderId = "22";
     }
 
     @Test
@@ -61,7 +61,7 @@ public class WebPageTest extends BaseTest{
         //add subfolder
         WebPagesEditFormTile editForm = webPage.getWebPagesEditFormTile();
         editForm.folderManipulation(folderId, Enums.FolderManipulation.ADD_SUBFOLDER);
-        Assert.assertTrue(editForm.newSubfolderConfirm().isDisplayed());
+        Assert.assertTrue(editForm.newSubfolderConfirm());
 
         //edit folder
         editForm.folderManipulation(folderId, Enums.FolderManipulation.EDIT_FOLDER);

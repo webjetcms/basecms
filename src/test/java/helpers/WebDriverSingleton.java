@@ -7,6 +7,22 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class WebDriverSingleton {
     private static WebDriver driver;
 
+    /**
+     * Initialize driver with selected operating system.
+     * @return driver
+     */
+    public static WebDriver getWebDriverInstance(){
+        if (driver==null){
+            initialize(Enums.OperatingSystem.WIN);
+        }
+        return driver;
+    }
+
+    /**
+     * This method initialize chromedriver in depend on you operating system.
+     * You can setup head or headless mode and chrome options.
+     * @param system list of available operating systems
+     */
     private static void initialize(Enums.OperatingSystem system){
         switch (system){
             case WIN:
@@ -33,12 +49,5 @@ public class WebDriverSingleton {
         }
 
 
-    }
-
-    public static WebDriver getWebDriverInstance(){
-        if (driver==null){
-            initialize(Enums.OperatingSystem.WIN);
-        }
-        return driver;
     }
 }

@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class WebPageSettingsModal extends BasePage {
-
+    /**
+     * Class to handle operations on settings modal window.
+     */
     public WebPageSettingsModal() {
         waitForElementToAppear(sortPriority);
         waitForElementToAppear(showWebPageId);
@@ -18,6 +20,9 @@ public class WebPageSettingsModal extends BasePage {
         waitForElementToAppear(saveButton);
     }
 
+    /**
+     * Method to create new main folder in main page structure.
+     */
     public void CreateNewFolder(){
         newRootFolderButton.click();
         waitForElementToDisappear(By.className("WJLoaderDiv"));

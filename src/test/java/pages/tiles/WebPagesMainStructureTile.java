@@ -16,7 +16,9 @@ import java.util.List;
 
 
 public class WebPagesMainStructureTile extends BasePage {
-
+    /**
+     * Class to handle operations on main source tree part of web page window.
+     */
     public WebPagesMainStructureTile() {
         waitForElementToAppear(idInputBox);
         waitForElementToAppear(docIdInputBox);
@@ -27,10 +29,16 @@ public class WebPagesMainStructureTile extends BasePage {
 
     Actions actions = new Actions(driver);
 
+    public static String mainWindow;
+
     public String getFolderName() {
         return "New-autotest-folder";
     }
 
+    /**
+     * With this method you can create new main folder using gear wheel in source tree.
+     * @return id of created folder
+     */
     public String createMainFolder() {
         settingsButton.click();
         new WebPageSettingsModal().CreateNewFolder();
@@ -38,6 +46,11 @@ public class WebPagesMainStructureTile extends BasePage {
         return newFolder.getAttribute("id");
     }
 
+    /**
+     * Method to create subfolder using context menu.
+     * @param folderId id of main folder
+     * @return pair of id and subfolder name
+     */
     public ImmutablePair<String,String> createSubFolder(String folderId) {
         selectFromContextMenu(folderId, Enums.ContextMenu.ADD_SUBFOLDER);
         waitForElementToDisappear(By.className("WJLoaderDiv"));
@@ -47,6 +60,10 @@ public class WebPagesMainStructureTile extends BasePage {
                 findElement(By.cssSelector(subFolderLocator)).getText());
     }
 
+    /**
+     * Rename folder by press F2 key
+     * @param id id of folder
+     */
     public void renameFolder(String id){
         findFolder(id);
         actions.sendKeys(Keys.F2).perform();
@@ -56,34 +73,45 @@ public class WebPagesMainStructureTile extends BasePage {
         waitForPageLoaded();
     }
 
-    public String getFolderName(String nameOfFolder){
-        String folderName = null;
+    /**
+     * This method checks if is folder created by automation test present.
+     * @return true if is folder present, false if not
+     */
+    public boolean isFolderPresent(){
         for (String name :
                 getFolderNames()) {
-            if (name.equals(nameOfFolder)){
-                folderName=name;
+            if (name.equals(getFolderName())){
+                return true;
             }
         }
-        return folderName;
+        return false;
     }
 
-    public boolean isFolderPresent(){
-        return getFolderName(getFolderName()) != null;
-    }
-
-    public static String mainWindow;
-
+    /**
+     * Open edit folder dialog using context menu.
+     * @param id folder id
+     * @return edit folder dialog
+     */
     public EditFolderDialog editFolder(String id){
         mainWindow= driver.getWindowHandle();
         selectFromContextMenu(id, Enums.ContextMenu.EDIT_FOLDER);
         return new EditFolderDialog();
     }
 
+    /**
+     * Remove folder using context menu.
+     * @param id id of folder to remove
+     */
     public void removeFolder(String id){
         selectFromContextMenu(id, Enums.ContextMenu.DELETE);
         waitForElementToDisappear(By.className("WJLoaderDiv"));
     }
 
+    /**
+     * Method to handle options in context menu.
+     * @param id folder id
+     * @param contextRow context menu operation
+     */
     private void selectFromContextMenu(String id, Enums.ContextMenu contextRow){
         String contextMenuStartLocator = "ul.jstree-contextmenu>li>a>i";
         WebElement el = findFolder(id);
@@ -111,6 +139,10 @@ public class WebPagesMainStructureTile extends BasePage {
         }
     }
 
+    /**
+     *
+     * @return list of all folder names in main tree
+     */
     private List<String> getFolderNames(){
         List<String> names = new ArrayList<>();
         List<WebElement> folders = findElements(By.cssSelector("div[id='groupslist-jstree']>ul>li>a"));
@@ -121,6 +153,11 @@ public class WebPagesMainStructureTile extends BasePage {
         return names;
     }
 
+    /**
+     * Method to find folder using id in source tree.
+     * @param id folder id
+     * @return selected folder
+     */
     WebElement findFolder(String id){
         idInputBox.clear();
         idInputBox.sendKeys(id);

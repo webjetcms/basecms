@@ -1,7 +1,11 @@
 package models;
 
 public class UserModel {
-
+    /**
+     * Class to create user for login to WebJet.
+     * @param userName user name
+     * @param password password
+     */
     public UserModel(String userName, String password) {
         this.userName = userName;
         this.password = password;

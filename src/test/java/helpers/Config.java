@@ -7,11 +7,9 @@ import java.util.Properties;
 
 
 public class Config {
-
-    private static String username;
-    private static String password;
-    private static String base_url;
-
+    /**
+     * Helper for config operations.
+     */
     public  Config() {
 
         try (InputStream input = new FileInputStream("src/test/resources/config.properties")) {
@@ -42,6 +40,9 @@ public class Config {
         return base_url;
     }
 
+    private static String username;
+    private static String password;
+    private static String base_url;
 
 
 }

@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
-
+    /**
+     * Class to check if is home page completely loaded after login
+     */
     public HomePage(){
         waitForElementToAppear(homePage);
         waitForElementToAppear(webPages);

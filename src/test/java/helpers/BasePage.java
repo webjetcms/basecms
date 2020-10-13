@@ -23,6 +23,10 @@ public class BasePage {
     protected static WebDriver driver;
     private final WebDriverWait wait;
 
+    /**
+     * Helper class for selenium operations.
+     * All pages inherits from this.
+     */
     public BasePage() {
         driver = WebDriverSingleton.getWebDriverInstance();
         wait = new WebDriverWait(driver, TIMEOUT, POLLING);

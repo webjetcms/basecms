@@ -11,7 +11,10 @@ import java.util.Set;
 public class EditFolderDialog extends BasePage {
     PreferencesTabDialog preferences;
 
-
+    /**
+     * This class handle operations on edit folder dialog.
+     * Constructor check if are all elements on page.
+     */
     public EditFolderDialog() {
         windowsHandle(WebPagesMainStructureTile.mainWindow);
         preferences = new PreferencesTabDialog();
@@ -39,10 +42,19 @@ public class EditFolderDialog extends BasePage {
     public String parentFolderName;
     public String urlDirName;
 
+    /**
+     * This method refers to preferences tab on edit folder dialog.
+     * @param folderName sets name for edit folder
+     */
     public void setFolderName(String folderName){
         preferences.setFolderName(folderName);
     }
 
+    /**
+     * Here you can choose in witch way you leave edit dialog.
+     * You can submit it or just close.
+     * @param action submit or close.
+     */
     public void leaveEditDialog(Enums.EditDialog action){
         switch (action) {
             case SUBMIT:
@@ -56,6 +68,10 @@ public class EditFolderDialog extends BasePage {
         waitForPageLoaded();
     }
 
+    /**
+     * Method for handling with multiple windows.
+     * @param mainWindow identifier of main window.
+     */
     private void windowsHandle(String mainWindow){
         Set<String> wins = driver.getWindowHandles();
 
