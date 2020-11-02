@@ -87,9 +87,12 @@ Poznamka: URL meno projektu som schvalne zvolil aj s menom skupiny, cize nnweb20
 Po vytvoreni projektu mozete skontrolovat prava v Settings/Members, odporucam ludi definovat priamo na skupine, nie na projekte.
 
 Nasledne upravte meno projektu v subore settings.gradle (vsetko malymi pismenami bez medzier):
+
 ```
 rootProject.name = 'menoprojektu'
 ```
+
+**POZOR:** menoprojektu sa musí zhodovať s menom adresára projektu, čiže poslednou časťou URL adresy (napr. nnweb2020). Inak vám vo VS Code budú vznikať [chyby typu](https://github.com/redhat-developer/vscode-java/issues/1607) ```vscode project description file (.project) is out of sync with the file system```, respektíve budú sa zobrazovať nezmyselné chyby, že nevie nájsť package ```org.springframework``` a podobne.
 
 ## Naklonovanie do lokalneho workspace
 
