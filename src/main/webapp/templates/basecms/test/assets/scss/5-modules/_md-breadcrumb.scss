@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.md-breadcrumb {
+    ol{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        list-style: none;
+          li{
+            display: flex;
+            align-items: center;
+            &:before{
+                display: inline-block;
+                padding: 5px;
+                color: #6c757d;
+                content: "/";
+            }
+            a{
+                color: #007bff;
+                padding: 5px;
+                text-decoration: none;
+                background-color: transparent;
+            }
+          }
+    }
+  }
