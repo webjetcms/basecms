@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "mappings": "AAUA,AAAA,IAAI,CAAC;EACD,SAAS,EAAE,MAAM;EACjB,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,MAAM;EACd,WAAW,EAAE,4BAA4B;CAC5C;;CAED,AAAA,AAAA,EAAC,EAAI,aAAa,AAAjB,EAAmB;EAChB,MAAM,EAAE,eAAe;EACvB,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,MAAM;CACjB",
+    "sources": [
+        "blind-friendly.scss",
+        "2-helpers/_utils.scss",
+        "2-helpers/_variables.scss",
+        "2-helpers/_functions.scss",
+        "2-helpers/_mixins.scss",
+        "2-helpers/_placeholders.scss"
+    ],
+    "names": [],
+    "file": "blind-friendly.css"
+}
