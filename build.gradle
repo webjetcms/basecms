@@ -7,7 +7,7 @@
 
 plugins {
     id 'java-library'
-    id 'war'  
+    id 'war'
     id 'org.gretty' version "3.0.3"
     id "com.jfrog.artifactory" version "4.9.8"
     id 'idea'
@@ -21,7 +21,7 @@ repositories {
 }
 
 ext {
-    webjetVersion = "8.8-SNAPSHOT";    
+    webjetVersion = "8.8-SNAPSHOT";
 }
 
 war {
@@ -57,16 +57,16 @@ task npminstalltest {
         exec {
             workingDir 'src/test/webapp/'
             commandLine 'npm', 'install'
-        }        
+        }
     }
 }
 
 task rune2etest {
-    doLast {        
+    doLast {
         exec {
             workingDir 'src/test/webapp/'
             commandLine 'npx', 'codeceptjs', 'run', '--steps'
-        }        
+        }
     }
 }
 
@@ -78,7 +78,7 @@ dependencies {
     }
 
     compile("sk.iway:webjet:${webjetVersion}")
-    compile("sk.iway:webjet:${webjetVersion}:admin")    
+    compile("sk.iway:webjet:${webjetVersion}:admin")
     compile("sk.iway:webjet:${webjetVersion}:components")
     compile("sk.iway:webjet:${webjetVersion}:struts")
     compile("sk.iway:webjet:${webjetVersion}:daisydiff")
@@ -88,11 +88,11 @@ dependencies {
     compile 'taglibs:standard:1.1.2'
     compile 'javax.servlet:jstl:1.2'
 
-    providedCompile 'javax.servlet:javax.servlet-api:3.1.0' 
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile "javax.servlet:servlet-api:2.5"
     providedCompile "javax.servlet.jsp:javax.servlet.jsp-api:2.3.3"
     providedCompile 'javax.el:javax.el-api:3.0.0'
-    providedCompile 'javax.annotation:jsr250-api:1.0'    
+    providedCompile 'javax.annotation:jsr250-api:1.0'
     providedCompile 'org.slf4j:slf4j-log4j12:1.7.25'
 
     testCompile 'junit:junit:4.12'
@@ -102,9 +102,9 @@ dependencies {
 
 }
 
-configurations { 
-    all*.exclude group: 'org.slf4j', module: 'slf4j-over-slf4j' 
-    all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'     
+configurations {
+    all*.exclude group: 'org.slf4j', module: 'slf4j-over-slf4j'
+    all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
 
     //javax.xml.stream:stax-api:1.0-2 -> stax:stax-api:1.0.1
     all*.exclude group: 'javax.xml.stream', module: 'stax-api'
@@ -145,8 +145,8 @@ gretty {
     // supported values:
     // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
     servletContainer = 'tomcat9'
-    contextPath = ''  
-    httpPort = 8080
+    contextPath = ''
+    httpPort = 80
     //hard mod spusti WJ rovno z src/main/webapp co zrychli start (netreba kopirovat JSP subory niekde inde)
     inplaceMode = 'hard'
     //scanovania pre hotswap
@@ -155,9 +155,9 @@ gretty {
     scanDir '${projectDir}/build/classes/java/main'
     fastReload = true
     managedClassReload = true
-    //JVM parametre    
+    //JVM parametre
     jvmArgs = [
-        //odporucane premenne pre Tomcat        
+        //odporucane premenne pre Tomcat
         '-Dsun.net.client.defaultConnectTimeout=300000',
         '-Dsun.net.client.defaultReadTimeout=300000',
         '-Dfile.encoding=utf-8',
