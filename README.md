@@ -11,6 +11,7 @@ Sem zadaj popis projektu
 
 <!-- code_chunk_output -->
 
+- [Sem zadaj meno projektu](#sem-zadaj-meno-projektu)
 - [WebJET CMS](#webjet-cms)
   - [Gradle prikazy](#gradle-prikazy)
   - [Aktualizácia WebJETu](#aktualizácia-webjetu)
@@ -39,6 +40,11 @@ gradle compileJava --refresh-dependencies --info
 ```
 
 Vo vašom IDE môžu byť potrebné ďaľšie kroky pre aktualizáciu knižníc tak, aby zmenu videlo aj IDE. Napr. vo VS Code je potrebné daný gradle príkaz vykonať z Gradle konzoly (v ľavej lište je ikona Gradle). Otvorte v taskoch uzol other, kliknite pravým na ```compileJava``` a zvoľte možnosť ```Run Task With Args```. Ako argumenty použite ```--refresh-dependencies --info```. Prípadne si rovno cez možnosť ```Pin Task With Args``` príkaz aj s argumentami uložte do vlastného zoznamu.
+
+**Zoznam závislostí/použitých jar knižníc**
+```
+gradle dependencies --configuration default
+```
 
 **Tomcat**
 ```
