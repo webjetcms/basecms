@@ -101,6 +101,10 @@
         <delete file="${outdir}WEB-INF/web.xml"/>
         <delete file="${outdir}WEB-INF/classes/poolman.xml"/>
         <delete file="${outdir}WEB-INF/classes/poolman-conf.xml"/>
+        <delete dir="${outdir}css"/>
+        <delete dir="${outdir}images"/>
+        <delete dir="${outdir}jscripts"/>
+        <delete dir="${outdir}files"/>        
     </target>
 
     <target name="createZip" depends="updatezip" description="Zozipuje cely release balicek">
