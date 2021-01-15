@@ -4,6 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("rawtypes")
 public class TableJSLocator extends BasePage {
 
     public ArrayList _columns;

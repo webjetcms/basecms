@@ -126,7 +126,7 @@
 //        AddForm addForm = new AddForm();
 //        addForm.getAddButton().click();
 //        List<WebElement> requiredFields=new ArrayList<>();
-//        // TODO fix encoding and change locator
+//        // TO-DO fix encoding and change locator
 //        // String validationMessageXpath="//div[text()='nemôže byť prázdne']";
 //        String validationMessageXpath="//div[contains(@class,'is-invalid')]/div/div[contains(@class,'text-danger')]";
 //        if (elementPresence(By.xpath(validationMessageXpath))){
@@ -147,7 +147,7 @@
 //        while (elementPresence(By.className("dt-filter-labels__link"))){
 //            findElement(By.className("dt-filter-labels__link")).click();
 //        }
-//        //TODO temporary condition until fix
+//        //TO-DO temporary condition until fix
 //        if (driver.getCurrentUrl().contains("audit")){
 //            findElement(By.xpath("//th[text()='Id']")).click();
 //        }else {

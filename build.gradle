@@ -70,6 +70,12 @@ task rune2etest {
     }
 }
 
+//updatezip - pripravy build/update-DATUM.zip pre aktualizaciu WebJETu v rozbalenej strukture (stary format bez jarpackaging)
+task updatezip(type: Exec)  {
+    workingDir 'ant/'
+    commandLine "ant", "-buildfile", "updatezip.xml", "-Dv8version=${webjetVersion}", "-Dprojectname=${rootProject.name}"
+}
+
 dependencies {
 
     modules {

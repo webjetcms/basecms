@@ -57,6 +57,15 @@ gradle appStop
 gradle war
 ```
 
+ak máte WebJET v starom formáte (s rozbalenou štruktúrou kde vidno /admin súbory, všetky komponenty v /components/ aj všetky Java triedy vo /WEB-INF/classes/) môžete použiť:
+
+```
+gradle updatezip
+```
+
+ktorý pripraví aktualizačný ZIP súbor v starom formáte. Vo WebJETe nastavte konf. premennú updateAllowFileUpload na true a následne môžete použiť vygenerovaný ZIP
+balik pre aktualizáciu (cez Ovládací panel->Aktualizácia WebJETu->dole vybrať update.zip a uploadnúť).
+
 ## Aktualizácia WebJETu
 
 V súbore [build.gradle](build.gradle) je sekcia ```ext``` v ktorej je nastavená verzia WebJET CMS použitá v projekte:

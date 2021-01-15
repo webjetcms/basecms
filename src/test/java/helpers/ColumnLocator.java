@@ -1,5 +1,6 @@
 package helpers;
 
+@SuppressWarnings("unused")
 public class ColumnLocator {
 
     private String name;

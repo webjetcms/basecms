@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+
+<project name="webjet" default="createZip" basedir="../">
+
+    <path id="maven-ant-tasks.classpath" path="support/ant/ant_maven-ant-tasks-2.1.3.jar" />
+
+    <description>
+        Pripravi update ZIP balik vo formate rozbalenuych JAR archivov (ako je standardny format aktualizacie WebJETu)
+        Vo WebJETe ked nasledne nastavite konf. premennu updateAllowFileUpload na true mozete pouzit vygenerovany ZIP
+        balik pre aktualizaciu (Ovladaci panel->Aktualizacia WebJETu->dole vybrat update.zip a uploadnut)
+        Spusti sa PARENT adresara ako: gradle updatezip
+    </description>
+
+    <!-- set global properties for this build -->
+    <property name="v8version" value="8.8-SNAPSHOT"/>
+    <property name="projectname" value="basecms"/>
+
+    <property name="root" value="build/updatezip" />
+    <property name="outdir" value="${root}/WebContent/"/>
+    <property name="wardir" value="build/libs/"/>
+
+    <defaultexcludes add="prepros-6.config"/>
+    <defaultexcludes add="**/*.md"/>
+    <defaultexcludes add="**/node_modules/**"/>
+    <defaultexcludes add="**/scss/**"/>
+    <defaultexcludes add="**/*-example.*"/>
+    <defaultexcludes add="jqTree.jsp"/>
+    <defaultexcludes add="poolman.xml"/>
+    <defaultexcludes add="web.xml"/>
+
+    <condition property="isWindows">
+        <os family="windows" />
+    </condition>
+
+    <condition property="gradle" value="gradlew.bat" else="gradle">
+        <os family="windows" />
+    </condition>
+
+    <tstamp>
+        <format property="touch.time" pattern="yyyy-MM-dd_hh-mm" />
+    </tstamp>
+
+    <target name="setup" description="pripravi projekt pre distribuciu">
+        <delete dir="src/main/webapp/admin/v9/dist"/>
+<!--        <exec executable="${gradle}">-->
+<!--            <arg value="npmbuild"/>-->
+<!--        </exec>-->
+<!--        <echo message="gradle property=${gradle}"/>-->
+        <exec executable="${gradle}">
+            <arg value="compileJava"/>
+            <arg value="--refresh-dependencies"/>
+            <arg value="--info"/>
+        </exec>
+        <exec executable="${gradle}">
+            <arg value="war"/>
+        </exec>
+    </target>
+
+    <target name="updatezip" depends="setup" description="Pripravy strukturu pre zip - s rozbalenou WebJET strukturou, bez jarpackaging">
+        <delete dir="${root}"/>
+
+        <unzip src="${wardir}${projectname}.war" dest="${outdir}">
+            <patternset>
+                <exclude name="components/aceintegration/**"/>
+                <exclude name="files/**"/>
+                <exclude name="images/**"/>
+                <exclude name="META-INF/**"/>
+                <exclude name="templates/**"/>
+
+                <exclude name="**/pug/**"/>
+                <exclude name="**/admin/v9/views/**"/>
+                <exclude name="**/*.pug"/>
+
+            </patternset>
+        </unzip>
+
+        <!-- java triedy -->
+        <unzip src="${outdir}WEB-INF/lib/webjet-${v8version}.jar" dest="${outdir}/WEB-INF/classes/" overwrite="false"/>
+        <move file="${outdir}WEB-INF/classes/META-INF/resources/WEB-INF" todir="${outdir}" overwrite="false" preservelastmodified="true"/>
+        <delete dir="${outdir}WEB-INF/classes/META-INF/resources/"/>
+        <delete file="${outdir}WEB-INF/lib/webjet-${v8version}.jar"/>
+
+        <!-- /admin -->
+        <unzip src="${outdir}WEB-INF/lib/webjet-${v8version}-admin.jar" dest="${outdir}/admin/" overwrite="false"/>
+        <delete file="${outdir}WEB-INF/lib/webjet-${v8version}-admin.jar"/>
+        <move file="${outdir}admin/META-INF/resources/admin/" todir="${outdir}" overwrite="false" preservelastmodified="true"/>
+        <move file="${outdir}admin/META-INF/resources/WEB-INF/" todir="${outdir}" overwrite="false" preservelastmodified="true"/>
+        <delete dir="${outdir}admin/META-INF"/>
+
+        <!-- /components -->
+        <unzip src="${outdir}WEB-INF/lib/webjet-${v8version}-components.jar" dest="${outdir}/components/" overwrite="false"/>
+        <delete file="${outdir}WEB-INF/lib/webjet-${v8version}-components.jar"/>
+        <move file="${outdir}components/META-INF/resources/components/" todir="${outdir}" overwrite="false" preservelastmodified="true"/>
+        <move todir="${outdir}" overwrite="false" preservelastmodified="true">
+            <fileset dir="${outdir}components/META-INF/resources/">
+                <include name="*.jsp"/>
+            </fileset>
+        </move>
+        <delete dir="${outdir}components/META-INF/"/>
+
+        <delete file="${outdir}WEB-INF/web.xml"/>
+        <delete file="${outdir}WEB-INF/classes/poolman.xml"/>
+        <delete file="${outdir}WEB-INF/classes/poolman-conf.xml"/>
+    </target>
+
+    <target name="createZip" depends="updatezip" description="Zozipuje cely release balicek">
+        <zip basedir="${outdir}" destfile="build/update-${touch.time}.zip" />
+        <delete dir="${root}"/>
+        <echo message="========================================================"/>
+        <echo message="========================================================"/>
+        <echo message="Update ZIP pripraveny: build/update-${touch.time}.zip"/>
+        <echo message="========================================================"/>
+        <echo message="========================================================"/>
+    </target>
+
+</project>
