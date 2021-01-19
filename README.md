@@ -202,7 +202,7 @@ UPDATE crontab SET year=2013 WHERE extrainfo LIKE '%http%';
 
 #nastavenie pristupov len pre IWAY adresy
 DELETE FROM _conf_ WHERE name='adminEnableIPs';
-INSERT INTO _conf_ (name, value) VALUES ('adminEnableIPs','127.0.0.1,10.,192.168.,195.168.35.4,195.168.35.5,62.65.161.197');
+INSERT INTO _conf_ (name, value) VALUES ('adminEnableIPs','#localhost,127.0.0.1,10.,192.168.,#interway,195.168.35.4,195.168.35.5,62.65.161.197,#klient,');
 DELETE FROM _conf_ WHERE name='webEnableIPs';
 INSERT INTO _conf_ (name, value) VALUES ('webEnableIPs','#localhost,127.0.0.1,10.,192.168.,#interway,85.248.107.8,195.168.35.4,195.168.35.5,62.65.161.197,#klient,');
 
