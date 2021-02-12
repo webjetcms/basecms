@@ -9,10 +9,13 @@
   "author": "Lubos Balat, InterWay, a. s.",
   "license": "ISC",
   "dependencies": {
-    "@codeceptjs/ui": "^0.3.6",
-    "acorn": "^7.2.0",
-    "codeceptjs": "^2.6.3",
-    "mochawesome": "^6.1.1",
-    "playwright": "^0.12.1"
+    "@codeceptjs/ui": "^0.4.3",
+    "acorn": "^8.0.4",
+    "codeceptjs": "^3.0.5",
+    "codeceptjs-chai": "^2.2.0",
+    "codeceptjs-resemblehelper": "^1.9.3",
+    "mochawesome": "^6.2.1",
+    "moment": "^2.29.1",
+    "playwright": "^1.7.1"
   }
 }

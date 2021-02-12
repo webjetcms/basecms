@@ -3,24 +3,6 @@ const { Helper } = codeceptjs;
 class CustomWebjetHelper extends Helper {
 
   /**
-   * Metoda vrati stlpce vo formate .json
-   * @param {string} dataTable objekt pre datatabulku
-   */
-  async getDataTableColumns(dataTable) {
-    const { page } = this.helpers['Playwright'];
-    const window = await page.evaluateHandle(() => window);
-    const table = await window.getProperty(dataTable);
-    const DATA = await table.getProperty('DATA');
-    const columns = await DATA.getProperty('columns');
-    const columnsToJson = await columns.jsonValue();
-    try {
-      if (columnsToJson) return columnsToJson;
-    } catch(err) {
-      console.log(err);
-    }
-  }
-
-  /**
    * Metoda otestuje ci existuje na stranke element pokial ano klikne naneho.
    * @param {string} selector html element ktory sa ma testovat
    */

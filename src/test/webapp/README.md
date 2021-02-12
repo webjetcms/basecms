@@ -8,11 +8,15 @@
 
 ```sh
 cd src/test/webapp/
-npx codeceptjs run --steps 
-```
+npx codeceptjs run --steps
 
-Spustenie konkrétneho testu:
-
-```sh
+#Spustenie konkrétneho testu:
 npx codeceptjs run tests/components/gallery_test.js --steps
+
+# Spustenie konkrétneho scenára
+# - do mena scenára pridajte text @current a spustite
+npx codeceptjs run --steps --grep "@current"
+
+#zapnutie Pause On Fail - zapauzovanie ked nastane chyba
+npx codeceptjs run --steps -p pauseOnFail
 ```

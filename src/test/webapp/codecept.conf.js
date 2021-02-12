@@ -6,7 +6,7 @@ const { devices } = require('playwright');
 setHeadlessWhen(process.env.HEADLESS);
 
 var url = process.env.CODECEPT_URL || 'http://iwcm.interway.sk';
-var codeceptShow = process.env.CODECEPT_SHOW; 
+var codeceptShow = process.env.CODECEPT_SHOW;
 var browser = process.env.CODECEPT_BROWSER || "chromium";
 
 var showBrowser = true;
@@ -26,15 +26,34 @@ exports.config = {
       url: url,
       show: showBrowser,
       browser: browser,
-      waitForNavigation: "networkidle0"
+      waitForNavigation: "networkidle0",
+      restart: false,
+      keepCookies: true
+      /* este nefunguje, vid https://github.com/microsoft/playwright/pull/3526
+      ,
+      chromium: {
+        showUserInput: true
+      }
+      */
       //,emulate: devices['iPhone 6']
     },
     CustomWebjetHelper: {
       require: './custom_helper.js'
+    },
+    ChaiWrapper: {
+      //https://www.npmjs.com/package/codeceptjs-chai
+      require: "codeceptjs-chai"
+    },
+    ResembleHelper : {
+      require: "codeceptjs-resemblehelper",
+      screenshotFolder : "./../../build/test",
+      baseFolder: "./screenshots/base/",
+      diffFolder: "./screenshots/diff/"
     }
   },
   include: {
-    I: './steps_file.js'
+    I: './steps_file.js',
+    DataTables: './pages/DataTables.js'
   },
   bootstrap: null,
   mocha: {
@@ -54,19 +73,29 @@ exports.config = {
     pauseOnFail: {},
     autoLogin: {
       enabled: true,
-      saveToFile: true,
+      saveToFile: false,
       inject: 'login',
       users: {
         admin: {
           login: (I) => {
+            I.say("logging in");
             I.amOnPage('/admin/');
+            //aby sme vzdy v kazdom scenari mali prednastavenu velkost okna
+            I.wjSetDefaultWindowSize();
+            //odosli prihlasenie
             I.fillField("username", "tester");
             I.fillField("password", secret("***REMOVED***"));
             I.click("login-submit");
           },
           check: (I) => {
-             I.amOnPage('/admin/');
-             I.see("Nástenka");
+            I.say("checking logged user");
+            I.see("Tester Playwright");
+            //aby sme vzdy v kazdom scenari mali prednastavenu velkost okna
+            I.wjSetDefaultWindowSize();
+          },
+          restore: (I) => {
+            I.say("restoring logged user");
+            I.see("Tester Playwright");
           }
         }
       }
