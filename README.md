@@ -130,7 +130,7 @@ Pre zriadenie cistej instalacie WebJETu (novej databazy) je potrebne:
    - INSTALL_NAME_data (napr. interway_data) pre tabulky zakazkovych modulov
 - v subore ```src/main/resources/poolman.xml``` je potrebne zadat JDBC cestu k databaze (tagy driver a url) a prihlasovacie udaje (tagy username a password). Ak sa pouziva aj _data databaza je zduplikujte tag datasource a upravte dbname na INSTALL_NAME_data a prislusne udaje v tagoch url, username a password.
 - spustit app server cez ```gradle appRun```, pri starte vypise chybu z dovodu, ze databaza je prazdna
-- pokracujte podla postupu na stranke http://docs.webjetcms.sk/#/install-config/install-webjet/ od casti Naplnenie DB schémy
+- pokracujte podla postupu na stranke http://docs.webjetcms.sk/v8/#/install-config/install-webjet/ od casti Naplnenie DB schémy
 - po naplneni DB schemy sa nemusi vzdy app server restartnut, ak sa dlhsie nic nedeje, jednoducho ho zastavte a nastartujte nanovo, nasledne uz by vam malo fungovat prihlasenie do administracie
 
 Priklady tagov driver a url pre podporovane databazy:
