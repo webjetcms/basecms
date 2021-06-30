@@ -1,0 +1,1 @@
+java -Xmx512m -jar ../lib/pd4ml_demo.jar -configure.fonts .
