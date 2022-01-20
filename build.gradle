@@ -112,6 +112,7 @@ configurations {
     all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     all*.exclude group: 'commons-logging', module: 'commons-logging'
     all*.exclude group: "log4j", module: "log4j"
+    all*.exclude group: 'org.slf4j', module: 'jcl104-over-slf4j'
 
     //javax.xml.stream:stax-api:1.0-2 -> stax:stax-api:1.0.1
     all*.exclude group: 'javax.xml.stream', module: 'stax-api'
