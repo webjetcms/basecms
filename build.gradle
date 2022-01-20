@@ -18,10 +18,11 @@ repositories {
     flatDir {
        dirs 'libs'
    }
+    mavenCentral()
 }
 
 ext {
-    webjetVersion = "8.8-SNAPSHOT";
+    webjetVersion = "8.9-SNAPSHOT";
 }
 
 war {
@@ -99,9 +100,8 @@ dependencies {
     providedCompile "javax.servlet.jsp:javax.servlet.jsp-api:2.3.3"
     providedCompile 'javax.el:javax.el-api:3.0.0'
     providedCompile 'javax.annotation:jsr250-api:1.0'
-    providedCompile 'org.slf4j:slf4j-log4j12:1.7.25'
 
-    testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.13.2'
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
@@ -111,15 +111,15 @@ dependencies {
 configurations {
     all*.exclude group: 'org.slf4j', module: 'slf4j-over-slf4j'
     all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    all*.exclude group: 'commons-logging', module: 'commons-logging'
+    all*.exclude group: "log4j", module: "log4j"
 
     //javax.xml.stream:stax-api:1.0-2 -> stax:stax-api:1.0.1
     all*.exclude group: 'javax.xml.stream', module: 'stax-api'
 
     grettyRunnerTomcat85 {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
     grettyRunnerTomcat9 {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
 }
 
