@@ -118,7 +118,9 @@ configurations {
 
     }
     grettyRunnerTomcat9 {
-
+        // gretty pouziva staru verziu commons-io, ktora koluduje s nasou
+        // https://mvnrepository.com/artifact/commons-io/commons-io
+        exclude group: 'commons-io', module: 'commons-io'
     }
 }
 
