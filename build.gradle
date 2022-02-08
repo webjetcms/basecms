@@ -90,7 +90,6 @@ dependencies {
     compile("sk.iway:webjet:${webjetVersion}:struts")
     compile("sk.iway:webjet:${webjetVersion}:daisydiff")
     compile("sk.iway:webjet:${webjetVersion}:jtidy")
-    compile("sk.iway:webjet:${webjetVersion}:swagger-ui")
 
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile "javax.servlet:servlet-api:2.5"
