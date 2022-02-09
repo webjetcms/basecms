@@ -10,9 +10,13 @@
 build
 bin/
 
+# Ignore vscode/intellij java project files
+.classpath
+
 #WebJET imgcache a tmp adresar
 **/WEB-INF/imgcache
 **/WEB-INF/tmp
+**/_tmp_*
 
 #node_modules nepotrebujeme
 node_modules/
@@ -20,6 +24,21 @@ node_modules/
 #lokalne JSP subory
 localconf.jsp
 scratchpad.jsp
+scratchpad*.jsp
+/target
+src/main/resources/poolman-local*.xml
 
-#log files
-.log
+#logy
+*.log
+
+#idea
+.idea
+.settings/org.eclipse.buildship.core.prefs
+.iml
+
+#eclipse
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.wst.common.project.facet.core.xml
+
+#macos
+**/.DS_Store

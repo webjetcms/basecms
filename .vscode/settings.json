@@ -1,17 +1,16 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "git.ignoreLimitWarning": true,
-    "editor.tabSize": 3,    
-    "[java]": {
-        "files.encoding": "windows1250"
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
     },
-    "[jsp]": {
-        "files.encoding": "windows1250"
-    },
-    "[javascript]": {
-        "files.encoding": "windows1250"
-    },
-    "svn.delete.ignoredRulesForDeletedFiles": [
-        "WebContent/WEB-INF/classes/META-INF"
+    "spellright.language": [
+        "sk_SK"
+    ],
+    "spellright.documentTypes": [
+        "markdown"
     ]
 }

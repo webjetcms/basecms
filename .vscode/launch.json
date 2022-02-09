@@ -12,14 +12,25 @@
             "port": 5005,
             "preLaunchTask": "appStart",
             "postDebugTask": "appKill",
-            "timeout": 20000
+            "timeout": 240000
+        },
+        {
+            "type": "java",
+            "name": "Debug Local DB",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5005,
+            "preLaunchTask": "appStartLocalDB",
+            "postDebugTask": "appKill",
+            "timeout": 240000
         },
         {
             "type": "java",
             "name": "Debug (Attach)",
             "request": "attach",
             "hostName": "localhost",
-            "port": 5005
+            "port": 5005,
+            "timeout": 240000,
         }
     ]
 }
