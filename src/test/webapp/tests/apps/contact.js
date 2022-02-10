@@ -1,5 +1,10 @@
 Feature('contact');
 
+/**
+ * Ukazkovy automatizovany test pre pouzitie v datatabulke
+ * http://docs.webjetcms.sk/v2022/#/custom-apps/admin-menu-item
+ */
+
 Before(({ I, login }) => {
     login('admin');
     I.amOnPage("/apps/contact/admin/");

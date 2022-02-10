@@ -17,6 +17,11 @@ import sk.iway.iwcm.system.adminlog.EntityListenersType;
 import sk.iway.iwcm.system.datatable.DataTableColumnType;
 import sk.iway.iwcm.system.datatable.annotations.DataTableColumn;
 
+/**
+ * Ukazkova JPA entita pre pouzitie v datatabulke
+ * http://docs.webjetcms.sk/v2022/#/custom-apps/admin-menu-item
+ */
+
 //nastavenie JPA entity
 @Entity
 @Table(name = "contact")

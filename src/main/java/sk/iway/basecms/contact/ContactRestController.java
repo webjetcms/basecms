@@ -13,6 +13,11 @@ import sk.iway.iwcm.system.datatable.DatatablePageImpl;
 import sk.iway.iwcm.system.datatable.DatatableRestControllerV2;
 import sk.iway.iwcm.system.datatable.json.LabelValue;
 
+/**
+ * Ukazkovy Spring REST pre pouzitie v datatabulke
+ * http://docs.webjetcms.sk/v2022/#/custom-apps/admin-menu-item
+ */
+
 @RestController
 //nastavenie URL adresy REST controllera
 @RequestMapping("/admin/rest/apps/contact/")
