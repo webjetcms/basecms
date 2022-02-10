@@ -1,6 +1,7 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "git.ignoreLimitWarning": true,
+    "editor.tabSize": 3,
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,

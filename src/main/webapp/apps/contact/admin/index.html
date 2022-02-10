@@ -14,13 +14,16 @@
             ]
         })
 
+        //URL adresa REST rozhrania
         let url = "/admin/rest/apps/contact";
+        //package a meno triedy s JPA entitou
         let columns = [(${layout.getDataTableColumns("sk.iway.basecms.contact.ContactEntity")})];
 
         dataTable = WJ.DataTable({
             url: url,
             serverSide: true,
             columns: columns,
+            //id musi byt zhodne s tagom table nizsie
             id: "dataTable",
             fetchOnEdit: true,
             fetchOnCreate: true

@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +36,7 @@ public class ContactEntity {
     private Long id;
 
     @DataTableColumn(inputType = DataTableColumnType.OPEN_EDITOR, title="components.basket.invoice_email.company")
+    @NotBlank
     private String name;
 
     @DataTableColumn(inputType = DataTableColumnType.TEXT, title="VAT ID")
@@ -45,12 +49,14 @@ public class ContactEntity {
     private String city;
 
     @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.basket.invoice_email.ZIP")
+    @Size(min=5, max=8)
     private String zip;
 
     @DataTableColumn(inputType = DataTableColumnType.SELECT, title="components.basket.invoice_email.country")
     private String country;
 
     @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.basket.invoice_email.contact")
+    @Email
     private String contact;
 
     @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.basket.invoice_email.phone_number")

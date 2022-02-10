@@ -14,7 +14,9 @@ import sk.iway.iwcm.system.datatable.DatatableRestControllerV2;
 import sk.iway.iwcm.system.datatable.json.LabelValue;
 
 @RestController
+//nastavenie URL adresy REST controllera
 @RequestMapping("/admin/rest/apps/contact/")
+//nastavenie kontroly prav na alikaciu cmp_contact (tento kluc sa definuje v modinfo.properties)
 @PreAuthorize("@WebjetSecurityService.hasPermission('cmp_contact')")
 @Datatable
 public class ContactRestController extends DatatableRestControllerV2<ContactEntity, Long> {
@@ -38,6 +40,11 @@ public class ContactRestController extends DatatableRestControllerV2<ContactEnti
         countries.add(new LabelValue("Rakúsko", "at"));
         //pridaj zoznam pre pole country
         page.addOptions("country", countries, "label", "value", false);
+    }
+
+    @Override
+    public void beforeSave(ContactEntity entity) {
+        //tu mozete vykonat nastavenie pred ulozenim, napr. nastavit datum poslednej zmeny
     }
 
 }

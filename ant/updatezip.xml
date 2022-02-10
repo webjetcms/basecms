@@ -37,7 +37,7 @@
     </condition>
 
     <tstamp>
-        <format property="touch.time" pattern="yyyy-MM-dd_hh-mm" />
+        <format property="touch.time" pattern="yyyy-MM-dd-hh-mm" />
     </tstamp>
 
     <target name="setup" description="pripravi projekt pre distribuciu">
