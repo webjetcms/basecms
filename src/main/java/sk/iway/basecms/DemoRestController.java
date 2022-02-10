@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sk.iway.iwcm.Constants;
 
+/**
+ * Ukazkovy RESR controller
+ */
+
 @RestController
 public class DemoRestController
 {
