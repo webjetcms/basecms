@@ -20,6 +20,11 @@ import sk.iway.iwcm.system.jpa.WebJETJavaSECMPInitializer;
 import sk.iway.iwcm.system.jpa.WebJETPersistenceProvider;
 
 /**
+ * Ukazkova konfiguracia Spring DATA/JPA
+ * http://docs.webjetcms.sk/v2022/#/custom-apps/spring-config/
+ */
+
+/**
  *     Dolezite:
  *     1.) nastavit anotaciu @EnableJpaRepositories na package ktore obsahuju @Repository
  *     2.) nastavit setPackagesToScan() na entity ktore pouzivame v repozitaroch
