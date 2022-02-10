@@ -13,7 +13,7 @@ Sem zadaj popis projektu
 
 - [Sem zadaj meno projektu](#sem-zadaj-meno-projektu)
 - [WebJET CMS](#webjet-cms)
-  - [Gradle prikazy](#gradle-prikazy)
+  - [Gradle príkazy](#gradle-príkazy)
   - [Aktualizácia WebJETu](#aktualizácia-webjetu)
 - [FORK projektu basecms do zakaznickeho projektu](#fork-projektu-basecms-do-zakaznickeho-projektu)
   - [Naklonovanie do lokalneho workspace](#naklonovanie-do-lokalneho-workspace)
@@ -26,45 +26,49 @@ Sem zadaj popis projektu
 
 Základný projekt pre WebJET CMS
 
-## Gradle prikazy
+## Gradle príkazy
+
+Vždy používajte ```gradle wrapper``` použitím ```gradlew```, nikdy nepoužívajte priamo váš globálny ```gradle``` príkaz. Príkaz ```gradlew``` použije projektovú verziu gradle, nebude kolidovať verzia s vašou globálnou verziou.
+
 Pridaním --info získate podrobnejšie informácie o behu príkazu
 
 **kompilácia projektu**
 ```
-gradle compileJava
+gradlew compileJava
 ```
 
-**kompilácia vrátane refreshu knižníc (hlavne keď sa zmení SNAPSHOT verzia WJ)**
+**kompilácia vrátane obnovenia knižníc (hlavne keď sa zmení SNAPSHOT verzia WJ)**
+
 ```
-gradle compileJava --refresh-dependencies --info
+gradlew compileJava --refresh-dependencies --info
 ```
 
 Vo vašom IDE môžu byť potrebné ďaľšie kroky pre aktualizáciu knižníc tak, aby zmenu videlo aj IDE. Napr. vo VS Code je potrebné daný gradle príkaz vykonať z Gradle konzoly (v ľavej lište je ikona Gradle). Otvorte v taskoch uzol other, kliknite pravým na ```compileJava``` a zvoľte možnosť ```Run Task With Args```. Ako argumenty použite ```--refresh-dependencies --info```. Prípadne si rovno cez možnosť ```Pin Task With Args``` príkaz aj s argumentami uložte do vlastného zoznamu.
 
 **Zoznam závislostí/použitých jar knižníc**
 ```
-gradle dependencies --configuration default
+gradlew dependencies --configuration default
 ```
 
 **Tomcat**
 ```
-gradle appRun
-gradle appStop
+gradlew appRun
+gradlew appStop
 ```
 
 **vybuildovanie distribucneho WAR archivu**
 ```
-gradle war
+gradlew war
 ```
 
 ak máte WebJET v starom formáte (s rozbalenou štruktúrou kde vidno /admin súbory, všetky komponenty v /components/ aj všetky Java triedy vo /WEB-INF/classes/) môžete použiť:
 
 ```
-gradle updatezip
+gradlew updatezip
 ```
 
 ktorý pripraví aktualizačný ZIP súbor v starom formáte. Vo WebJETe nastavte konf. premennú updateAllowFileUpload na true a následne môžete použiť vygenerovaný ZIP
-balik pre aktualizáciu (cez Ovládací panel->Aktualizácia WebJETu->dole vybrať update.zip a uploadnúť).
+balík pre aktualizáciu (cez Ovládací panel->Aktualizácia WebJETu->dole vybrať update.zip a uploadnúť).
 
 ## Aktualizácia WebJETu
 
@@ -72,15 +76,13 @@ V súbore [build.gradle](build.gradle) je sekcia ```ext``` v ktorej je nastaven�
 
 ```javascript
 ext {
-    webjetVersion = "8.8-SNAPSHOT";
+    webjetVersion = "2022.0-SNAPSHOT";
 }
 ```
 
-v ukážke je to verzia 8.8-SNAPSHOT, pričom SNAPSHOT znamená, že sa jedná a najnovšiu verziu radu 8.8. Najnovšia verzia môže vždy obsahovať rozpracovanú funkcionalitu, takže zvážte jej použitie podľa súboru /admin/changelog.txt vo WebJETe.
+v ukážke je to verzia ```2022.0-SNAPSHOT```, pričom ```SNAPSHOT``` znamená, že sa jedná a najnovšiu verziu radu 2022. Najnovšia verzia môže vždy obsahovať rozpracovanú funkcionalitu, takže zvážte jej použitie podľa [zoznamu zmien](http://docs.webjetcms.sk/v2022/#/CHANGELOG).
 
-Zoznam všetkých dostupných verzií nájdete na našom [artifactory/maven serveri](http://maven.web.iway.local/ui/repos/tree/General/gradle-dev-local%2Fsk%2Fiway%2Fwebjet) v sekcii Artifactory/Artifacts po rozkliknutí package gradle-dev-local/sk/iway/webjet.
-
-POZOR: verzia SNAPSHOT nie je automatický nočný build (nightly build). Ak nastave zmena priamo v SVN kóde WebJET CMS je potrebné požiadať produktový tím o buildnutie novej snapshot verzie WebJET CMS.
+Zoznam všetkých dostupných verzií nájdete na v dokumentácii v [sekcii inštalácia](http://docs.webjetcms.sk/v2022/#/install/README).
 
 # FORK projektu basecms do zakaznickeho projektu
 
@@ -129,7 +131,7 @@ Pre zriadenie cistej instalacie WebJETu (novej databazy) je potrebne:
    - INSTALL_NAME_web (napr. interway_web) pre tabulky WebJET CMS
    - INSTALL_NAME_data (napr. interway_data) pre tabulky zakazkovych modulov
 - v subore ```src/main/resources/poolman.xml``` je potrebne zadat JDBC cestu k databaze (tagy driver a url) a prihlasovacie udaje (tagy username a password). Ak sa pouziva aj _data databaza je zduplikujte tag datasource a upravte dbname na INSTALL_NAME_data a prislusne udaje v tagoch url, username a password.
-- spustit app server cez ```gradle appRun```, pri starte vypise chybu z dovodu, ze databaza je prazdna
+- spustit app server cez ```gradlew appRun```, pri starte vypise chybu z dovodu, ze databaza je prazdna
 - pokracujte podla postupu na stranke http://docs.webjetcms.sk/v8/#/install-config/install-webjet/ od casti Naplnenie DB schémy
 - po naplneni DB schemy sa nemusi vzdy app server restartnut, ak sa dlhsie nic nedeje, jednoducho ho zastavte a nastartujte nanovo, nasledne uz by vam malo fungovat prihlasenie do administracie
 

@@ -8,21 +8,29 @@
 plugins {
     id 'java-library'
     id 'war'
-    id 'org.gretty' version "3.0.3"
-    id "com.jfrog.artifactory" version "4.9.8"
+    id 'org.gretty' version "3.0.7"
+    id "com.jfrog.artifactory" version "4.26.1"
     id 'idea'
+    //https://docs.freefair.io/gradle-plugins/current/reference/ + https://projectlombok.org
+    id "io.freefair.lombok" version "5.0.0-rc6"
+    id "org.owasp.dependencycheck" version "6.5.3"
 }
 
 repositories {
+    maven {
+        url "${artifactory_contextUrl}/gradle-dev"
+        allowInsecureProtocol = true
+    }
     jcenter()
     flatDir {
        dirs 'libs'
    }
-    mavenCentral()
+
 }
 
 ext {
-    webjetVersion = "8.9-SNAPSHOT";
+    webjetVersion = "2022.0-SNAPSHOT";
+    mapstructVersion = "1.4.2.Final"
 }
 
 war {
@@ -38,6 +46,13 @@ war {
     exclude('**/webpack*.js')
     exclude('**/WEB-INF/imgcache/**')
     exclude('**/scss/**')
+    exclude('scratchpad*.jsp')
+    //neprikladaj poolman-local.xml
+    rootSpec.exclude('**/poolman*.xml')
+    //neprikladaj ukazkove (basecms) subory
+    exclude('src/main/java/sk/iway/basecms/**')
+    exclude('src/main/webapp/apps/basecms/**')
+    exclude('src/main/webapp/apps/contact/**')
 }
 
 //CI-CD tasky
@@ -77,19 +92,41 @@ task updatezip(type: Exec)  {
     commandLine "ant", "-buildfile", "updatezip.xml", "-Dv8version=${webjetVersion}", "-Dprojectname=${rootProject.name}"
 }
 
+//dependency check - https://jeremylong.github.io/DependencyCheck/index.html
+dependencyCheck {
+    scanConfigurations=["runtimeClasspath"]
+    //format vid https://gist.github.com/milo-minderbinder/1e1ed911c5b2264dc659578f1baaef16
+    suppressionFiles=[
+        file(new File(project.rootDir, 'dependency-check-suppressions.xml')),
+        file(new File(project.rootDir, 'dependency-check-suppressions-project.xml'))
+    ]
+    analyzers {
+        assemblyEnabled=false
+        nodeEnabled=false
+        nodeAudit {
+            yarnEnabled=false
+            skipDevDependencies=true
+        }
+    }
+}
+
 dependencies {
 
     modules {
         module("org.apache.struts:struts-core") { replacedBy("sk.iway:webjet", "mame integrovane") }
         module("org.apache.struts:struts-taglib") { replacedBy("sk.iway:webjet", "mame integrovane") }
+        module("org.eclipse.persistence:org.eclipse.persistence.moxy") { replacedBy("sk.iway:webjet", "mame integrovane") }
+        module("org.eclipse.persistence:org.eclipse.persistence.core") { replacedBy("sk.iway:webjet", "mame integrovane") }
+        module("org.eclipse.persistence:org.eclipse.persistence.asm") { replacedBy("sk.iway:webjet", "mame integrovane") }
+        module("org.eclipse.persistence:org.eclipse.persistence.sdo") { replacedBy("sk.iway:webjet", "mame integrovane") }
     }
 
-    compile("sk.iway:webjet:${webjetVersion}")
-    compile("sk.iway:webjet:${webjetVersion}:admin")
-    compile("sk.iway:webjet:${webjetVersion}:components")
-    compile("sk.iway:webjet:${webjetVersion}:struts")
-    compile("sk.iway:webjet:${webjetVersion}:daisydiff")
-    compile("sk.iway:webjet:${webjetVersion}:jtidy")
+    implementation("sk.iway:webjet:${webjetVersion}")
+    implementation("sk.iway:webjet:${webjetVersion}:admin")
+    implementation("sk.iway:webjet:${webjetVersion}:components")
+    implementation("sk.iway:webjet:${webjetVersion}:struts")
+    implementation("sk.iway:webjet:${webjetVersion}:daisydiff")
+    implementation("sk.iway:webjet:${webjetVersion}:jtidy")
 
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile "javax.servlet:servlet-api:2.5"
@@ -118,7 +155,7 @@ configurations {
 
     }
     grettyRunnerTomcat9 {
-        // gretty pouziva staru verziu commons-io, ktora koluduje s nasou
+        // gretty pouziva staru verziu commons-io, ktora koliduje s nasou
         // https://mvnrepository.com/artifact/commons-io/commons-io
         exclude group: 'commons-io', module: 'commons-io'
     }
@@ -133,19 +170,12 @@ compileJava {
     options.incremental = true
     options.fork = true
     options.failOnError = true
-    options.encoding = "windows-1250"
+    options.encoding = "utf-8"
 }
 
-artifactory {
-    contextUrl = "${artifactory_contextUrl}"
-    resolve {
-        repository {
-            repoKey = 'gradle-dev'
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-            maven = true
-        }
-    }
+lombok {
+    version = "1.18.12"
+    config['lombok.accessors.chain'] = 'true'
 }
 
 gretty {
@@ -159,7 +189,7 @@ gretty {
     //scanovania pre hotswap
     scanInterval = 1
     scanner = 'jdk'
-    scanDir '${projectDir}/build/classes/java/main'
+    scanDir "${projectDir}/build/classes/java/main"
     fastReload = true
     managedClassReload = true
     //JVM parametre
@@ -171,8 +201,11 @@ gretty {
         '-Duser.language=sk',
         '-Duser.country=SK',
         //povolenie remote debug na porte 5005
-        '-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005',
+        //'-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005',
+        //lokalny poolman-local.xml subor
+        //'-DwebjetPoolmanPath=/poolman-local.xml',
         //Uprava konfiguracie pre WebJET, tymto sa prepisuju hodnoty z databazy v Ovladaci panel->Konfiguracia
-        '-Dwebjet.smtpServer=localhost'
+        '-Dwebjet.smtpServer=smtp.interway.sk',
+        "-DwebjetDbname=${System.env.webjetDbname}"
     ]
 }
