@@ -84,7 +84,7 @@ exports.config = {
             I.wjSetDefaultWindowSize();
             //odosli prihlasenie
             I.fillField("username", "tester");
-            I.fillField("password", secret("***REMOVED***"));
+            I.fillField("password", secret("password"));
             I.click("login-submit");
           },
           check: (I) => {
