@@ -18,8 +18,11 @@ plugins {
 
 repositories {
     maven {
-        url "${artifactory_contextUrl}/gradle-dev"
-        allowInsecureProtocol = true
+        url "${webjet_repo_url}"
+        credentials {
+            username "${webjet_repo_user}"
+            password "${webjet_repo_pass}"
+        }
     }
     jcenter()
     flatDir {
