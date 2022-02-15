@@ -38,13 +38,9 @@ public class ContactRestController extends DatatableRestControllerV2<ContactEnti
 
     @Override
     public void getOptions(DatatablePageImpl<ContactEntity> page) {
-        //vytvor zoznam krajin, toto by sa idealne malo citat z nejakeho ciselnika
-        List<LabelValue> countries = new ArrayList<>();
-        countries.add(new LabelValue("Slovenská republika", "sk"));
-        countries.add(new LabelValue("Česká republika", "cz"));
-        countries.add(new LabelValue("Rakúsko", "at"));
+
         //pridaj zoznam pre pole country
-        page.addOptions("country", countries, "label", "value", false);
+        page.addOptions("country", getCountries(), "label", "value", false);
     }
 
     @Override
@@ -52,4 +48,17 @@ public class ContactRestController extends DatatableRestControllerV2<ContactEnti
         //tu mozete vykonat nastavenie pred ulozenim, napr. nastavit datum poslednej zmeny
     }
 
+    /**
+     * Vrati zoznam vyberoveho pola pre krajinu
+     * @return
+     */
+    public static List<LabelValue> getCountries() {
+        //vytvor zoznam krajin, toto by sa idealne malo citat z nejakeho ciselnika
+        List<LabelValue> countries = new ArrayList<>();
+        countries.add(new LabelValue("Slovenská republika", "sk"));
+        countries.add(new LabelValue("Česká republika", "cz"));
+        countries.add(new LabelValue("Rakúsko", "at"));
+
+        return countries;
+    }
 }
