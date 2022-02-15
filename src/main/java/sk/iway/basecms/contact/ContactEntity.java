@@ -40,31 +40,31 @@ public class ContactEntity {
     @DataTableColumn(inputType = DataTableColumnType.ID, title="ID", renderFormat = "dt-format-selector")
     private Long id;
 
-    @DataTableColumn(inputType = DataTableColumnType.OPEN_EDITOR, title="components.basket.invoice_email.company")
+    @DataTableColumn(inputType = DataTableColumnType.OPEN_EDITOR, title="components.contact.property.name")
     @NotBlank
     private String name;
 
-    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="VAT ID")
+    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.contact.property.vatid")
     private String vatid;
 
-    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.basket.invoice_email.street")
+    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.contact.property.street")
     private String street;
 
-    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.basket.invoice_email.city")
+    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.contact.property.city")
     private String city;
 
-    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.basket.invoice_email.ZIP")
+    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.contact.property.zip")
     @Size(min=5, max=8)
     private String zip;
 
-    @DataTableColumn(inputType = DataTableColumnType.SELECT, title="components.basket.invoice_email.country")
+    @DataTableColumn(inputType = DataTableColumnType.SELECT, title="components.contact.property.country")
     private String country;
 
-    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.basket.invoice_email.contact")
+    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.contact.property.contact")
     @Email
     private String contact;
 
-    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.basket.invoice_email.phone_number")
+    @DataTableColumn(inputType = DataTableColumnType.TEXT, title="components.contact.property.phone")
     private String phone;
 
 }
