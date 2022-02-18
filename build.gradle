@@ -145,7 +145,6 @@ dependencies {
 }
 
 configurations {
-    all*.exclude group: 'org.slf4j', module: 'slf4j-over-slf4j'
     all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     all*.exclude group: 'org.slf4j', module: 'jcl104-over-slf4j' //je nahradene novsim jcl-over-slf4j
     all*.exclude group: 'commons-logging', module: 'commons-logging'

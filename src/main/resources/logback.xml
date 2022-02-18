@@ -5,8 +5,11 @@
         </encoder>
     </appender>
 
+    <appender name="IN_MEMORY" class="sk.iway.iwcm.system.logging.InMemoryLoggerAppender" />
+
     <root level="ERROR">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="IN_MEMORY" />
     </root>
 
     <logger level="INFO" name="sk.iway"/>
