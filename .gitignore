@@ -27,6 +27,7 @@ scratchpad.jsp
 scratchpad*.jsp
 /target
 src/main/resources/poolman-local*.xml
+local*.*
 
 #logy
 *.log
