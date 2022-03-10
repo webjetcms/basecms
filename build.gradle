@@ -21,7 +21,7 @@ repositories {
         url "${artifactory_contextUrl}/gradle-dev"
         allowInsecureProtocol = true
     }
-    jcenter()
+    mavenCentral()
     flatDir {
        dirs 'libs'
    }
@@ -36,16 +36,20 @@ ext {
 war {
     zip64 = true
     exclude('**/node_modules/**')
+    exclude('**/node_scripts/**')
     exclude('**/src/**')
     exclude('**/tmp/**')
     exclude('**/*.md')
     exclude('**/*.log')
     exclude('**/.npmrc')
+    exclude('**/.editorconfig')
+    exclude('**/gulpfile.js')
     exclude('**/package-lock.json')
     exclude('**/package.json')
     exclude('**/webpack*.js')
     exclude('**/WEB-INF/imgcache/**')
     exclude('**/scss/**')
+    exclude('**/LICENSE')
     exclude('scratchpad*.jsp')
     //neprikladaj poolman-local.xml
     rootSpec.exclude('**/poolman*.xml')
@@ -134,10 +138,10 @@ dependencies {
     providedCompile 'javax.el:javax.el-api:3.0.0'
     providedCompile 'javax.annotation:jsr250-api:1.0'
 
-    testCompile 'junit:junit:4.13.2'
+    testImplementation 'junit:junit:4.13.2'
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
 }
 
