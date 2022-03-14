@@ -52,7 +52,7 @@ war {
     exclude('**/LICENSE')
     exclude('scratchpad*.jsp')
     //neprikladaj poolman-local.xml
-    rootSpec.exclude('**/poolman*.xml')
+    rootSpec.exclude('**/poolman-*.xml')
     //neprikladaj ukazkove (basecms) subory
     exclude('src/main/java/sk/iway/basecms/**')
     exclude('src/main/webapp/apps/basecms/**')
