@@ -195,6 +195,7 @@ gretty {
     scanDir "${projectDir}/build/classes/java/main"
     fastReload = true
     managedClassReload = true
+    debugSuspend = false
     //JVM parametre
     jvmArgs = [
         //odporucane premenne pre Tomcat
