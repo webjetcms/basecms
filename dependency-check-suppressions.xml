@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
 
-  <!-- NEMNTE TENTO SUBOR, tu vynimky pre WebJET CMS, projektove vynimky zapisujte do dependency-check-suppressions-project.xml -->
+  <!-- NEMENTE TENTO SUBOR, tu su vynimky pre WebJET CMS, projektove vynimky zapisujte do dependency-check-suppressions-project.xml -->
 
   <!-- Apache Struts 1.x zranitelnosti mame patchnute -->
   <suppress>
@@ -170,5 +170,292 @@
     <vulnerabilityName>CVE-2012-1007</vulnerabilityName>
   </suppress>
 
+  <!-- MariaDB hlasi ako zranitelnosti pre connector, pritom je to pre server -->
+  <suppress>
+    <notes><![CDATA[
+    file name: mariadb-java-client-2.7.5.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+    <cve>CVE-2020-28912</cve>
+  </suppress>
+  <suppress>
+   <notes><![CDATA[
+   file name: mariadb-java-client-2.7.5.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+   <cve>CVE-2021-46666</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    file name: mariadb-java-client-2.7.5.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+    <cve>CVE-2021-46667</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    file name: mariadb-java-client-2.7.5.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+    <cve>CVE-2021-46669</cve>
+  </suppress>
+
+ <!-- spring-plugin-core-2.0.0.RELEASE.jar hlasi ako zranitelne, ale kvoli zle zadanym verziam springu v zranitelnostiach -->
+ <suppress>
+    <notes><![CDATA[
+    file name: spring-plugin-core-2.0.0.RELEASE.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-core@.*$</packageUrl>
+    <cve>CVE-2013-4152</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-core-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-core@.*$</packageUrl>
+  <cve>CVE-2013-7315</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-core-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-core@.*$</packageUrl>
+  <cve>CVE-2014-0054</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-core-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-core@.*$</packageUrl>
+  <cve>CVE-2016-1000027</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-core-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-core@.*$</packageUrl>
+  <cve>CVE-2022-22965</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-core-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-core@.*$</packageUrl>
+  <cve>CVE-2022-22968</cve>
+ </suppress>
+
+ <!-- spring-plugin-metadata-2.0.0.RELEASE.jar hlasi ako zranitelne, ale kvoli zle zadanym verziam springu v zranitelnostiach -->
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-metadata-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-metadata@.*$</packageUrl>
+  <cve>CVE-2013-4152</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-metadata-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-metadata@.*$</packageUrl>
+  <cve>CVE-2013-7315</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-metadata-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-metadata@.*$</packageUrl>
+  <cve>CVE-2014-0054</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-metadata-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-metadata@.*$</packageUrl>
+  <cve>CVE-2016-1000027</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-metadata-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-metadata@.*$</packageUrl>
+  <cve>CVE-2022-22965</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: spring-plugin-metadata-2.0.0.RELEASE.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-metadata@.*$</packageUrl>
+  <cve>CVE-2022-22968</cve>
+ </suppress>
+
+ <!-- mariadb-java-client-2.7.5.jar uvedene zranitelnosti su pre server, nie pre client jar -->
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27376</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27377</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27378</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27379</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27380</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27381</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27382</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27383</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27384</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27385</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27386</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27387</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27444</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27445</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27446</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27447</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27448</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27449</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27451</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27452</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27455</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27456</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27457</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: mariadb-java-client-2.7.5.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.mariadb\.jdbc/mariadb\-java\-client@.*$</packageUrl>
+  <cve>CVE-2022-27458</cve>
+ </suppress>
 
 </suppressions>
