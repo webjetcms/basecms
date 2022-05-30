@@ -12,7 +12,8 @@
             "port": 5005,
             "preLaunchTask": "appStart",
             "postDebugTask": "appKill",
-            "timeout": 240000
+            "timeout": 240000,
+            "internalConsoleOptions": "neverOpen"
         },
         {
             "type": "java",
@@ -22,7 +23,8 @@
             "port": 5005,
             "preLaunchTask": "appStartLocalDB",
             "postDebugTask": "appKill",
-            "timeout": 240000
+            "timeout": 240000,
+            "internalConsoleOptions": "neverOpen"
         },
         {
             "type": "java",
@@ -31,6 +33,7 @@
             "hostName": "localhost",
             "port": 5005,
             "timeout": 240000,
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }
