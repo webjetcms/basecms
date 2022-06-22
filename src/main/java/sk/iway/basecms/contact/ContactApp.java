@@ -1,6 +1,7 @@
 package sk.iway.basecms.contact;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.Getter;
 import lombok.Setter;
+import sk.iway.iwcm.Logger;
 import sk.iway.iwcm.PathFilter;
 import sk.iway.iwcm.components.WebjetComponentAbstract;
 import sk.iway.iwcm.system.annotations.DefaultHandler;
@@ -73,13 +75,25 @@ public class ContactApp extends WebjetComponentAbstract {
     }
 
     /**
+     * metoda init sa vola po vytvoreni objektu a nastaveni parametrov,
+     * je volana pred kazdym view volanim a umozni nastavit pripadne atributy
+     * @param request
+     * @param response
+     */
+    @Override
+    public void init(HttpServletRequest request, HttpServletResponse response) {
+        Logger.debug(ContactApp.class, "Init call, request.getHeader(User-Agent)="+request.getHeader("User-Agent"));
+    }
+
+    /**
      * Metóda anotovaná @DefaultHandler sa vykoná, ak v requeste nie je žiaden parameter, ktorý by sa zhodoval s názvom inej metódy v triede
      * Metóda môže mať ľubovolný názov
      * @param model
+     * @param request
      * @return String URL adresa súboru ktorý bude v contente renderovaný namiesto !INCLUDE()!
      */
     @DefaultHandler
-	public String view(Model model)
+	public String view(Model model, HttpServletRequest request)
 	{
         model.addAttribute("contants", contactRepository.findAllByCountry(country, null));
 		return "/apps/contact/mvc/list";
@@ -89,9 +103,10 @@ public class ContactApp extends WebjetComponentAbstract {
      * Metóda edit slúži na zobrazenie formuláru pre úpravu existujúceho záznamu
      * @param id
      * @param model
+     * @param request
      * @return
      */
-    public String edit(@RequestParam("id") long id, Model model) {
+    public String edit(@RequestParam("id") long id, Model model, HttpServletRequest request) {
         ContactEntity contact = contactRepository.getById(id);
         model.addAttribute("entity", contact);
 
@@ -104,6 +119,7 @@ public class ContactApp extends WebjetComponentAbstract {
     /**
      * Metóda edit slúži na zobrazenie formuláru pre úpravu existujúceho záznamu
      * @param model
+     * @param request
      * @return
      */
     public String add(Model model) {
