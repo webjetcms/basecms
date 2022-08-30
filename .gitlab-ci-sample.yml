@@ -16,6 +16,7 @@ build:
     - schedules
   stage: build
   script:
+    - ./gradlew clean
     - ./gradlew war
 
   artifacts:

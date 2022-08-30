@@ -15,7 +15,7 @@ plugins {
     id 'idea'
     //https://docs.freefair.io/gradle-plugins/current/reference/ + https://projectlombok.org
     id "io.freefair.lombok" version "5.0.0-rc6"
-    id "org.owasp.dependencycheck" version "6.5.3"
+    id "org.owasp.dependencycheck" version "7.1.1"
 }
 
 repositories {
@@ -67,7 +67,7 @@ war {
 }
 
 //CI-CD tasky
-task explodeWar(type : Copy){
+task explodeWar(dependsOn: ['clean', 'war'], type : Copy){
     def workingDir = "build/explodedWar"
     def zipFile = file("build/libs/${rootProject.name}.war")
     from zipTree(zipFile)
@@ -109,6 +109,7 @@ dependencyCheck {
         nodeAudit {
             yarnEnabled=false
             skipDevDependencies=true
+            pnpmEnabled=false
         }
     }
 }
