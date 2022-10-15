@@ -191,7 +191,9 @@ gretty {
     scanner = 'jdk'
     scanDir "${projectDir}/build/classes/java/main"
     fastReload = true
-    managedClassReload = true
+    //managedClassReload = true - nie je mozne pouzit s Java > 8
+    //chceme aby sa tomcat nereloadol po zmene triedy, v IDE je potrebne kliknut na Hot Code Replace pre aplikovanie zmeny v triede
+    reloadOnClassChange = false
     debugSuspend = false
     //JVM parametre
     jvmArgs = [
@@ -202,7 +204,7 @@ gretty {
         '-Duser.language=sk',
         '-Duser.country=SK',
         //povolenie remote debug na porte 5005
-        //'-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005',
+        '-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005',
         //lokalny poolman-local.xml subor
         //'-DwebjetPoolmanPath=/poolman-local.xml',
         //Uprava konfiguracie pre WebJET, tymto sa prepisuju hodnoty z databazy v Ovladaci panel->Konfiguracia
