@@ -44,6 +44,7 @@ war {
     exclude('**/tmp/**')
     exclude('**/*.md')
     exclude('**/*.log')
+    exclude('**/*.map')
     exclude('**/.npmrc')
     exclude('**/.editorconfig')
     exclude('**/gulpfile.js')
