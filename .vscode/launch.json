@@ -34,6 +34,24 @@
             "port": 5005,
             "timeout": 240000,
             "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "trace": true,
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://iwcm.interway.sk/admin/",
+            "webRoot": "${workspaceRoot}/src/main/webapp",
+            "sourceMaps": true,
+            "disableNetworkCache": true,
+
+            // we have multiple js source folders, so some source maps are still generated with webpack protocol links. Don't know why?
+            "sourceMapPathOverrides": {  // if you override this, you MUST provide all defaults again
+                "webpack:///./~/*": "${webRoot}/node_modules/*",  // a default
+                "webpack:///./*":   "${webRoot}/src/js/*",        // unsure how/why webpack generates ./links.js
+                "webpack:///../*": "${webRoot}/src/js/*",         // unsure how/why webpack generates ../links.js
+                "webpack:///*":     "*"                           // a default, catch everything else
+            }
         }
     ]
 }
