@@ -192,7 +192,6 @@ gretty {
     scanner = 'jdk'
     scanDir "${projectDir}/build/classes/java/main"
     fastReload = true
-    //managedClassReload = true - nie je mozne pouzit s Java > 8
     //chceme aby sa tomcat nereloadol po zmene triedy, v IDE je potrebne kliknut na Hot Code Replace pre aplikovanie zmeny v triede
     reloadOnClassChange = false
     debugSuspend = false
@@ -210,6 +209,8 @@ gretty {
         //'-DwebjetPoolmanPath=/poolman-local.xml',
         //Uprava konfiguracie pre WebJET, tymto sa prepisuju hodnoty z databazy v Ovladaci panel->Konfiguracia
         '-Dwebjet.smtpServer=smtp.interway.sk',
-        "-DwebjetDbname=${System.env.webjetDbname}"
+        "-DwebjetDbname=${System.env.webjetDbname}",
+        //zoznam docid ktore je mozne priamo otvorit bez prihlasenia pre Launch Chrome debug rezim
+        "-Dwebjet.showDocActionAllowedDocids=4"
     ]
 }
