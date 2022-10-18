@@ -40,7 +40,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "chrome",
-            "url": "http://iwcm.interway.sk/admin/",
+            "url": "http://iwcm.interway.sk/showdoc.do?docid=26&NO_WJTOOLBAR=true&combineEnabledRequest=false",
             "webRoot": "${workspaceRoot}/src/main/webapp",
             "sourceMaps": true,
             "disableNetworkCache": true,
