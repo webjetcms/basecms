@@ -211,6 +211,6 @@ gretty {
         '-Dwebjet.smtpServer=smtp.interway.sk',
         "-DwebjetDbname=${System.env.webjetDbname}",
         //zoznam docid ktore je mozne priamo otvorit bez prihlasenia pre Launch Chrome debug rezim
-        "-Dwebjet.showDocActionAllowedDocids=4"
+        "-Dwebjet.showDocActionAllowedDocids=4,26"
     ]
 }
