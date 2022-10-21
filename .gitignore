@@ -2,6 +2,7 @@
 .gradle
 .settings/org.eclipse.buildship.core.prefs
 .idea
+gradle.properties
 
 #temp bordel
 **/.DS_Store
