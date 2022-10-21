@@ -1,6 +1,6 @@
 # WebJET CMS
 
-Základný projekt pre WebJET CMS. Požiadajte o prístup k WebJET Maven repozitáru a v súbore ```gradle.properties``` nastavte prihlasovacie údaje.
+Základný projekt pre WebJET CMS. Požiadajte InterWay o prístup k WebJET Maven repozitáru, premenujte súbor ```gradle.sample.properties``` na ```gradle.properties``` a nastavte v ňom prihlasovacie údaje.
 
 ## Gradle príkazy
 
@@ -19,7 +19,7 @@ gradlew compileJava
 gradlew compileJava --refresh-dependencies --info
 ```
 
-Vo vašom IDE môžu byť potrebné ďaľšie kroky pre aktualizáciu knižníc tak, aby zmenu videlo aj IDE. Napr. vo VS Code je potrebné daný gradle príkaz vykonať z Gradle konzoly (v ľavej lište je ikona Gradle). Otvorte v taskoch uzol other, kliknite pravým na ```compileJava``` a zvoľte možnosť ```Run Task With Args```. Ako argumenty použite ```--refresh-dependencies --info```. Prípadne si rovno cez možnosť ```Pin Task With Args``` príkaz aj s argumentami uložte do vlastného zoznamu.
+Vo vašom IDE môžu byť potrebné ďalšie kroky pre aktualizáciu knižníc tak, aby zmenu videlo aj IDE. Napr. vo VS Code je potrebné daný gradle príkaz vykonať z Gradle konzoly (v ľavej lište je ikona Gradle). Otvorte v ```Tasks``` uzol ```other```, kliknite pravým na ```compileJava``` a zvoľte možnosť ```Run Task With Args```. Ako argumenty použite ```--refresh-dependencies --info```. Prípadne si rovno cez možnosť ```Pin Task With Args``` príkaz aj s argumentami uložte do vlastného zoznamu.
 
 **Zoznam závislostí/použitých jar knižníc**
 ```
@@ -32,7 +32,7 @@ gradlew appRun
 gradlew appStop
 ```
 
-**vybuildovanie distribucneho WAR archivu**
+**Vytvorenie distribučného WAR archívu**
 ```
 gradlew war
 ```
@@ -43,7 +43,7 @@ ak máte WebJET v starom formáte (s rozbalenou štruktúrou kde vidno /admin s�
 gradlew updatezip
 ```
 
-ktorý pripraví aktualizačný ZIP súbor v starom formáte. Vo WebJETe nastavte konf. premennú updateAllowFileUpload na true a následne môžete použiť vygenerovaný ZIP
+ktorý pripraví aktualizačný ZIP súbor v starom formáte. Vo WebJETe nastavte konf. premennú ```updateAllowFileUpload``` na ```true``` a následne môžete použiť vygenerovaný ZIP
 balík pre aktualizáciu (cez Ovládací panel->Aktualizácia WebJETu->dole vybrať update.zip a uploadnúť).
 
 ## Aktualizácia WebJETu
