@@ -72,7 +72,13 @@
             },
             "group": "build",
             "problemMatcher": [],
-            "isBackground": false
+            "isBackground": false,
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            }
         },
         {
             "label": "appKill",

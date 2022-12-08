@@ -13,5 +13,6 @@
     ],
     "spellright.documentTypes": [
         "markdown"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }
