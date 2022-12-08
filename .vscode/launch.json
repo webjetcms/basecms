@@ -11,7 +11,7 @@
             "hostName": "localhost",
             "port": 5005,
             "preLaunchTask": "appStart",
-            "postDebugTask": "appKill",
+            "postDebugTask": "appStop",
             "timeout": 240000,
             "internalConsoleOptions": "neverOpen"
         },
@@ -22,7 +22,7 @@
             "hostName": "localhost",
             "port": 5005,
             "preLaunchTask": "appStartLocalDB",
-            "postDebugTask": "appKill",
+            "postDebugTask": "appStop",
             "timeout": 240000,
             "internalConsoleOptions": "neverOpen"
         },

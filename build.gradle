@@ -16,6 +16,7 @@ plugins {
     //https://docs.freefair.io/gradle-plugins/current/reference/ + https://projectlombok.org
     id "io.freefair.lombok" version "5.0.0-rc6"
     id "org.owasp.dependencycheck" version "7.1.1"
+    id 'jacoco'
 }
 
 repositories {
@@ -112,6 +113,23 @@ dependencyCheck {
     }
 }
 
+//code coverage report - generate HTML report from jacoco.exec files
+task('generateJacocoReport', type: JacocoReport) {
+
+  executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+  sourceDirectories.setFrom project.files(project.sourceSets.main.allSource.srcDirs)
+  classDirectories.setFrom project.sourceSets.main.output
+
+  def reportDir = project.reporting.file("${rootDir}/build/jacoco/report")
+  reports {
+    html.outputLocation = reportDir
+  }
+  doLast {
+    System.out.println "Jacoco report for server created: file://${reportDir.toURI().path}index.html"
+  }
+}
+
 dependencies {
 
     modules {
@@ -179,6 +197,12 @@ lombok {
     config['lombok.accessors.chain'] = 'true'
 }
 
+//code coverage
+jacoco {
+    //set latest version
+    toolVersion = "+"
+}
+
 gretty {
     // supported values:
     // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
@@ -213,4 +237,25 @@ gretty {
         //zoznam docid ktore je mozne priamo otvorit bez prihlasenia pre Launch Chrome debug rezim
         "-Dwebjet.showDocActionAllowedDocids=4,26"
     ]
+
+    //enable jacoco also for appStart and appStartDebug tasks
+    afterEvaluate {
+        tasks.appStart {
+            file("${rootDir}/build/jacoco/appStart.exec").delete()
+            jacoco {
+                enabled = true
+            }
+            finalizedBy tasks.generateJacocoReport
+        }
+        tasks.appStartDebug {
+            file("${rootDir}/build/jacoco/appStartDebug.exec").delete()
+            jacoco {
+                enabled = true
+            }
+            finalizedBy tasks.generateJacocoReport
+        }
+        tasks.appAfterIntegrationTest {
+            finalizedBy tasks.generateJacocoReport
+        }
+    }
 }
