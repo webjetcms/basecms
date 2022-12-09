@@ -253,9 +253,9 @@ gretty {
         tasks.appStartDebug {
             file("${rootDir}/build/jacoco/appStartDebug.exec").delete()
             jacoco {
-                enabled = true
+                //enabled = true
             }
-            finalizedBy tasks.generateJacocoReport
+            //finalizedBy tasks.generateJacocoReport
         }
         tasks.appAfterIntegrationTest {
             finalizedBy tasks.generateJacocoReport
