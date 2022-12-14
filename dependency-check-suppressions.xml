@@ -603,4 +603,27 @@
   <vulnerabilityName>CVE-2021-3163</vulnerabilityName>
  </suppress>
 
+  <!-- commons.net je z WJ odstraneny ale chybne to hlasi na roznych dalsich commons-knizniciach pritom tam zranitelnosti nie su -->
+  <suppress>
+    <notes><![CDATA[
+    file name: commons-net-1.9.4.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/commons\-.*$</packageUrl>
+    <cve>CVE-2021-37533</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: commons-compress-1.21.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.apache\.commons/commons\-*$</packageUrl>
+  <cve>CVE-2021-37533</cve>
+ </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: jcl-over-slf4j-1.7.33.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.slf4j/jcl\-over\-slf4j@.*$</packageUrl>
+  <cve>CVE-2021-37533</cve>
+ </suppress>
+
 </suppressions>
