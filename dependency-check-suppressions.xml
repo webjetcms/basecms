@@ -615,7 +615,7 @@
   <notes><![CDATA[
   file name: commons-compress-1.21.jar
   ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.apache\.commons/commons\-*$</packageUrl>
+  <packageUrl regex="true">^pkg:maven/org\.apache\.commons/commons\-.*$</packageUrl>
   <cve>CVE-2021-37533</cve>
  </suppress>
  <suppress>
