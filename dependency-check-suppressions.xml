@@ -625,5 +625,12 @@
   <packageUrl regex="true">^pkg:maven/org\.slf4j/jcl\-over\-slf4j@.*$</packageUrl>
   <cve>CVE-2021-37533</cve>
  </suppress>
+ <suppress>
+  <notes><![CDATA[
+  file name: org.apache.commons.pool-1.6.jar
+  ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.apache\.directory\.studio/org\.apache\.commons\.pool@.*$</packageUrl>
+  <cve>CVE-2021-37533</cve>
+ </suppress>
 
 </suppressions>
