@@ -15,7 +15,7 @@ plugins {
     id 'idea'
     //https://docs.freefair.io/gradle-plugins/current/reference/ + https://projectlombok.org
     id "io.freefair.lombok" version "5.0.0-rc6"
-    id "org.owasp.dependencycheck" version "7.1.1"
+    id "org.owasp.dependencycheck" version "7.4.4"
     id 'jacoco'
 }
 
@@ -34,7 +34,7 @@ repositories {
 }
 
 ext {
-    webjetVersion = "2022.0-SNAPSHOT";
+    webjetVersion = "2023.0-SNAPSHOT";
     mapstructVersion = "1.4.2.Final";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
@@ -204,6 +204,10 @@ lombok {
 jacoco {
     //set latest version
     toolVersion = "+"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 gretty {
