@@ -76,13 +76,13 @@ V súbore [build.gradle](build.gradle) je sekcia ```ext``` v ktorej je nastaven�
 
 ```javascript
 ext {
-    webjetVersion = "2022.0-SNAPSHOT";
+    webjetVersion = "2023.0-SNAPSHOT";
 }
 ```
 
-v ukážke je to verzia ```2022.0-SNAPSHOT```, pričom ```SNAPSHOT``` znamená, že sa jedná a najnovšiu verziu radu 2022. Najnovšia verzia môže vždy obsahovať rozpracovanú funkcionalitu, takže zvážte jej použitie podľa [zoznamu zmien](http://docs.webjetcms.sk/v2022/#/CHANGELOG).
+v ukážke je to verzia ```2023.0-SNAPSHOT```, pričom ```SNAPSHOT``` znamená, že sa jedná a najnovšiu verziu radu 2023. Najnovšia verzia môže vždy obsahovať rozpracovanú funkcionalitu, takže zvážte jej použitie podľa [zoznamu zmien](http://docs.webjetcms.sk/v2023/#/CHANGELOG).
 
-Zoznam všetkých dostupných verzií nájdete na v dokumentácii v [sekcii inštalácia](http://docs.webjetcms.sk/v2022/#/install/README).
+Zoznam všetkých dostupných verzií nájdete na v dokumentácii v [sekcii inštalácia](http://docs.webjetcms.sk/v2023/#/install/README).
 
 # FORK projektu basecms do zakaznickeho projektu
 
