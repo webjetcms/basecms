@@ -24,7 +24,9 @@ Sem zadaj popis projektu
 
 <!-- /code_chunk_output -->
 
-Základný projekt pre WebJET CMS
+Základný projekt pre WebJET CMS.
+
+UPOZORNENIE: verzia basecms na gitlab serveri bude čoskoro zrušená/`deprecated`, odporúčame forknúť projekt z [github verzie](https://github.com/webjetcms/basecms).
 
 ## Gradle príkazy
 
@@ -125,31 +127,7 @@ cd projekt
 
 ## Zriadenie "cistej" instalacie
 
-Pre zriadenie cistej instalacie WebJETu (novej databazy) je potrebne:
-
-- zriadit novu databazu na mysql-devel serveri. Je na to script na DEV serveroch: ```dba-newdb.sh meno-databazy```, na servre asi nemate pristup, takze je potrebne poziadat adminov o vytvorrenie danej DB a zaslanie prihlasovacieho hesla. Meno databazy zvykneme pouzivat v tvare:
-   - INSTALL_NAME_web (napr. interway_web) pre tabulky WebJET CMS
-   - INSTALL_NAME_data (napr. interway_data) pre tabulky zakazkovych modulov
-- v subore ```src/main/resources/poolman.xml``` je potrebne zadat JDBC cestu k databaze (tagy driver a url) a prihlasovacie udaje (tagy username a password). Ak sa pouziva aj _data databaza je zduplikujte tag datasource a upravte dbname na INSTALL_NAME_data a prislusne udaje v tagoch url, username a password.
-- spustit app server cez ```gradlew appRun```, pri starte vypise chybu z dovodu, ze databaza je prazdna
-- pokracujte podla postupu na stranke http://docs.webjetcms.sk/v8/#/install-config/install-webjet/ od casti Naplnenie DB schémy
-- po naplneni DB schemy sa nemusi vzdy app server restartnut, ak sa dlhsie nic nedeje, jednoducho ho zastavte a nastartujte nanovo, nasledne uz by vam malo fungovat prihlasenie do administracie
-
-Priklady tagov driver a url pre podporovane databazy:
-
-```
-#MariaDB/MySQL
-   <driver>com.mysql.jdbc.Driver</driver>
-   <url>jdbc:mysql://meno.db.servera/meno_databazy</url>
-
-#Microsoft SQL - dokumentacia http://jtds.sourceforge.net/faq.html#urlFormat
-   <driver>net.sourceforge.jtds.jdbc.Driver</driver>
-   <url>jdbc:jtds:sqlserver://meno.db.servera:1433/meno_databazy;encoding=utf-8</url>
-
-#Oracle
-   <driver>oracle.jdbc.OracleDriver</driver>
-   <url>jdbc:oracle:thin:@meno.db.servera:1521/meno.sql.instancie</url>
-```
+Inštaláciu vykonajte podľa návodu na [docs.webjetcms.sk](https://docs.webjetcms.sk/v2023/#/install/setup/README)
 
 ## Migracia existujuceho projektu v SVN
 
