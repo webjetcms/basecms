@@ -26,7 +26,7 @@ Sem zadaj popis projektu
 
 Základný projekt pre WebJET CMS.
 
-UPOZORNENIE: verzia basecms na gitlab serveri bude čoskoro zrušená/`deprecated`, odporúčame forknúť projekt z [github verzie](https://github.com/webjetcms/basecms).
+**UPOZORNENIE**: verzia basecms na gitlab serveri bude čoskoro zrušená/`deprecated`, odporúčame forknúť projekt z [github verzie](https://github.com/webjetcms/basecms).
 
 ## Gradle príkazy
 
