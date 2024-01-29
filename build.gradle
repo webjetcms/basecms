@@ -196,16 +196,18 @@ test {
 }
 
 gretty {
-    // supported values:
+   // supported values:
     // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
     servletContainer = 'tomcat9'
     contextPath = ''
     httpPort = 80
+    httpsEnabled = true
+    httpsPort = 443
     //hard mod spusti WJ rovno z src/main/webapp co zrychli start (netreba kopirovat JSP subory niekde inde)
     inplaceMode = 'hard'
     //scanovania pre hotswap
-    scanInterval = 1
-    scanner = 'jdk'
+    scanInterval = 0
+    scanner = 'jetty'
     scanDir "${projectDir}/build/classes/java/main"
     fastReload = true
     //chceme aby sa tomcat nereloadol po zmene triedy, v IDE je potrebne kliknut na Hot Code Replace pre aplikovanie zmeny v triede
