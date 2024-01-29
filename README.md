@@ -1,27 +1,27 @@
 # WebJET CMS
 
-Základný projekt pre WebJET CMS. Požiadajte InterWay o prístup k WebJET Maven repozitáru, premenujte súbor ```gradle.sample.properties``` na ```gradle.properties``` a nastavte v ňom prihlasovacie údaje.
+Basic project for WebJET CMS. Ask InterWay to access the WebJET Maven repository, rename the file `gradle.sample.properties` to `gradle.properties` and set the credentials in it.
 
-## Gradle príkazy
+## Gradle commands
 
-Vždy používajte ```gradle wrapper``` použitím ```gradlew```, nikdy nepoužívajte priamo váš globálny ```gradle``` príkaz. Príkaz ```gradlew``` použije projektovú verziu gradle, nebude kolidovať verzia s vašou globálnou verziou.
+Always use a `gradle wrapper` using `gradlew`, never use your global `gradle` command directly. The command `gradlew` will use the project version of gradle, it will not conflict with your global version.
 
-Pridaním --info získate podrobnejšie informácie o behu príkazu
+Add --info to get more detailed information about the command's execution
 
-**kompilácia projektu**
+**project compilation**
 ```
 gradlew compileJava
 ```
 
-**kompilácia vrátane obnovenia knižníc (hlavne keď sa zmení SNAPSHOT verzia WJ)**
+**compiling including rebuilding libraries (especially when the SNAPSHOT version of WJ changes)**
 
 ```
 gradlew compileJava --refresh-dependencies --info
 ```
 
-Vo vašom IDE môžu byť potrebné ďalšie kroky pre aktualizáciu knižníc tak, aby zmenu videlo aj IDE. Napr. vo VS Code je potrebné daný gradle príkaz vykonať z Gradle konzoly (v ľavej lište je ikona Gradle). Otvorte v ```Tasks``` uzol ```other```, kliknite pravým na ```compileJava``` a zvoľte možnosť ```Run Task With Args```. Ako argumenty použite ```--refresh-dependencies --info```. Prípadne si rovno cez možnosť ```Pin Task With Args``` príkaz aj s argumentami uložte do vlastného zoznamu.
+Additional steps may be required in your IDE to update the libraries so that the IDE sees the change. For example in VS Code, the given gradle command must be executed from the Gradle console (the Gradle icon is in the left bar). In `Tasks`, open the `other` node, right-click on `compileJava` and select `Run Task With Args`. Use `--refresh-dependencies --info` as arguments. Alternatively, save the command with arguments to your own list via `Pin Task With Args` option.
 
-**Zoznam závislostí/použitých jar knižníc**
+**List of dependencies/jar libraries used**
 ```
 gradlew dependencies --configuration default
 ```
@@ -32,30 +32,21 @@ gradlew appRun
 gradlew appStop
 ```
 
-**Vytvorenie distribučného WAR archívu**
+**Creating the distribution WAR archive**
 ```
 gradlew war
 ```
 
-ak máte WebJET v starom formáte (s rozbalenou štruktúrou kde vidno /admin súbory, všetky komponenty v /components/ aj všetky Java triedy vo /WEB-INF/classes/) môžete použiť:
+## WebJET update
 
-```
-gradlew updatezip
-```
-
-ktorý pripraví aktualizačný ZIP súbor v starom formáte. Vo WebJETe nastavte konf. premennú ```updateAllowFileUpload``` na ```true``` a následne môžete použiť vygenerovaný ZIP
-balík pre aktualizáciu (cez Ovládací panel->Aktualizácia WebJETu->dole vybrať update.zip a uploadnúť).
-
-## Aktualizácia WebJETu
-
-V súbore [build.gradle](build.gradle) je sekcia ```ext``` v ktorej je nastavená verzia WebJET CMS použitá v projekte:
+In the file [build.gradle](build.gradle) there is a section ```ext``' in which the version of WebJET CMS used in the project is set:
 
 ```javascript
 ext {
-    webjetVersion = "2023.0-SNAPSHOT";
+     webjetVersion = "2024.0-SNAPSHOT";
 }
 ```
 
-v ukážke je to verzia ```2023.0-SNAPSHOT```, pričom ```SNAPSHOT``` znamená, že sa jedná a najnovšiu verziu radu 2023. Najnovšia verzia môže vždy obsahovať rozpracovanú funkcionalitu, takže zvážte jej použitie podľa [zoznamu zmien](http://docs.webjetcms.sk/v2023/#/CHANGELOG).
+in the preview it's version `2024.0-SNAPSHOT`, where ``SNAPSHOT`` means it's the latest version of the 2024 series. The latest version may always contain work-in-progress functionality, so consider using it according to [changelist ](http://docs.webjetcms.sk/latest/en/CHANGELOG).
 
-Zoznam všetkých dostupných verzií nájdete na v dokumentácii v [sekcii inštalácia](http://docs.webjetcms.sk/v2023/#/install/README).
+You can find a list of all available versions in the documentation in the [installation section](http://docs.webjetcms.sk/latest/en/install/README).

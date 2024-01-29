@@ -8,11 +8,5 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "spellright.language": [
-        "sk_SK"
-    ],
-    "spellright.documentTypes": [
-        "markdown"
-    ],
     "java.compile.nullAnalysis.mode": "automatic"
 }
