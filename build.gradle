@@ -20,21 +20,17 @@ plugins {
 }
 
 repositories {
-    maven {
-        url "${webjet_repo_url}"
-        credentials {
-            username "${webjet_repo_user}"
-            password "${webjet_repo_pass}"
-        }
-    }
     mavenCentral()
+    maven {
+        url "https://pd4ml.tech/maven2/"
+    }
     flatDir {
        dirs 'libs'
    }
 }
 
 ext {
-    webjetVersion = "2024.0-SNAPSHOT";
+    webjetVersion = "2024.0.1";
     mapstructVersion = "1.4.2.Final";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
@@ -135,9 +131,10 @@ task('generateJacocoReport', type: JacocoReport) {
 
 dependencies {
 
-    implementation("sk.iway:webjet:${webjetVersion}")
-    implementation("sk.iway:webjet:${webjetVersion}:admin")
-    implementation("sk.iway:webjet:${webjetVersion}:components")
+    implementation("com.webjetcms:webjetcms:${webjetVersion}")
+    implementation("com.webjetcms:webjetcms:${webjetVersion}:admin")
+    implementation("com.webjetcms:webjetcms:${webjetVersion}:components")
+    implementation("com.webjetcms:webjetcms:${webjetVersion}:libs")
 
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile "javax.servlet:servlet-api:2.5"
