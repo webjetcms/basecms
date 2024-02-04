@@ -30,7 +30,7 @@ repositories {
 }
 
 ext {
-    webjetVersion = "2024.0.1";
+    webjetVersion = "2024.0.3";
     mapstructVersion = "1.4.2.Final";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
