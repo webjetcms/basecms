@@ -138,6 +138,7 @@ dependencies {
     implementation("sk.iway:webjet:${webjetVersion}")
     implementation("sk.iway:webjet:${webjetVersion}:admin")
     implementation("sk.iway:webjet:${webjetVersion}:components")
+    implementation("sk.iway:webjet:${webjetVersion}:libs")
 
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedCompile "javax.servlet:servlet-api:2.5"
