@@ -1,7 +1,7 @@
 <%
 sk.iway.iwcm.Encoding.setResponseEnc(request, response, "text/html");
 
-String forward = "/403-"+Constants.INSTALL_NAME+".jsp";
+String forward = "/403-"+Constants.getInstallName()+".jsp";
 java.io.File fForward = new java.io.File(sk.iway.iwcm.Tools.getRealPath(forward));
 if (fForward.exists())
 {

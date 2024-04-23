@@ -10,7 +10,7 @@ sk.iway.iwcm.Encoding.setResponseEnc(request, response, "text/html");
 %><%@ taglib uri="/WEB-INF/iway.tld" prefix="iway" %><%@page import="sk.iway.iwcm.io.IwcmFile"%><%
 
 //otestuj ci existuje nahrada za tuto stranku
-String forward = "/404-"+Constants.INSTALL_NAME+".jsp";
+String forward = "/404-"+Constants.getInstallName()+".jsp";
 if(Tools.isNotEmpty(Constants.getString("logInstallName")))
 {
 	forward = "/404-"+Constants.getString("logInstallName")+".jsp";
@@ -277,7 +277,7 @@ StatDB.addError(statPath, referer);
 path = path.toLowerCase();
 if (path.endsWith(".gif") || path.endsWith(".jpg") || path.endsWith(".png") || path.endsWith(".js") || path.endsWith(".swf") || path.endsWith(".ico") || path.endsWith(".css") || path.endsWith(".ttf") || path.endsWith(".eot") || path.endsWith(".woff2") || path.endsWith(".woff"))
 {
-	Logger.warn("404.jsp", "404 ("+Constants.INSTALL_NAME+"): " + path+"?"+request.getQueryString());
+	Logger.warn("404.jsp", "404 ("+Constants.getInstallName()+"): " + path+"?"+request.getQueryString());
 	//posli rovno chybu 404 do prehliadaca
    return;
 }
