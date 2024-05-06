@@ -28,13 +28,21 @@ if (fForward.exists())
 	return;
 }
 
+String text = Prop.getInstance().getText("stat.error.404");
+if (text.contains("<")==false) {
+	text = 	"<p style=\"text-align: center\">\n"+
+			"   <br/><br/>"+
+			text+
+			"\n</p>";
+}
+
 //nastav security hlavicky
 sk.iway.iwcm.SetCharacterEncodingFilter.setCommonHeaders(response, request);
 
 if (request.getAttribute("is404")!=null)
 {
 	response.setStatus(404);
-	out.println("<html><body>404 - not found</body></html>");
+	out.println("<html><body>"+text+"</body></html>");
 	return;
 }
 
@@ -45,7 +53,7 @@ String ua = request.getHeader("User-Agent");
 String path = (String)request.getAttribute("path_filter_orig_path");
 if (path == null)
 {
-	path = request.getRequestURI();
+	path = Tools.getRequestURI(request);
 }
 if (path == null) path = "??? unknown path ???";
 
@@ -53,7 +61,7 @@ if (path == null) path = "??? unknown path ???";
 if (path.endsWith("/undefined") || path.endsWith(".map"))
 {
 	response.setStatus(404);
-	out.println("<html><body>404 - not found</body></html>");
+	out.println("<html><body>"+text+"</body></html>");
 	return;
 }
 
@@ -63,6 +71,53 @@ if ("/components/messages/refresher-ac.jsp".equals(path) || "/none".equals(path)
     response.setStatus(HttpServletResponse.SC_NOT_FOUND);
     out.println("                                     ");
     return;
+}
+
+/******* DEFAULT ROBOTS.TXT ***********/
+if ("/robots.txt".equals(path))
+{
+	sk.iway.iwcm.Encoding.setResponseEnc(request, response, "text/plain");
+	response.setStatus(HttpServletResponse.SC_OK);
+
+	IwcmFile file = new IwcmFile(Tools.getRealPath("/files/robots.txt"));
+	if (file.exists()) {
+	    text = FileTools.readFileContent(file.getVirtualPath());
+	    out.print(text);
+	    return;
+	}
+
+	String robotsNoindexDomains = Constants.getString("robotsNoindexDomains");
+	if(Tools.isNotEmpty(robotsNoindexDomains))
+	{
+		for(String robotsDomain : Tools.getTokens(robotsNoindexDomains, "|,", true))
+		{
+			if(Tools.getServerName(request).indexOf(robotsDomain) > -1)
+			{
+				out.println("User-agent: *");
+				out.println("Disallow: /");
+				return;
+			}
+		}
+	}
+	%>User-Agent: *
+<% if (Tools.isEmpty(Constants.getString("adminEnableIPs")) && Constants.getBoolean("adminLogonShowSimpleErrorMessage")==false && "full".equals(Constants.getString("clusterMyNodeType"))) {  %>Disallow: /admin
+<% }
+%>Disallow: /components
+Disallow: /thumb
+Sitemap: <%=Tools.getBaseHref(request)%>/sitemap.xml
+<%
+	return;
+}
+
+/******* DEFAULT SITEMAP.XML ***********/
+if ("/sitemap.xml".equals(path) || "/google-sitemap.jsp".equals(path))
+{
+	//tu mame natvrdo UTF-8 pretoze generujeme UTF-8 XML subor
+	response.setContentType("text/xml; charset=utf-8");
+	response.setStatus(HttpServletResponse.SC_OK);
+	String customPage = sk.iway.iwcm.tags.WriteTag.getCustomPage("/components/sitemap/google-sitemap.jsp", request);
+	pageContext.forward(customPage);
+	return;
 }
 
 //ochrana pred DOS utokom na neexistujuce stranky (OWASP DirBuster)
@@ -78,24 +133,37 @@ c.setObjectSeconds(KEY, count404, 5*60, false);
 //ocharana pre Google aby sa po redizajne / zmene URL nehadzali 404
 if (ua != null && ua.toLowerCase().indexOf("googlebot")!=-1) count404 = 0;
 
-int count404Limit = Constants.getInt("spamProtectionHourlyLimit");
+int count404Limit = SpamProtection.getHourlyPostLimit("404");
 if (count404Limit < 150) count404Limit = 150;
 
 if (count404.intValue()>count404Limit && "iwcm.interway.sk".equals(request.getServerName())==false)
 {
-	System.out.println("404 attack, KEY="+KEY+" count="+count404);
-	
-	response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-	out.println("<html><body>404 - not found</body></html>");
-	
-	try
-	{
-		if (ua != null && ua.indexOf("DirBuster")!=-1) session.invalidate();
-		else if (request.getServerName().indexOf("cms")==-1) session.invalidate();
-		else session.setMaxInactiveInterval(300);
-	} catch (Exception e) {}
-	
-	return;
+	String ip = Tools.getRemoteIP(request);
+	if (Tools.isNotEmpty(ip)) {
+		String enabledIPs = Constants.getString("spamProtectionDisabledIPs");
+		if(Tools.isNotEmpty(enabledIPs)) {
+			if (Tools.checkIpAccess(request, "spamProtectionDisabledIPs")) {
+				//disable count for this IP
+				count404 = Integer.valueOf(0);
+			}
+		}
+	}
+
+	if (count404.intValue()>count404Limit) {
+		System.out.println("404 attack, KEY="+KEY+" count="+count404);
+
+		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		out.println("<html><body>"+text+"</body></html>");
+
+		try
+		{
+			if (ua != null && ua.indexOf("DirBuster")!=-1) session.invalidate();
+			else if (request.getServerName().indexOf("cms")==-1) session.invalidate();
+			else session.setMaxInactiveInterval(300);
+		} catch (Exception e) {}
+
+		return;
+	}
 }
 
 //niekedy nam moze prist request vratane ;jsessionid a teda dochadza len k zlemu dekodovaniu URL
@@ -118,7 +186,7 @@ if (jsessionid > 0)
 if ("/404.jsp".equals(path) || path.startsWith("/jscripts/"))
 {
 	response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-	out.println("<html><body>404 - not found</body></html>");
+	out.println("<html><body>"+text+"</body></html>");
 	return;
 }
 
@@ -129,76 +197,26 @@ if (DocTools.testXss(path))
 	//je to pokus o XSS: /404.html/'onmouseover=prompt(915761)
 	Adminlog.add(Adminlog.TYPE_XSS, "XSS path="+path, -1, -1);
 	response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-	out.println("<html><body>404 - not found</body></html>");
+	out.println("<html><body>"+text+"</body></html>");
 	return;
 }
 
 String queryString = (String)request.getAttribute("path_filter_query_string");
 
-/******* DEFAULT ROBOTS.TXT ***********/
-if ("/robots.txt".equals(path))
-{
-	sk.iway.iwcm.Encoding.setResponseEnc(request, response, "text/plain");
-	response.setStatus(HttpServletResponse.SC_OK);
-
-	IwcmFile file = new IwcmFile(Tools.getRealPath("/files/robots.txt"));
-	if (file.exists()) {
-	    String text = FileTools.readFileContent(file.getVirtualPath());
-	    out.print(text);
-	    return;
-	}
-
-	String robotsNoindexDomains = Constants.getString("robotsNoindexDomains");
-	if(Tools.isNotEmpty(robotsNoindexDomains))
-	{
-		for(String robotsDomain : Tools.getTokens(robotsNoindexDomains, "|,", true))
-		{
-			if(Tools.getServerName(request).indexOf(robotsDomain) > -1)
-			{
-				out.println("User-agent: *");
-				out.println("Disallow: /");
-				return;
-			}
-		}
-	}
-	%>User-Agent: *
-<% if (Tools.isEmpty(Constants.getString("adminEnableIPs")) && Constants.getBoolean("adminLogonShowSimpleErrorMessage")==false && "full".equals(Constants.getString("clusterMyNodeType"))) {  %>Disallow: /admin
-<% }  
-%>Disallow: /components
-Disallow: /thumb
-Sitemap: <%=Tools.getBaseHref(request)%>/sitemap.xml
-<%
-	return;
-}
-
-/******* DEFAULT SITEMAP.XML ***********/
-if ("/sitemap.xml".equals(path) || "/google-sitemap.jsp".equals(path))
-{
-	//tu mame natvrdo UTF-8 pretoze generujeme UTF-8 XML subor
-	response.setContentType("text/xml; charset=utf-8");
-	response.setStatus(HttpServletResponse.SC_OK);
-	String customPage = sk.iway.iwcm.tags.WriteTag.getCustomPage("/components/sitemap/google-sitemap.jsp", request);
-	pageContext.forward(customPage);
-	return;
-}
-
 ExportDatDB expDB = new ExportDatDB();
 ExportDatBean exportDatBean = expDB.findFirstExportByUrlAddress(path);
 if(null != exportDatBean){
-	int exportDatId = exportDatBean.getExportDatId(); 
+	int exportDatId = exportDatBean.getExportDatId();
 	String format = exportDatBean.getFormat();
 	request.setAttribute("exportDatBean",exportDatBean);
 	String urlExportDat = "";
-	if("json".equals(format)){
-		response.setContentType("application/json; charset=utf-8");
-		response.setStatus(HttpServletResponse.SC_OK);
-		urlExportDat = "/components/export/json.jsp";		
+	if(format.contains("rss") || format.contains("xml") || path.contains(".xml") || path.contains(".rss")){
+		response.setContentType("text/xml; charset="+SetCharacterEncodingFilter.getEncoding());
+	} else {
+		response.setContentType("application/json; charset="+SetCharacterEncodingFilter.getEncoding());
 	}
-	if("xml".equals(format)){
-		response.setContentType("text/xml; charset=utf-8");
-		response.setStatus(HttpServletResponse.SC_OK);
-		urlExportDat = "/components/export/rss.jsp";
-	}
+	response.setStatus(HttpServletResponse.SC_OK);
+	urlExportDat = "/components/export/"+format+".jsp";
 	String customPage = sk.iway.iwcm.tags.WriteTag.getCustomPage(urlExportDat, request);
 	pageContext.forward(customPage);
 	return;
@@ -218,17 +236,24 @@ if (Tools.isNotEmpty(queryString))
 if (Tools.isEmpty(redirectURL)) redirectURL = UrlRedirectDB.getRedirect(path, DocDB.getDomain(request));
 
 if (Constants.getBoolean("multiDomainEnabled")==true && Tools.isEmpty(redirectURL))
-{	
+{
 	redirectURL = UrlRedirectDB.getRedirect(MultiDomainFilter.fixDomainPaths(path, request), DocDB.getDomain(request));
 }
 
 if (Tools.isNotEmpty(redirectURL))
-{	
-	response.setStatus(301);
+{
+	int statusCode = 301;
+	try {
+		statusCode = (new sk.iway.iwcm.database.SimpleQuery()).forInt("SELECT redirect_code FROM url_redirect WHERE old_url=? ORDER BY insert_date DESC", path);
+		if (statusCode<1) statusCode = (new sk.iway.iwcm.database.SimpleQuery()).forInt("SELECT redirect_code FROM url_redirect WHERE old_url=? ORDER BY insert_date DESC", path+"/");
+	} catch (Exception ex) {}
+	if (statusCode<1) statusCode=301;
+	response.setStatus(statusCode);
+
 	if (redirectIncludingQuery==false && Tools.isNotEmpty(queryString)) redirectURL = Tools.addParametersToUrlNoAmp(redirectURL, queryString);
-		
+
 	if (redirectURL.toLowerCase().startsWith("http")==false) redirectURL = Tools.getBaseHref(request)+redirectURL;
-	
+
 	response.setHeader("Location", redirectURL);
 	%>
 	<html><script>window.location.href='<%=redirectURL%>';</script></html>
@@ -242,13 +267,13 @@ if (path.startsWith("/_vti") || path.startsWith("/MSOffice") || path.endsWith("/
 {
 	//musime vygenerovat nejaky vystup, inak tomcat pouzije defaultne hlasenie
 	response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-	out.println("<html><body>404 - not found</body></html>");	
+	out.println("<html><body>"+text+"</body></html>");
 	return;
 }
 
 //GoogleBot parsuje aj obfuscovane formulare a potom to hlasi ako chybne linky
 if (path.length() <= 3 && ua!=null && ua.toLowerCase().indexOf("bot")!=-1)
-{	
+{
 	response.setStatus(301);
 	response.setHeader("Location", Tools.getBaseHref(request)+"/");
 	out.println("<html><body>redirecting</body></html>");
@@ -264,7 +289,7 @@ String referer = request.getHeader("referer");
 String statPath = path;
 if (queryString != null)
 {
-   statPath = path + "?" + queryString; 
+   statPath = path + "?" + queryString;
 }
 if (referer != null)
 {
@@ -273,6 +298,12 @@ if (referer != null)
 
 //zapis do logu
 StatDB.addError(statPath, referer);
+
+if ("/components/gdpr/jscripts/jquery.cookie.js".equals(path)) {
+	//Bezpecnost - odstranena stara verzia jquery.cookie.js v aplikacii GDPR, nahradena verziou v _common adresari.
+	response.sendRedirect("/components/_common/javascript/jquery.cookie.js");
+	return;
+}
 
 path = path.toLowerCase();
 if (path.endsWith(".gif") || path.endsWith(".jpg") || path.endsWith(".png") || path.endsWith(".js") || path.endsWith(".swf") || path.endsWith(".ico") || path.endsWith(".css") || path.endsWith(".ttf") || path.endsWith(".eot") || path.endsWith(".woff2") || path.endsWith(".woff"))
@@ -290,9 +321,9 @@ else if (PathFilter.checkWebAccess(request, path)==true)
 		if (testPath.endsWith("/")) testPath = testPath.substring(0, testPath.length()-1);
 		int failsafe = 0;
 		while (failsafe++ < 30)
-		{			
+		{
 			String url404 = testPath + "/404.html";
-			
+
 			int docId = DocDB.getDocIdFromURL(url404, DocDB.getDomain(request));
 
 			//System.out.println("Testing: "+url404+" docid="+docId);
@@ -317,8 +348,8 @@ else if (PathFilter.checkWebAccess(request, path)==true)
 					}
 					return;
 				}
-			}			
-			
+			}
+
 			int start = testPath.lastIndexOf("/");
 			if (start != -1) testPath = testPath.substring(0, start);
 			else break;
@@ -326,14 +357,12 @@ else if (PathFilter.checkWebAccess(request, path)==true)
 	}
 	catch (Exception ex)
 	{
-		ex.printStackTrace(System.err);	
+		sk.iway.iwcm.Logger.error(ex);
 	}
-	
-	
+
+
 	//ak chcete spravit presmerovanie na nejaku chybovu stranku - odkomentujte
 	//response.sendRedirect("/showdoc.do?docid=4");
-	
-	String text = Prop.getInstance().getText("stat.error.404");
 	if (text.indexOf("<body")!=-1)
 	{
 		out.println(text);
@@ -341,7 +370,7 @@ else if (PathFilter.checkWebAccess(request, path)==true)
 	}
 %>
 
-	
+
 <%@page import="sk.iway.iwcm.stat.StatDB"%>
 <%@page import="sk.iway.iwcm.system.UrlRedirectDB"%>
 <%@ page import="sk.iway.iwcm.system.context.ContextFilter" %>
@@ -376,7 +405,7 @@ else if (PathFilter.checkWebAccess(request, path)==true)
 	</p>
 	</body>
 	</html>
-	
+
 <%
 }
 %>
