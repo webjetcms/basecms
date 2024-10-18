@@ -69,6 +69,103 @@ war {
     exclude('src/main/webapp/apps/contact/**')
 }
 
+// build public war
+// vybuilduje public war
+def defaultExcludes = file('gradle/config/defaultExcludes.txt').text.readLines()
+def defaultPublicExcludes = file('gradle/config/defaultPublicExcludes.txt').text.readLines()
+
+task prepareDataForPublicWar() {
+    // Ziskame cestu k .war suboru, ktorý budeme rozbalovat
+    def warFile = file("${buildDir}/libs/${rootProject.name}.war")
+
+    // Ziskame cestu k adresaru, kde sa bude .war subor rozbalovat
+    def publicTempDir = file("${buildDir}/public-temp")
+
+    // Uistime sa, ze tempDir existuje
+    delete publicTempDir
+    publicTempDir.mkdirs()
+
+    doLast {
+        // Rozbalime .war subor do tempDir
+        copy {
+            from zipTree(warFile)
+            into publicTempDir
+        }
+
+        // Odstranime .jar subor z tempDir
+        delete fileTree("${publicTempDir}/WEB-INF/lib").matching {
+            include "webjetcms-${webjetVersion}-admin.jar"
+        }
+
+        // Rozbalime components.jar do tempDir/components-all
+        def componentsJar = file("${publicTempDir}/WEB-INF/lib/webjetcms-${webjetVersion}-components.jar")
+        def componentsAllDir = file("${publicTempDir}/components-all")
+        componentsAllDir.mkdirs()
+        copy {
+            from zipTree(componentsJar)
+            into componentsAllDir
+        }
+        delete componentsJar
+    }
+}
+
+task zipAllComponentsBackToJar(type: Zip) {
+    def publicTempDir = file("${buildDir}/public-temp")
+    def componentsJar = file("${publicTempDir}/WEB-INF/lib/webjetcms-${webjetVersion}-components.jar")
+    def componentsAllDir = file("${publicTempDir}/components-all")
+
+    from componentsAllDir
+    includeEmptyDirs = false
+    exclude defaultExcludes
+    exclude defaultPublicExcludes
+    exclude "**/admin*"
+    archiveFileName = componentsJar.name
+    archiveExtension = "jar"
+    destinationDirectory = componentsJar.parentFile
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    doLast {
+        delete componentsAllDir
+    }
+}
+
+task buildAllArtifacts(type: Zip) {
+    dependsOn clean
+    dependsOn war
+    dependsOn prepareDataForPublicWar
+    dependsOn zipAllComponentsBackToJar
+
+    // tieto tasky musia byt spustene v spravnom poradi, pre makeCli tasky na poradi nezalezi
+    tasks.findByName('war').mustRunAfter 'clean'
+    tasks.findByName('prepareDataForPublicWar').mustRunAfter 'war'
+    tasks.findByName('zipAllComponentsBackToJar').mustRunAfter 'prepareDataForPublicWar'
+
+    // Definujeme výstupný súbor
+    def outputWar = file("${buildDir}/libs/${rootProject.name}-public.war")
+    // Ziskame cestu k adresaru, kde sa bude .war subor rozbalovat
+    def publicTempDir = file("${buildDir}/public-temp")
+
+    // Zabalime tempDir do vystupneho war suboru
+    from publicTempDir
+    includeEmptyDirs = false
+    exclude defaultExcludes
+    exclude defaultPublicExcludes
+    exclude "/apps/**/admin*"
+    exclude "/components/**/admin*"
+    exclude "**/classes/**/admin/*Controller*"
+    exclude "**/classes/**/Admin*Controller*"
+    exclude "**/adminsearch*"
+    archiveFileName = outputWar.name
+    archiveExtension = "war"
+    destinationDirectory = outputWar.parentFile
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    doLast {
+        delete publicTempDir
+    }
+}
+// end of build public war
+
 //CI-CD tasky
 task explodeWar(dependsOn: ['clean', 'war'], type : Copy){
     def workingDir = "build/explodedWar"
@@ -141,6 +238,13 @@ task('generateJacocoReport', type: JacocoReport) {
 }
 
 dependencies {
+    // need db driver to run the app
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+
+    // in case you need send logs to logstash
+    // https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder
+    // implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '8.0'
 
     implementation("com.webjetcms:webjetcms:${webjetVersion}")
     implementation("com.webjetcms:webjetcms:${webjetVersion}:admin")
