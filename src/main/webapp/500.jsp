@@ -1,7 +1,6 @@
-<%@page isErrorPage="true"%><%@page import="sk.iway.iwcm.Identity"%><%@page import="sk.iway.iwcm.Constants"%><%@page import="java.io.PrintWriter"%><%@page import="java.io.StringWriter"%>
-<%@ page import="sk.iway.iwcm.PathFilter" %>
-<%@ page import="sk.iway.iwcm.i18n.Prop" %>
-<%
+<%@page isErrorPage="true"%><%@page import="sk.iway.iwcm.Identity"%><%@page import="sk.iway.iwcm.Constants"%><%@page import="java.io.PrintWriter"%><%@page import="java.io.StringWriter"%><%@
+page import="sk.iway.iwcm.PathFilter" %><%@ page import="sk.iway.iwcm.i18n.Prop" %><%@ taglib uri="/WEB-INF/iwcm.tld" prefix="iwcm"
+%><%
 //toto mame kvoli penetracnym testom, aby nam nepindali na URL typu /Shortcut to FormMailAjax.action
 response.setStatus(404);
 
@@ -9,7 +8,7 @@ response.setStatus(404);
 sk.iway.iwcm.SetCharacterEncodingFilter.setCommonHeaders(response, request);
 %>
 
-404 - not found
+<iwcm:text key="stat.error.404"/>
 
 <%
 Identity user = (Identity)session.getAttribute(Constants.USER_KEY);
