@@ -12,8 +12,8 @@ if (fForward.exists())
 //nastav security hlavicky
 sk.iway.iwcm.SetCharacterEncodingFilter.setCommonHeaders(response, request);
 
-%><%@ page pageEncoding="windows-1250" import="sk.iway.iwcm.stat.*,sk.iway.iwcm.*" 
-%><%@ page import="sk.iway.iwcm.system.UrlRedirectDB,sk.iway.iwcm.doc.*" %><%@ taglib uri="/WEB-INF/iwcm.tld" prefix="iwcm" 
+%><%@ page pageEncoding="windows-1250" import="sk.iway.iwcm.stat.*,sk.iway.iwcm.*"
+%><%@ page import="sk.iway.iwcm.system.UrlRedirectDB,sk.iway.iwcm.doc.*" %><%@ taglib uri="/WEB-INF/iwcm.tld" prefix="iwcm"
 %><%@ taglib uri="/WEB-INF/iway.tld" prefix="iway" %><%
 
 
@@ -41,9 +41,13 @@ response.setHeader("Pragma","No-Cache");
 response.setDateHeader("Expires",0);
 response.setHeader("Cache-Control","no-Cache");
 
+	if (path!=null && path.contains("/rest/")) {
+		return;
+	}
+
 %>
 
-	
+
 <%@page import="sk.iway.iwcm.i18n.Prop"%>
 <%@page import="sk.iway.iwcm.system.multidomain.MultiDomainFilter"%>
 <%@ page import="sk.iway.iwcm.common.LogonTools" %>
@@ -51,7 +55,6 @@ response.setHeader("Cache-Control","no-Cache");
 	<head>
 		<title>403</title>
 		<meta http-equiv="Content-type" content="text/html;charset=windows-1250">
-		<link rel="stylesheet" href="/css/page.css" type="text/css">
 	</head>
 	<body>
 	<!--
@@ -72,7 +75,7 @@ response.setHeader("Cache-Control","no-Cache");
 	-- five hundred and twelve byte minimum. Of course,
 	-- that's exactly what you're reading right now....
 	-->
-	
+
 	<center>
 	   <br><br>
 		 <iwcm:text key="stat.error.404"/>
