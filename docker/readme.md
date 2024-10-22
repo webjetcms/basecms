@@ -60,5 +60,15 @@ It will build images:
 - for secrets use prefix `BASE64_` and encode the value in base64 (see [setenv.sh](./tomcat/conf/setenv.sh) for example)
 - for more information see https://docs.webjetcms.sk/latest/sk/install/external-configuration
 
-## Deployment
-- for more information see project `deployment-examples`
+## Simple deployment example
+For deployment in development environment with one node and database (MariaDB) you can run the following script from [docker](./) directory:
+```bash
+docker compose --env-file .env.example up -d
+```
+- it will start two containers and expose ports `80` for WebJET and `3306` for MariaDB
+- database is filled from scripts in [db](./db) directory (this happens only on first start if you have mount persistent volume)
+- you can access WebJET on [http://localhost:80](http://localhost:80)
+- default credentials for admin access ([http://localhost/admin](http://localhost/admin)) are `admin`/`WjDemo123`
+- you can access MariaDB on [localhost:3306](localhost:3306)
+- for MariaDB default credentials see [.env.example](./.env.example) 
+- for more details, see [docker-compose.yml](./docker-compose.yml)
