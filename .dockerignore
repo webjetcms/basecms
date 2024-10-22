@@ -1,0 +1,13 @@
+git/
+node_modules/
+Dockerfile
+.dockerignore
+*.md
+tests/
+*.log
+tmp/
+WEB-INF/emails/
+.idea
+.settings
+.vscode
+.gradle

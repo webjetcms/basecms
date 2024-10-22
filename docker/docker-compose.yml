@@ -1,0 +1,65 @@
+# Dev deployment example
+# This file is used to deploy the application in local development environment in a single node configuration
+
+name: ${PROJECT_NAME}
+services:
+  # Application is using MariaDB as a database
+  mariadb:
+    image: mariadb:latest
+    hostname: mariadb
+    environment:
+      # same timezone for all services
+      - TZ=${LOCAL_TIME_ZONE}
+      # database settings
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_PORT=3306
+    volumes:
+      # volume for database initialization
+      - ./db/:/docker-entrypoint-initdb.d/:ro
+      # volume for persistent data
+      - mariadb-data:/var/lib/mysql
+    ports:
+      - "${EXPOSED_MYSQL_PORT}:3306"
+    healthcheck:
+      # check if the database is ready (all tables are created)
+      test: [ "CMD-SHELL", "mariadb -u${MYSQL_USER} -p${MYSQL_PASSWORD} -D ${MYSQL_DATABASE} -e 'SELECT COUNT(*) >= 140 as b FROM information_schema.tables WHERE table_schema=\"${MYSQL_DATABASE}\"' | grep 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  # Using the admin version of the image
+  webjet:
+    image: webjetcms/basecms-admin:2024.40
+    hostname: webjet
+    environment:
+      # server settings - you should allways set JAVA_OPTS and TZ for proper functioning
+      - JAVA_OPTS=-XX:InitialRAMPercentage=20 -XX:MinRAMPercentage=50 -XX:MaxRAMPercentage=70 -Dsun.net.client.defaultConnectTimeout=300000 -Dsun.net.client.defaultReadTimeout=300000 -Dorg.apache.jasper.compiler.Parser.STRICT_QUOTE_ESCAPING=false -Dorg.apache.jasper.compiler.Generator.STRICT_GET_PROPERTY=false -Dfile.encoding=UTF-8 -Duser.language=sk -Duser.country=SK
+      - TZ=${LOCAL_TIME_ZONE}
+      # database connection - WebJET specific ENV variables
+      - webjetDbDriver=org.mariadb.jdbc.Driver
+      - webjetDbUserName=${MYSQL_USER}
+      - webjetDbPassword=${MYSQL_PASSWORD}
+      - webjetDbUrl=jdbc:mariadb://mariadb:3306/${MYSQL_DATABASE}
+      # webjet configuration variables
+      - webjet_cloudStaticFilesDir=/home/tomcat/static_files/
+      - webjet_enableStaticFilesExternalDir=true
+    volumes:
+      # volume for static files (files, images uploaded in cms)
+      - static-files:/home/tomcat/static_files:rw
+    ports:
+      - "${EXPOSED_APP_PORT}:8080"
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://0.0.0.0:8080/components/server_monitoring/monitor.jsp | grep OK" ]
+      interval: 20s
+      timeout: 15s
+      retries: 6
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+volumes:
+  static-files:
+  mariadb-data:
