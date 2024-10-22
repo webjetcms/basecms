@@ -31,6 +31,10 @@ RUN ./gradlew buildAllArtifacts
 RUN unzip build/libs/${ARTIFACT_NAME}.war -d build/libs/${ARTIFACT_NAME}
 RUN unzip build/libs/${ARTIFACT_NAME}-public.war -d build/libs/${ARTIFACT_NAME}-public
 
+# Copy default poolman
+COPY docker/webjet/poolman.xml build/libs/${ARTIFACT_NAME}/WEB-INF/classes/
+COPY docker/webjet/poolman.xml build/libs/${ARTIFACT_NAME}-public/WEB-INF/classes/
+
 # Change owner to tomcat
 RUN chown -R tomcat:tomcat /home/app
 
@@ -89,7 +93,7 @@ USER tomcat
 ########################################################################################
 
 # Runtime cms image
-FROM runtime-base as runtime-cms
+FROM runtime-base as runtime-admin
 
 # Copy built app \
 COPY --from=build /home/app/build/libs/${ARTIFACT_NAME} /home/tomcat/app
@@ -100,7 +104,7 @@ CMD ["catalina.sh", "run"]
 ########################################################################################
 
 # Runtime app image
-FROM runtime-base as runtime-app
+FROM runtime-base as runtime-public
 
 # Copy built app \
 COPY --from=build /home/app/build/libs/${ARTIFACT_NAME}-public /home/tomcat/app

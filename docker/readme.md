@@ -6,30 +6,56 @@
 - CATALINA_HOME `/usr/local/tomcat`
 - JAVA_VERSION `jdk-17.0.12+7`
 - JAVA_HOME `/opt/java/openjdk`
-- WebJet doc base `/home/tomcat/app`
-- WebJet static files `/home/tomcat/static_files`
+- WebJET doc base `/home/tomcat/app`
+- WebJET static files `/home/tomcat/static_files`
+- User `tomcat`
 
 ## Build
 ```bash
 /bin/bash ./build.sh
 ```
 It will build two images:
-- `webjet:2024.18-app` - for public node deployment
-- `webjet:2024.18-cms` - for cms or single node deployment
+- `webjetcms/basecms-public:2024.40` - for public node deployment
+- `webjetcms/basecms-admin:2024.40` - for admin node or single node deployment
 
-or you can use it with argument to change image name
-```bash
-/bin/bash ./build.sh my-image-name
+### Set specific image name and version
+Image name is composed of following parts:
+- `webjetcms` - image name prefix, script variable `IMAGE_NAME_PREFIX`
+- `basecms` - project name, script variable `PROJECT_NAME`
+- `admin` or `public` - this is the type of image
+- `2024.40` - version of the image, script variable `IMAGE_VERSION`
+
+In your forked project you should edit the `build.sh` script and change variable `IMAGE_NAME_PREFIX`. 
+Variable `PROJECT_NAME` is parsed from `settings.gradle` file from `rootProject.name` property.
+Version of the image can be set as a parameter of the script `./build.sh`. When not set, it will use default value from `build.sh` script.
+
+Example:
+
+[settings.gradle](../settings.gradle)
+```groovy
+rootProject.name = 'my-project'
 ```
-It will build two images:
-- `my-image-name:2024.18-app` - for public node deployment
-- `my-image-name:2024.18-cms` - for cms or single node deployment
 
+[build.sh](./build.sh)
+```bash
+# ...
+IMAGE_NAME_PREFIX="my-client"
+# ...
+```
+
+run
+```bash
+./build.sh "v12.23.1"
+```
+
+It will build images:
+- `my-client/my-project-admin:v12.23.1`
+- `my-client/my-project-public:v12.23.1`
 
 ## Configuration
 
 ### Container configuration
-- use env variables to configure the image
+- use `ENV` variables to configure the image
 - for configuration properties use prefix `webjet_`
 - for secrets use prefix `BASE64_` and encode the value in base64 (see [setenv.sh](./tomcat/conf/setenv.sh) for example)
 - for more information see https://docs.webjetcms.sk/latest/sk/install/external-configuration
