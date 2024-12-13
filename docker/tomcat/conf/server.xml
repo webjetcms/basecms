@@ -72,6 +72,9 @@
                    connectionTimeout="20000"
                    redirectPort="8443"
                    maxParameterCount="1000"
+                   URIEncoding="UTF-8"
+                   useBodyEncodingForURI="true"
+                   relaxedQueryChars="^{}[]|&quot;"
         />
         <!-- A "Connector" using the shared thread pool-->
         <!--

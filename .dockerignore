@@ -1,13 +1,30 @@
-git/
-node_modules/
+# Ignore all node_modules directories in the project
+**/node_modules/
+
+# Ignore git directory
+.git/
+
+# Ignore Dockerfile and .dockerignore
 Dockerfile
 .dockerignore
-*.md
-tests/
-*.log
-tmp/
-WEB-INF/emails/
-.idea
-.settings
-.vscode
-.gradle
+
+# Ignore markdown files in all directories
+**/*.md
+
+# Ignore test directories in all directories
+**/tests/
+
+# Ignore log files in all directories
+**/*.log
+
+# Ignore tmp directory
+**/tmp/
+
+# Ignore WEB-INF/emails directory
+**/WEB-INF/emails/
+
+# Ignore IDE and build files
+.idea/
+.settings/
+.vscode/
+.gradle/

@@ -67,8 +67,8 @@ RUN usermod -a -G www-data tomcat
 # Create app directory
 RUN mkdir -p /home/tomcat/static_files
 RUN mkdir -p /home/tomcat/app
-RUN chown -R tomcat:tomcat /home/tomcat
 RUN chown -R tomcat:www-data /home/tomcat/static_files
+RUN chown -R tomcat:tomcat /home/tomcat
 
 # Copy tomcat configuration
 COPY ${TOMCAT_LOCAL_PATH}/conf/*.xml ${CATALINA_HOME}/conf/
