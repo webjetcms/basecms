@@ -50,7 +50,8 @@ services:
       # volume for static files (files, images uploaded in cms)
       - static-files:/home/tomcat/static_files:rw
     ports:
-      - "${EXPOSED_APP_PORT}:8080"
+      - "${EXPOSED_APP_HTTP_PORT}:8080"
+      - "${EXPOSED_APP_HTTPS_PORT}:8443"
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://0.0.0.0:8080/components/server_monitoring/monitor.jsp | grep OK" ]
       interval: 20s

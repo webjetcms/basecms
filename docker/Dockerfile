@@ -1,5 +1,5 @@
 # Build app
-FROM eclipse-temurin:17 as build
+FROM eclipse-temurin:17 AS build
 
 ARG ARTIFACT_NAME=basecms
 
@@ -41,7 +41,7 @@ RUN chown -R tomcat:tomcat /home/app
 ########################################################################################
 
 # Runtime base image
-FROM tomcat:9.0.95-jre17-temurin as runtime-base
+FROM tomcat:9.0.95-jre17-temurin AS runtime-base
 
 ARG ARTIFACT_NAME=basecms
 ARG TOMCAT_LOCAL_PATH=/docker/tomcat
@@ -71,9 +71,7 @@ RUN chown -R tomcat:www-data /home/tomcat/static_files
 RUN chown -R tomcat:tomcat /home/tomcat
 
 # Copy tomcat configuration
-COPY ${TOMCAT_LOCAL_PATH}/conf/*.xml ${CATALINA_HOME}/conf/
-COPY ${TOMCAT_LOCAL_PATH}/conf/*.properties ${CATALINA_HOME}/conf/
-COPY ${TOMCAT_LOCAL_PATH}/conf/*.yaml ${CATALINA_HOME}/conf/
+COPY ${TOMCAT_LOCAL_PATH}/conf/*.* ${CATALINA_HOME}/conf/
 COPY ${TOMCAT_LOCAL_PATH}/conf-examples ${CATALINA_HOME}/conf-examples
 
 # Copy setenv.sh
@@ -93,7 +91,7 @@ USER tomcat
 ########################################################################################
 
 # Runtime cms image
-FROM runtime-base as runtime-admin
+FROM runtime-base AS runtime-admin
 
 # Copy built app \
 COPY --from=build /home/app/build/libs/${ARTIFACT_NAME} /home/tomcat/app
@@ -104,7 +102,7 @@ CMD ["catalina.sh", "run"]
 ########################################################################################
 
 # Runtime app image
-FROM runtime-base as runtime-public
+FROM runtime-base AS runtime-public
 
 # Copy built app \
 COPY --from=build /home/app/build/libs/${ARTIFACT_NAME}-public /home/tomcat/app
