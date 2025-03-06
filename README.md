@@ -1,6 +1,6 @@
 # WebJET CMS
 
-Basic project for WebJET CMS. Ask InterWay to access the WebJET Maven repository, rename the file `gradle.sample.properties` to `gradle.properties` and set the credentials in it.
+Basic project for WebJET CMS.
 
 ## Gradle commands
 

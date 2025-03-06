@@ -15,7 +15,7 @@ plugins {
     //https://plugins.gradle.org/plugin/io.freefair.lombok
     id "io.freefair.lombok" version "8.11"
     http://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
-    id "org.owasp.dependencycheck" version "11.1.0"
+    id "org.owasp.dependencycheck" version "12.1.0"
     //https://docs.gradle.org/current/userguide/jacoco_plugin.html
     id 'jacoco'
     //https://github.com/jk1/Gradle-License-Report
@@ -37,8 +37,8 @@ repositories {
 }
 
 ext {
-    webjetVersion = "2024.40";
-    mapstructVersion = "1.4.2.Final";
+    webjetVersion = "2025.0";
+    lombokVersion = "1.18.34";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
 }
@@ -250,10 +250,15 @@ dependencies {
     providedCompile 'javax.el:javax.el-api:3.0.0'
     providedCompile 'javax.annotation:jsr250-api:1.0'
 
-    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation 'org.mockito:mockito-core:5.15.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testRuntimeOnly 'org.glassfish:javax.el:3.0.0'
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.29.0'
 
 }
 
@@ -262,9 +267,6 @@ configurations {
     all*.exclude group: 'org.slf4j', module: 'jcl104-over-slf4j' //je nahradene novsim jcl-over-slf4j
     all*.exclude group: 'commons-logging', module: 'commons-logging'
     all*.exclude group: 'log4j', module: 'log4j'
-
-    //javax.xml.stream:stax-api:1.0-2 -> stax:stax-api:1.0.1
-    all*.exclude group: 'javax.xml.stream', module: 'stax-api'
 
     grettyRunnerTomcat9 {
         // gretty pouziva staru verziu commons-io, ktora koliduje s nasou
@@ -286,7 +288,7 @@ compileJava {
 }
 
 lombok {
-    version = "1.18.28"
+    version = "${lombokVersion}"
 }
 
 //code coverage

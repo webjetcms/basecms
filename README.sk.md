@@ -1,6 +1,6 @@
 # WebJET CMS
 
-Základný projekt pre WebJET CMS. Požiadajte InterWay o prístup k WebJET Maven repozitáru, premenujte súbor ```gradle.sample.properties``` na ```gradle.properties``` a nastavte v ňom prihlasovacie údaje.
+Základný projekt pre WebJET CMS.
 
 ## Gradle príkazy
 
