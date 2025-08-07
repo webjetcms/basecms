@@ -342,7 +342,9 @@ gretty {
         '-Dwebjet.smtpServer=smtp.interway.sk',
         "-DwebjetDbname=${System.env.webjetDbname}",
         //list of docid that can be directly opened without login for Launch Chrome debug mode
-        "-Dwebjet.showDocActionAllowedDocids=4,26"
+        "-Dwebjet.showDocActionAllowedDocids=4,26",
+        '-Dwebjet.serverMonitoringEnableJPA=true',
+        '-Dwebjet.loggerUseAnsiColors=true'
     ]
 
     //enable jacoco also for appStart and appStartDebug tasks
