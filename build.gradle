@@ -11,7 +11,7 @@ plugins {
     id 'java'
     id 'war'
     https://github.com/gretty-gradle-plugin/gretty
-    id 'org.gretty' version "3.1.1"
+    id 'org.gretty' version "4.1.6"
     //https://plugins.gradle.org/plugin/io.freefair.lombok
     id "io.freefair.lombok" version "8.11"
     http://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
@@ -46,7 +46,7 @@ repositories {
 }
 
 ext {
-    webjetVersion = "2025.0-SNAPSHOT";
+    webjetVersion = "2025.0-SNAPSHOT-jakarta";
     lombokVersion = "1.18.34";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
@@ -253,11 +253,9 @@ dependencies {
     implementation("com.webjetcms:webjetcms:${webjetVersion}:components")
     implementation("com.webjetcms:webjetcms:${webjetVersion}:libs")
 
-    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
-    providedCompile "javax.servlet:servlet-api:2.5"
-    providedCompile "javax.servlet.jsp:javax.servlet.jsp-api:2.3.3"
-    providedCompile 'javax.el:javax.el-api:3.0.0'
-    providedCompile 'javax.annotation:jsr250-api:1.0'
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    providedCompile 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1'
+    providedCompile 'jakarta.el:jakarta.el-api:5.0.1'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
@@ -277,7 +275,7 @@ configurations {
     all*.exclude group: 'commons-logging', module: 'commons-logging'
     all*.exclude group: 'log4j', module: 'log4j'
 
-    grettyRunnerTomcat9 {
+    grettyRunnerTomcat10 {
         // gretty pouziva staru verziu commons-io, ktora koliduje s nasou
         // https://mvnrepository.com/artifact/commons-io/commons-io
         exclude group: 'commons-io', module: 'commons-io'
@@ -313,7 +311,7 @@ test {
 gretty {
     // supported values:
     // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
-    servletContainer = 'tomcat9'
+    servletContainer = 'tomcat10'
     contextPath = ''
     httpPort = 80
     httpsEnabled = true
@@ -367,4 +365,12 @@ gretty {
             finalizedBy tasks.generateJacocoReport
         }
     }
+}
+
+tasks.withType(JavaCompile) {
+    options.failOnError = false
+    //prevent warning messages during compile
+    options.compilerArgs += ['-Xlint:none']
+    //needed for Spring
+    options.compilerArgs += ['-parameters']
 }

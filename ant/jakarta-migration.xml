@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+
+<project name="migrate from javax.servlet to jakarta.servlet and copy output to jakarta-test-src project" default="migrate" >
+
+    <property environment="env"/>
+    <property name="root" location="../"/>
+
+    <!-- Migrate javax.* to jakarta.*
+    https://github.com/apache/tomcat-jakartaee-migration/blob/main/README.md
+    -->
+    <taskdef name="javax2jakarta" classname="org.apache.tomcat.jakartaee.MigrationTask" classpath="./jakartaee-migration/jakartaee-migration-1.0.9-shaded.jar"/>
+
+    <target name="migrate">
+
+        <javax2jakarta
+            src="${root}/src/main/java/"
+            dest="${root}/src/main/java/"
+            profile="tomcat"
+        />
+
+        <replace dir="${root}/src/" token="javax.persistence." value="jakarta.persistence."/>
+        <replace dir="${root}/src/" token="javax.activation." value="jakarta.activation."/>
+        <replace dir="${root}/src/" token="javax.xml.bind." value="jakarta.xml.bind."/>
+        <replace dir="${root}/src/" token="javax.validation." value="jakarta.validation."/>
+
+        <replace dir="${root}/src/" token="freemarker.ext.servlet." value="freemarker.ext.jakarta.servlet."/>
+        <replace dir="${root}/src/" token="org.springframework.web.multipart.commons.CommonsMultipartFile" value="org.springframework.web.multipart.MultipartFile"/>
+        <replace dir="${root}/src/" token="CommonsMultipartFile" value="MultipartFile"/>
+        <replace dir="${root}/src/" token="org.springframework.web.multipart.commons.CommonsMultipartResolver" value="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+        <replace dir="${root}/src/" token="CommonsMultipartResolver" value="StandardServletMultipartResolver"/>
+        <replace dir="${root}/src/" token="org.eclipse.persistence.sessions.Record" value="org.eclipse.persistence.sessions.DataRecord"/>
+        <replace dir="${root}/src/" token="public Object profileExecutionOfQuery(DatabaseQuery query, Record row, AbstractSession session)" value="public Object profileExecutionOfQuery(DatabaseQuery query, DataRecord row, AbstractSession session)"/>
+
+        <replace dir="${root}/src/" token="import org.springframework.web.util.NestedServletException;" value=""/>
+        <replace dir="${root}/src/" token="catch (NestedServletException|org.springframework.security.access.AccessDeniedException e)" value="catch (org.springframework.security.access.AccessDeniedException e)"/>
+
+        <replace dir="${root}/src/" token="org.eclipse.persistence.config.SessionCustomizer" value="org.eclipse.persistence.sessions.SessionCustomizer"/>
+
+        <replace dir="${root}/src/" token="org.apache.commons.fileupload.FileItem" value="org.apache.commons.fileupload2.core.FileItem"/>
+        <replace dir="${root}/src/" token="org.apache.commons.fileupload.disk.DiskFileItem" value="org.apache.commons.fileupload2.core.DiskFileItem"/>
+        <replace dir="${root}/src/" token="import org.apache.commons.fileupload.FileUploadBase;" value=""/>
+        <replace dir="${root}/src/" token="org.apache.commons.fileupload.servlet.ServletFileUpload" value="org.apache.commons.fileupload2.jakarta.servlet6.JakartaServletFileUpload"/>
+        <replace dir="${root}/src/" token="ServletFileUpload upload = new ServletFileUpload(" value="JakartaServletFileUpload upload = new JakartaServletFileUpload("/>
+        <replace dir="${root}/src/" token="FileUploadBase.SizeLimitExceededException" value="javax.naming.SizeLimitExceededException"/>
+        <replace dir="${root}/src/" token=".getStoreLocation().getAbsolutePath()" value=".getPath().toAbsolutePath().toString()"/>
+        <replace dir="${root}/src/" token="uploadedFile.getFileItem().getSize()" value="uploadedFile.getSize()"/>
+        <replace dir="${root}/src/" token="uploadedFile.getFileItem().getName()" value="uploadedFile.getOriginalFilename()"/>
+        <replace dir="${root}/src/" token="uploadedFile.getFileItem().getInputStream()" value="uploadedFile.getInputStream()"/>
+        <replace dir="${root}/src/">
+            <replacetoken><![CDATA[ResponseEntity<>(response, null, HttpStatus.OK)]]></replacetoken>
+            <replacevalue><![CDATA[ResponseEntity<>(response, HttpStatus.OK)]]></replacevalue>
+        </replace>
+
+        <replace dir="${root}/src/" token="org.apache.commons.fileupload." value="org.apache.commons.fileupload2.core."/>
+        <replace dir="${root}/src/" token="org.hibernate.validator.internal.util.privilegedactions." value="org.hibernate.validator.internal.util.actions."/>
+
+        <replace dir="${root}/src/" token="org.thymeleaf.spring5." value="org.thymeleaf.spring6."/>
+
+        <replace dir="${root}/src/" token="io.swagger.annotations.ApiOperation" value="io.swagger.v3.oas.annotations.Operation"/>
+        <replace dir="${root}/src/" token="io.swagger.annotations.ApiParam" value="io.swagger.v3.oas.annotations.Parameter"/>
+        <replace dir="${root}/src/" token="springfox.documentation.annotations.ApiIgnore" value="io.swagger.v3.oas.annotations.Hidden"/>
+        <replace dir="${root}/src/" token="io.swagger.annotations.ApiModelProperty" value="io.swagger.v3.oas.annotations.media.Schema"/>
+        <replace dir="${root}/src/" token="io.swagger.annotations.ApiModel" value="io.swagger.v3.oas.annotations.media.Schema"/>
+        <replace dir="${root}/src/" token="io.swagger.annotations.Api" value="io.swagger.v3.oas.annotations.tags.Tag"/>
+        <replace dir="${root}/src/" token="@Api(description" value="@Tag(name=&quot;&quot;, description" />
+        <replace dir="${root}/src/" token="@ApiOperation(value" value="@Operation(summary" />
+        <replace dir="${root}/src/" token="@ApiParam(value" value="@Parameter(description" />
+        <replace dir="${root}/src/" token="@ApiIgnore(" value="@Hidden(" />
+        <replace dir="${root}/src/" token="@ApiModelProperty(dataType" value="@Schema(type" />
+        <replace dir="${root}/src/" token="@ApiModelProperty(" value="@Schema(" />
+        <replace dir="${root}/src/" token="@ApiModel(" value="@Schema(" />
+
+        <replace dir="${root}/src/" token="new PageImpl&lt;&gt;(" value="new sk.iway.iwcm.system.datatable.DatatablePageImpl&lt;&gt;(" />
+        <replace dir="${root}/src/" token="import org.springframework.data.domain.PageImpl;" value=""/>
+        <replace dir="${root}/src/" token="public class DatatablePageImpl&lt;T&gt; extends PageImpl&lt;T&gt; {" value="public class DatatablePageImpl&lt;T&gt; extends org.springframework.data.domain.PageImpl&lt;T&gt; {"/>
+
+        <!-- zachovaj .properties subory z classes adresara -->
+        <copy todir="${root}/resources-saved/" overwrite="true">
+        <fileset dir="${root}/../../src/main/webapp/WEB-INF/classes/">
+            <include name="text*.properties"/>
+        </fileset>
+        </copy>
+
+        <!-- skopiruj SRC do JAKARTA verzie -->
+        <sync todir="${root}/../../../webjetcms_jakarta/src/" overwrite="true">
+            <fileset dir="${root}/src/">
+                <include name="**/*"/>
+            </fileset>
+        </sync>
+        <sync todir="${root}/../../../webjetcms_jakarta/src/main/webapp/" overwrite="true">
+            <fileset dir="${root}/../../src/main/webapp/">
+                <include name="**/*"/>
+            </fileset>
+        </sync>
+        <!-- text*.properties -->
+        <replace dir="${root}/../../../webjetcms_jakarta/src/main/webapp/WEB-INF/classes/" token="javax.validation.constraints." value="jakarta.validation.constraints." />
+        <sync todir="${root}/../../../webjetcms_jakarta/src/test/" overwrite="true">
+            <fileset dir="${root}/../../src/test/">
+                <include name="**/*"/>
+            </fileset>
+        </sync>
+        <copy todir="${root}/../../../webjetcms_jakarta/" overwrite="true">
+            <fileset dir="${root}/../../">
+                <include name="build.gradle"/>
+            </fileset>
+        </copy>
+        <copy todir="${root}/../../../webjetcms_jakarta/ant" overwrite="true">
+            <fileset dir="${root}/../../ant/">
+                <include name="*.xml"/>
+                <include name="*.sh"/>
+                <include name="*.config"/>
+            </fileset>
+        </copy>
+        <sync todir="${root}/../../../webjetcms_jakarta/lib" overwrite="true">
+            <fileset dir="${root}/../../lib/">
+                <include name="**/*"/>
+            </fileset>
+        </sync>
+
+    </target>
+
+</project>
