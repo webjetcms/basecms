@@ -46,7 +46,7 @@ repositories {
 }
 
 ext {
-    webjetVersion = "2025.0-SNAPSHOT-jakarta";
+    webjetVersion = "2025.0-jakarta-SNAPSHOT";
     lombokVersion = "1.18.34";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
