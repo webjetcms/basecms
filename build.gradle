@@ -15,7 +15,7 @@ plugins {
     //https://plugins.gradle.org/plugin/io.freefair.lombok
     id "io.freefair.lombok" version "8.11"
     http://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
-    id "org.owasp.dependencycheck" version "12.1.0"
+    id "org.owasp.dependencycheck" version "12.1.6"
     //https://docs.gradle.org/current/userguide/jacoco_plugin.html
     id 'jacoco'
     //https://github.com/jk1/Gradle-License-Report
@@ -205,7 +205,7 @@ task updatezip(type: Exec)  {
     commandLine "ant", "-buildfile", "updatezip.xml", "-Dv8version=${webjetVersion}", "-Dprojectname=${rootProject.name}"
 }
 
-//dependency check - https://jeremylong.github.io/DependencyCheck/index.html
+//dependency check - https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
 dependencyCheck {
     scanConfigurations=["runtimeClasspath"]
     //format see https://gist.github.com/milo-minderbinder/1e1ed911c5b2264dc659578f1baaef16
@@ -221,6 +221,17 @@ dependencyCheck {
             skipDevDependencies=true
             pnpmEnabled=false
         }
+        ossIndex {
+            //OSS Index authentication is now required: https://ossindex.sonatype.org/doc/auth-required
+            username=System.getenv('OSSINDEX_USERNAME') ?: ''
+            password=System.getenv('OSSINDEX_TOKEN') ?: ''
+        }
+    }
+    nvd {
+        //api key for NVD database for dependency check
+        apiKey=System.getenv('NVD_API_KEY') ?: ''
+        maxRetryCount=20
+        delay=8000
     }
 }
 

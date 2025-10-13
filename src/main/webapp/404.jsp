@@ -4,7 +4,7 @@
 if (request.getAttribute("404.allready.generated")!=null) return;
 
 sk.iway.iwcm.Encoding.setResponseEnc(request, response, "text/html");
-%><%@ page pageEncoding="windows-1250" import="sk.iway.iwcm.*,sk.iway.iwcm.common.DocTools"
+%><%@ page pageEncoding="utf-8" import="sk.iway.iwcm.*,sk.iway.iwcm.common.DocTools"
 %><%@ page import="sk.iway.iwcm.components.export.ExportDatBean"%><%@page import="sk.iway.iwcm.components.export.ExportDatDB"
 %><%@ page import="sk.iway.iwcm.doc.DocDB,sk.iway.iwcm.doc.DocDetails,sk.iway.iwcm.i18n.Prop" %><%@ taglib uri="/WEB-INF/iwcm.tld" prefix="iwcm"
 %><%@page import="sk.iway.iwcm.system.UrlRedirectBean"
@@ -51,7 +51,7 @@ request.setAttribute("is404", "true");
 
 String ua = request.getHeader("User-Agent");
 
-String path = (String)request.getAttribute("path_filter_orig_path");
+String path = PathFilter.getOrigPath(request);
 if (path == null)
 {
 	path = Tools.getRequestURI(request);
@@ -223,8 +223,6 @@ if(null != exportDatBean){
 	return;
 }
 
-
-
 UrlRedirectBean redirectBean = null;
 
 //znak ^ sa interne spracovava ako ? kvoli handlingu parametrov (aka exact match)
@@ -245,7 +243,7 @@ if (redirectBean != null)
 {
 	response.setStatus(redirectBean.getRedirectCode());
 	String newUrl = redirectBean.getNewUrl();
-	System.out.println("redirectBean1="+redirectBean.getUrlRedirectId()+" path="+path+" newUrl="+newUrl);
+	//System.out.println("redirectBean1="+redirectBean.getUrlRedirectId()+" path="+path+" newUrl="+newUrl);
 
 	if (redirectIncludingQuery==false && Tools.isNotEmpty(queryString)) newUrl = Tools.addParametersToUrlNoAmp(newUrl, queryString);
 
@@ -255,7 +253,7 @@ if (redirectBean != null)
 	%>
 	<html><script>window.location.href='<%=newUrl%>';</script></html>
 	<%
-	System.out.println("SOM STRANKA 404, redirecting to:" + newUrl);
+	//System.out.println("SOM STRANKA 404, redirecting to:" + newUrl);
 	return;
 }
 
@@ -294,7 +292,7 @@ if (referer != null)
 }
 
 //zapis do logu
-StatDB.addError(statPath, referer);
+StatDB.addError(statPath, referer, request);
 
 if ("/components/gdpr/jscripts/jquery.cookie.js".equals(path)) {
 	//Bezpecnost - odstranena stara verzia jquery.cookie.js v aplikacii GDPR, nahradena verziou v _common adresari.
@@ -307,7 +305,7 @@ if (path.endsWith(".gif") || path.endsWith(".jpg") || path.endsWith(".png") || p
 {
 	Logger.warn("404.jsp", "404 ("+Constants.getInstallName()+"): " + path+"?"+request.getQueryString());
 	//posli rovno chybu 404 do prehliadaca
-   return;
+   	return;
 }
 else if (PathFilter.checkWebAccess(request, path)==true)
 {
