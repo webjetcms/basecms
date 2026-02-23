@@ -11,11 +11,11 @@ plugins {
     id 'java'
     id 'war'
     //https://github.com/gretty-gradle-plugin/gretty
-    id 'org.gretty' version "3.1.1"
+    id 'org.gretty' version "5.0.1"
     //https://plugins.gradle.org/plugin/io.freefair.lombok
     id "io.freefair.lombok" version "8.11"
     //http://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
-    id "org.owasp.dependencycheck" version "12.1.0"
+    id "org.owasp.dependencycheck" version "12.1.6"
     //https://docs.gradle.org/current/userguide/jacoco_plugin.html
     id 'jacoco'
     //https://github.com/jk1/Gradle-License-Report
@@ -31,13 +31,22 @@ repositories {
     maven {
         url "https://pd4ml.tech/maven2/"
     }
+    maven {
+        name = "github"
+        url = uri("https://maven.pkg.github.com/webjetcms/webjetcms")
+        credentials {
+            //define in gradle.properties or as environment variables
+            username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
+            password = project.findProperty("gpr.api-key") ?: System.getenv("GPR_API_KEY")
+        }
+    }
     flatDir {
        dirs 'libs'
    }
 }
 
 ext {
-    webjetVersion = "2026.0";
+    webjetVersion = "2026.0-jakarta-SNAPSHOT";
     lombokVersion = "1.18.34";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
@@ -268,10 +277,14 @@ configurations {
     all*.exclude group: 'commons-logging', module: 'commons-logging'
     all*.exclude group: 'log4j', module: 'log4j'
 
-    grettyRunnerTomcat9 {
+    grettyRunnerTomcat10 {
         // gretty pouziva staru verziu commons-io, ktora koliduje s nasou
         // https://mvnrepository.com/artifact/commons-io/commons-io
         exclude group: 'commons-io', module: 'commons-io'
+    }
+
+    grettyRunnerTomcat11 {
+
     }
 }
 
@@ -299,12 +312,34 @@ jacoco {
 
 test {
     useJUnitPlatform()
+    systemProperty 'sun.net.client.defaultConnectTimeout', '10000'
+    systemProperty 'sun.net.client.defaultReadTimeout', '10000'
+    systemProperty 'file.encoding', 'UTF-8'
+    systemProperty 'user.language', 'sk'
+    systemProperty 'user.country', 'SK'
+    systemProperty 'webjetDbname', '/poolman-local.xml'
+    testLogging {
+        events "passed", "skipped", "failed", "standard_out", "standard_error"
+        showStandardStreams = true
+        exceptionFormat = 'full'
+        showCauses = true
+        showExceptions = true
+        showStackTraces = true
+    }
+    // For even more verbose output during development
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            println "\nTest result: ${result.resultType}"
+            println "Test summary: ${result.testCount} tests, " +
+                    "${result.successfulTestCount} succeeded, " +
+                    "${result.failedTestCount} failed, " +
+                    "${result.skippedTestCount} skipped"
+        }
+    }
 }
 
 gretty {
-    // supported values:
-    // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
-    servletContainer = 'tomcat9'
+    servletContainer = 'tomcat11'
     contextPath = ''
     httpPort = 80
     httpsEnabled = true
@@ -356,4 +391,11 @@ gretty {
             finalizedBy tasks.generateJacocoReport
         }
     }
+}
+
+tasks.withType(JavaCompile) {
+    //prevent warning messages during compile
+    options.compilerArgs += ['-Xlint:none']
+    //needed for Spring
+    options.compilerArgs += ['-parameters']
 }

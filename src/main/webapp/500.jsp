@@ -1,4 +1,4 @@
-<%@page isErrorPage="true"%><%@page import="sk.iway.iwcm.Identity"%><%@page import="sk.iway.iwcm.Constants"%><%@page import="java.io.PrintWriter"%><%@page import="java.io.StringWriter"%><%@
+<%@page pageEncoding="utf-8" isErrorPage="true"%><%@page import="sk.iway.iwcm.Identity"%><%@page import="sk.iway.iwcm.Constants"%><%@page import="java.io.PrintWriter"%><%@page import="java.io.StringWriter"%><%@
 page import="sk.iway.iwcm.PathFilter" %><%@ page import="sk.iway.iwcm.i18n.Prop" %><%@ taglib uri="/WEB-INF/iwcm.tld" prefix="iwcm"
 %><%
 //toto mame kvoli penetracnym testom, aby nam nepindali na URL typu /Shortcut to FormMailAjax.action
@@ -11,7 +11,7 @@ sk.iway.iwcm.SetCharacterEncodingFilter.setCommonHeaders(response, request);
 <iwcm:text key="stat.error.404"/>
 
 <%
-Identity user = (Identity)session.getAttribute(Constants.USER_KEY);
+Identity user = sk.iway.iwcm.users.UsersDB.getCurrentUser(request);
 if ((user != null && user.isAdmin()) || "iwcm.interway.sk".equals(request.getServerName()))
 {
 	response.setContentType("text/plain");
