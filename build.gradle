@@ -75,6 +75,8 @@ war {
     exclude('localconf*.jsp')
     //do not include poolman-local.xml
     rootSpec.exclude('**/poolman-*.xml')
+    //do not include localhost logback configuration
+    rootSpec.exclude('**/logback-*.xml')
     //do not include sample (basecms) files
     exclude('src/main/java/sk/iway/basecms/**')
     exclude('src/main/webapp/apps/basecms/**')
