@@ -47,6 +47,7 @@ repositories {
 
 ext {
     webjetVersion = "2026.0-jakarta-SNAPSHOT";
+    springVersion = "7.0.+";
     lombokVersion = "1.18.34";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
@@ -74,6 +75,8 @@ war {
     exclude('localconf*.jsp')
     //do not include poolman-local.xml
     rootSpec.exclude('**/poolman-*.xml')
+    //do not include localhost logback configuration
+    rootSpec.exclude('**/logback-*.xml')
     //do not include sample (basecms) files
     exclude('src/main/java/sk/iway/basecms/**')
     exclude('src/main/webapp/apps/basecms/**')
@@ -253,21 +256,22 @@ dependencies {
     implementation("com.webjetcms:webjetcms:${webjetVersion}:components")
     implementation("com.webjetcms:webjetcms:${webjetVersion}:libs")
 
-    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
-    providedCompile "javax.servlet:servlet-api:2.5"
-    providedCompile "javax.servlet.jsp:javax.servlet.jsp-api:2.3.3"
-    providedCompile 'javax.el:javax.el-api:3.0.0'
-    providedCompile 'javax.annotation:jsr250-api:1.0'
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+    providedCompile 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:4.0.0'
+    providedCompile 'jakarta.el:jakarta.el-api:6.0.0'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
+    testImplementation group: 'org.springframework', name: 'spring-test', version: "${springVersion}"
+    testImplementation group: 'org.springframework', name: 'spring-web', version: "${springVersion}"
+    // Spring Framework 7.0 requires JUnit 6 baseline
+    testImplementation platform('org.junit:junit-bom:6.0.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testRuntimeOnly    'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly    'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
     // https://mvnrepository.com/artifact/org.mockito/mockito-core
-    testImplementation 'org.mockito:mockito-core:5.15.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-    testRuntimeOnly 'org.glassfish:javax.el:3.0.0'
-
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.29.0'
+    testImplementation 'org.mockito:mockito-core:5.18.0'
+    testRuntimeOnly 'org.glassfish:jakarta.el:5.0.0-M1'
 
 }
 
