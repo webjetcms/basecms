@@ -15,7 +15,7 @@ plugins {
     //https://plugins.gradle.org/plugin/io.freefair.lombok
     id "io.freefair.lombok" version "8.11"
     //http://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
-    id "org.owasp.dependencycheck" version "12.1.6"
+    id "org.owasp.dependencycheck" version "12.2.0"
     //https://docs.gradle.org/current/userguide/jacoco_plugin.html
     id 'jacoco'
     //https://github.com/jk1/Gradle-License-Report
@@ -213,8 +213,8 @@ dependencyCheck {
     scanConfigurations=["runtimeClasspath"]
     //format see https://gist.github.com/milo-minderbinder/1e1ed911c5b2264dc659578f1baaef16
     suppressionFiles=[
-        file(new File(project.rootDir, 'dependency-check-suppressions.xml')),
-        file(new File(project.rootDir, 'dependency-check-suppressions-project.xml'))
+        "${project.rootDir}/dependency-check-suppressions.xml",
+        "${project.rootDir}/dependency-check-suppressions-project.xml"
     ]
     analyzers {
         assemblyEnabled=false
@@ -224,6 +224,17 @@ dependencyCheck {
             skipDevDependencies=true
             pnpmEnabled=false
         }
+        ossIndex {
+            //OSS Index authentication is now required: https://ossindex.sonatype.org/doc/auth-required
+            username=System.getenv('OSSINDEX_USERNAME') ?: ''
+            password=System.getenv('OSSINDEX_TOKEN') ?: ''
+        }
+    }
+    nvd {
+        //api key for NVD database for dependency check - https://nvd.nist.gov/developers/request-an-api-key
+        apiKey=System.getenv('NVD_API_KEY') ?: ''
+        maxRetryCount=20
+        delay=8000
     }
 }
 
@@ -280,6 +291,7 @@ configurations {
     all*.exclude group: 'org.slf4j', module: 'jcl104-over-slf4j' //je nahradene novsim jcl-over-slf4j
     all*.exclude group: 'commons-logging', module: 'commons-logging'
     all*.exclude group: 'log4j', module: 'log4j'
+    all*.exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
 
     grettyRunnerTomcat10 {
         // gretty pouziva staru verziu commons-io, ktora koliduje s nasou

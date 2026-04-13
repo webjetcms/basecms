@@ -1,169 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
 
-  <!-- DO NOT MODIFY THIS FILE, here are exceptions for WebJET CMS, write project exceptions to dependency-check-suppressions-project.xml -->
-
-  <!-- NOTE: Apache Struts 1.x vulnerabilities are patched in our custom version by https://github.com/tkhanateconsysdotcom/struts1-forever, see PR with changes https://github.com/webjetcms/libs-struts1/pull/1  -->
-  <suppress>
-    <notes><![CDATA[
-    file name: webjet-8.9-SNAPSHOT-struts.jar (shaded: org.apache.struts:struts-taglib:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts.*$</packageUrl>
-    <cve>CVE-2014-0114</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar (shaded: org.apache.struts:struts-core:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts.*$</packageUrl>
-    <cve>CVE-2014-0114</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: webjet-8.9-SNAPSHOT-struts.jar (shaded: org.apache.struts:struts-taglib:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts.*$</packageUrl>
-    <cve>CVE-2015-0899</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts.*$</packageUrl>
-    <cve>CVE-2015-0899</cve>
-  </suppress>
-  <!--suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar (shaded: org.apache.struts:struts-core:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts.*$</packageUrl>
-    <cve>CVE-2014-0114</cve>
-  </suppress-->
-  <suppress>
-    <notes><![CDATA[
-    file name: webjet-8.9-SNAPSHOT-struts.jar (shaded: org.apache.struts:struts-taglib:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts.*$</packageUrl>
-    <cve>CVE-2016-1181</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar (shaded: org.apache.struts:struts-core:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts.*$</packageUrl>
-    <cve>CVE-2016-1181</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: webjet-8.9-SNAPSHOT-struts.jar (shaded: org.apache.struts:struts-taglib:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts.*$</packageUrl>
-    <cve>CVE-2016-1182</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar (shaded: org.apache.struts:struts-core:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts.*$</packageUrl>
-    <cve>CVE-2016-1182</cve>
-  </suppress>
-
-  <!-- NOTE: Apache Struts 1.x vulnerabilities which are not used/applyed in WebJET CMS -->
-  <suppress>
-    <notes><![CDATA[
-    file name: webjet-8.9-SNAPSHOT-struts.jar (shaded: org.apache.struts:struts-taglib:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts\-taglib@.*$</packageUrl>
-    <cve>CVE-2012-1007</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts.*$</packageUrl>
-    <cve>CVE-2012-1007</cve>
-  </suppress>
-  <suppress>
-   <notes><![CDATA[
-   file name: wjstruts-core-1.3.10.jar (shaded: org.apache.struts:struts-core:1.3.10)
-   ]]></notes>
-   <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts\-core@.*$</packageUrl>
-   <cve>CVE-2012-1007</cve>
-  </suppress>
-
-  <!-- NOTE: Apache Struts 2.x vulnerabilities are wrong, they don't affect Struts 1.x -->
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar (shaded: org.apache.struts:struts-core:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts\-core@.*$</packageUrl>
-    <cve>CVE-2023-34396</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts\-core@.*$</packageUrl>
-    <cve>CVE-2023-34396</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-taglib-1.3.10.jar (shaded: org.apache.struts:struts-taglib:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts\-taglib@.*$</packageUrl>
-    <cve>CVE-2023-34396</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar (shaded: org.apache.struts:struts-core:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts\-core@.*$</packageUrl>
-    <cve>CVE-2023-34149</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-core-1.3.10.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts\-core@.*$</packageUrl>
-    <cve>CVE-2023-34149</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    file name: wjstruts-taglib-1.3.10.jar (shaded: org.apache.struts:struts-taglib:1.3.10)
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.struts/struts\-taglib@.*$</packageUrl>
-    <cve>CVE-2023-34149</cve>
-  </suppress>
-  <suppress>
-   <notes><![CDATA[
-   file name: wjstruts-taglib-1.3.10.jar
-   ]]></notes>
-   <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts-taglib@.*$</packageUrl>
-   <cve>CVE-2023-34396</cve>
-  </suppress>
-  <suppress>
-   <notes><![CDATA[
-   file name: wjstruts-taglib-1.3.10.jar
-   ]]></notes>
-   <packageUrl regex="true">^pkg:maven/sk\.iway\.wjstruts/wjstruts-taglib@.*$</packageUrl>
-   <cve>CVE-2023-34149</cve>
-  </suppress>
-
- <!-- NOTE: it is reported as vulnerable, but due to incorrectly specified spring versions in the vulnerabilities -->
- <suppress>
-  <notes><![CDATA[
-  file name: spring-security-crypto-5.6.5.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-crypto@.*$</packageUrl>
-  <vulnerabilityName>CVE-2020-5408</vulnerabilityName>
- </suppress>
- <suppress>
-   <notes><![CDATA[
-   file name: spring-web-5.3.27.jar
-   ]]></notes>
-   <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-web@.*$</packageUrl>
-   <vulnerabilityName>CVE-2016-1000027</vulnerabilityName>
- </suppress>
+ <!-- DO NOT MODIFY THIS FILE, here are exceptions for WebJET CMS, write project exceptions to dependency-check-suppressions-project.xml -->
 
  <suppress>
   <notes><![CDATA[
@@ -198,15 +36,6 @@
    <vulnerabilityName>CVE-2020-8908</vulnerabilityName>
  </suppress>
 
- <!-- NOTE: only if used in spring-boot-admin, it's not our case -->
- <suppress>
-  <notes><![CDATA[
-  file name: thymeleaf-spring5-3.1.1.RELEASE.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.thymeleaf/thymeleaf\-spring5@.*$</packageUrl>
-  <vulnerabilityName>CVE-2023-38286</vulnerabilityName>
- </suppress>
-
  <!-- NOTE: the vendor's perspective is that the product is not intended for use with untrusted input. -->
  <suppress>
   <notes><![CDATA[
@@ -214,115 +43,6 @@
   ]]></notes>
   <packageUrl regex="true">^pkg:maven/com\.fasterxml\.jackson\.core/jackson\-databind@.*$</packageUrl>
   <cve>CVE-2023-35116</cve>
- </suppress>
-
- <!-- NOTE: we are not using disallowedFields in WebJET CMS, 5.4.41 is not available for OpenSource projects, plan to migrate to Spring 6.x in 2025 -->
- <suppress>
-  <notes><![CDATA[
-  file name: spring-aop-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-aop@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-beans-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-beans@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-context-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-context@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-context-support-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-context\-support@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-core-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-core@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-expression-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-expression@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-jcl-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-jcl@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-jdbc-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-jdbc@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-orm-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-orm@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-test-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-test@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-tx-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-tx@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-webmvc-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-webmvc@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-  <notes><![CDATA[
-  file name: spring-messaging-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-messaging@.*$</packageUrl>
-  <cve>CVE-2024-38820</cve>
- </suppress>
- <suppress>
-   <notes><![CDATA[
-   file name: spring-web-5.3.39.jar
-   ]]></notes>
-   <packageUrl regex="true">^pkg:maven/org\.springframework/spring-web@.*$</packageUrl>
-   <cve>CVE-2024-38820</cve>
- </suppress>
-
- <!-- NOTE: we are not using WebMvc.fn or WebFlux.fn in WebJET CMS, 5.4.41 is not available for OpenSource projects, plan to migrate to Spring 6.x in 2025 -->
- <suppress>
-  <notes><![CDATA[
-  file name: spring-webmvc-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-webmvc@.*$</packageUrl>
-  <cve>CVE-2024-38816</cve>
  </suppress>
 
  <!-- NOTE: we are not using SafeHtmlValidator in WebJET CMS, also it's deprecated -->
@@ -334,13 +54,59 @@
   <vulnerabilityName>CVE-2023-1932</vulnerabilityName>
  </suppress>
 
- <!-- NOTE: we are not using @RequestBody byte[] method -->
+ <!-- we do not use PDComplexFileSpecification.getFilename() -->
  <suppress>
-  <notes><![CDATA[
-  file name: spring-web-5.3.39.jar
-  ]]></notes>
-  <packageUrl regex="true">^pkg:maven/org\.springframework/spring-web@.*$</packageUrl>
-  <vulnerabilityName>CVE-2024-38828</vulnerabilityName>
+   <notes><![CDATA[
+   file name: pdfbox-io-3.0.7.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.pdfbox/pdfbox-io@.*$</packageUrl>
+   <cve>CVE-2026-23907</cve>
+ </suppress>
+ <suppress>
+   <notes><![CDATA[
+   file name: pdfbox-3.0.7.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.pdfbox/pdfbox@.*$</packageUrl>
+   <cve>CVE-2026-23907</cve>
+ </suppress>
+
+ <!-- we do not use toSvg() export -->
+ <suppress>
+   <notes><![CDATA[
+   file name: fabric:5.5.1
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/fabric@.*$</packageUrl>
+   <vulnerabilityName>CVE-2026-27013</vulnerabilityName>
+ </suppress>
+ <suppress>
+   <notes><![CDATA[
+   file name: fabric:5.5.1
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/fabric@.*$</packageUrl>
+   <vulnerabilityName>GHSA-hfvx-25r5-qc3w</vulnerabilityName>
+ </suppress>
+
+ <!-- used in webpack not frontend -->
+ <suppress>
+   <notes><![CDATA[
+   file name: lodash.js
+   ]]></notes>
+   <packageUrl regex="true">^pkg:javascript/lodash@.*$</packageUrl>
+   <cve>CVE-2026-4800</cve>
+ </suppress>
+ <suppress>
+   <notes><![CDATA[
+   file name: lodash.js
+   ]]></notes>
+   <packageUrl regex="true">^pkg:javascript/lodash@.*$</packageUrl>
+   <cve>CVE-2025-13465</cve>
+ </suppress>
+ <suppress>
+   <notes><![CDATA[
+   file name: lodash.js
+   ]]></notes>
+   <packageUrl regex="true">^pkg:javascript/lodash@.*$</packageUrl>
+   <cve>CVE-2026-2950</cve>
  </suppress>
 
 </suppressions>
