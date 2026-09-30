@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring configuration for the Base CMS application
- * http://docs.webjetcms.sk/v2022/#/custom-apps/spring-config/
+ * https://docs.webjetcms.sk/latest/en/custom-apps/spring-config/
  */
 
 @Configuration("basecmsSpringConfig")
