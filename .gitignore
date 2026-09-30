@@ -44,3 +44,7 @@ local*.*
 
 #macos
 **/.DS_Store
+
+# Embedded Tomcat runtime data
+/work/
+/logs/

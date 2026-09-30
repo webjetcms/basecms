@@ -10,10 +10,9 @@ import com.github.jk1.license.filter.*
 plugins {
     id 'java'
     id 'war'
-    //https://github.com/gretty-gradle-plugin/gretty
-    id 'org.gretty' version "5.0.1"
+    id 'org.springframework.boot' version '4.1.1'
     //https://plugins.gradle.org/plugin/io.freefair.lombok
-    id "io.freefair.lombok" version "8.11"
+    id "io.freefair.lombok" version "8.14"
     //http://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
     id "org.owasp.dependencycheck" version "12.2.0"
     //https://docs.gradle.org/current/userguide/jacoco_plugin.html
@@ -40,20 +39,36 @@ repositories {
             password = project.findProperty("gpr.api-key") ?: System.getenv("GPR_API_KEY")
         }
     }
+    maven {
+        name = "githubAi"
+        url = uri("https://maven.pkg.github.com/webjetcms/webjet-ai")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
+            password = project.findProperty("gpr.api-key") ?: System.getenv("GPR_API_KEY")
+        }
+    }
     flatDir {
        dirs 'libs'
    }
 }
 
 ext {
-    webjetVersion = "2026.0-jakarta-SNAPSHOT";
-    springVersion = "7.0.+";
+    webjetVersion = "2026.0-boot-SNAPSHOT";
+    tomcatMinimumVersion = "11.0.25";
     lombokVersion = "1.18.34";
     npm = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm";
     npx = Os.isFamily(Os.FAMILY_WINDOWS) ? "npx.cmd" : "npx";
 }
 
-war {
+springBoot {
+    mainClass = 'sk.iway.iwcm.system.spring.SpringBootStarter'
+}
+
+// JSP applications use WAR packaging; the entry point comes from the WebJET library.
+tasks.named('bootJar') { enabled = false }
+tasks.named('jar') { enabled = false }
+
+tasks.withType(org.gradle.api.tasks.bundling.War).configureEach {
     zip64 = true
     exclude('**/node_modules/**')
     exclude('**/node_scripts/**')
@@ -76,11 +91,15 @@ war {
     //do not include poolman-local.xml
     rootSpec.exclude('**/poolman-*.xml')
     //do not include localhost logback configuration
-    rootSpec.exclude('**/logback-*.xml')
+    rootSpec.exclude('**/logback-local*.xml')
     //do not include sample (basecms) files
     exclude('src/main/java/sk/iway/basecms/**')
     exclude('src/main/webapp/apps/basecms/**')
     exclude('src/main/webapp/apps/contact/**')
+}
+
+tasks.named('processResources') {
+    exclude('certificates/https-keystore.p12')
 }
 
 // build public war (exclude admin files), run gradlew buildAllArtifacts to build it into build/libs/rootProject.name-public.war
@@ -89,7 +108,7 @@ def defaultPublicExcludes = file('gradle/config/defaultPublicExcludes.txt').text
 
 task prepareDataForPublicWar() {
     // Get the path to the .war file that will be unpacked
-    def warFile = file("${buildDir}/libs/${rootProject.name}.war")
+    def warFile = tasks.named('war').get().archiveFile.get().asFile
 
     // Get the path to the directory where the .war file will be unpacked
     def publicTempDir = file("${buildDir}/public-temp")
@@ -182,7 +201,7 @@ task buildAllArtifacts(type: Zip) {
 //CI-CD tasks
 task explodeWar(dependsOn: ['clean', 'war'], type : Copy){
     def workingDir = "build/explodedWar"
-    def zipFile = file("build/libs/${rootProject.name}.war")
+    def zipFile = tasks.named('war').get().archiveFile.get().asFile
     from zipTree(zipFile)
     into workingDir
 
@@ -262,27 +281,40 @@ task('generateJacocoReport', type: JacocoReport) {
 }
 
 dependencies {
+    implementation platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+    providedCompile platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+    providedRuntime platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+
+    // Add the embedded container explicitly; the published WebJET POM targets external Tomcat.
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat-runtime'
+    providedRuntime('org.apache.tomcat.embed:tomcat-embed-jasper') {
+        exclude group: 'org.apache.tomcat', module: 'tomcat-annotations-api'
+    }
+    constraints {
+        ['implementation', 'providedRuntime'].each { configurationName ->
+            ['core', 'el', 'jasper', 'websocket'].each { moduleName ->
+                add(configurationName, "org.apache.tomcat.embed:tomcat-embed-${moduleName}") {
+                    version {
+                        require("[${tomcatMinimumVersion},12.0.0)")
+                        prefer(tomcatMinimumVersion)
+                    }
+                }
+            }
+        }
+    }
+
     implementation("com.webjetcms:webjetcms:${webjetVersion}")
     implementation("com.webjetcms:webjetcms:${webjetVersion}:admin")
     implementation("com.webjetcms:webjetcms:${webjetVersion}:components")
     implementation("com.webjetcms:webjetcms:${webjetVersion}:libs")
 
-    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+    providedCompile 'jakarta.servlet:jakarta.servlet-api'
     providedCompile 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:4.0.0'
     providedCompile 'jakarta.el:jakarta.el-api:6.0.0'
+    providedCompile 'jakarta.annotation:jakarta.annotation-api'
 
-    testImplementation group: 'org.springframework', name: 'spring-test', version: "${springVersion}"
-    testImplementation group: 'org.springframework', name: 'spring-web', version: "${springVersion}"
-    // Spring Framework 7.0 requires JUnit 6 baseline
-    testImplementation platform('org.junit:junit-bom:6.0.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter-api'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params'
-    testRuntimeOnly    'org.junit.jupiter:junit-jupiter-engine'
-    testRuntimeOnly    'org.junit.platform:junit-platform-launcher'
-    testImplementation 'org.hamcrest:hamcrest:2.2'
-    // https://mvnrepository.com/artifact/org.mockito/mockito-core
-    testImplementation 'org.mockito:mockito-core:5.18.0'
-    testRuntimeOnly 'org.glassfish:jakarta.el:5.0.0-M1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 }
 
@@ -292,16 +324,6 @@ configurations {
     all*.exclude group: 'commons-logging', module: 'commons-logging'
     all*.exclude group: 'log4j', module: 'log4j'
     all*.exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
-
-    grettyRunnerTomcat10 {
-        // gretty pouziva staru verziu commons-io, ktora koliduje s nasou
-        // https://mvnrepository.com/artifact/commons-io/commons-io
-        exclude group: 'commons-io', module: 'commons-io'
-    }
-
-    grettyRunnerTomcat11 {
-
-    }
 }
 
 java {
@@ -354,64 +376,119 @@ test {
     }
 }
 
-gretty {
-    servletContainer = 'tomcat11'
-    contextPath = ''
-    httpPort = 80
-    httpsEnabled = true
-    httpsPort = 443
-    //hard mode runs WJ directly from src/main/webapp which speeds up the start (no need to copy JSP files elsewhere)
-    inplaceMode = 'hard'
-    //scanning for hotswap
-    scanInterval = 0
-    scanner = 'jetty'
-    scanDir "${projectDir}/build/classes/java/main"
-    fastReload = true
-    //we want tomcat not to reload after a class change, in the IDE you need to click on Hot Code Replace to apply the change in the class
-    reloadOnClassChange = false
-    debugSuspend = false
-    //JVM parameters
+// Identify the worktree without spaces so app-stop.sh can target only its server process.
+def worktreeId = java.security.MessageDigest.getInstance('SHA-256')
+    .digest(rootDir.canonicalPath.getBytes('UTF-8')).encodeHex().toString()
+
+bootRun {
+    def webjetDbname = System.env.webjetDbname ?: '/poolman-local.xml'
     jvmArgs = [
-        //recommended variables for Tomcat
+        // Recommended system properties for Tomcat
         '-Dsun.net.client.defaultConnectTimeout=300000',
         '-Dsun.net.client.defaultReadTimeout=300000',
         '-Dfile.encoding=utf-8',
         '-Duser.language=sk',
         '-Duser.country=SK',
-        //enable remote debug on port 5005
+        // Remote debug on port 5005
         '-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005',
-        //Configuration adjustment for WebJET, this overrides values from the database in Control Panel->Configuration
+        "-Dwebjet.worktreeId=${worktreeId}",
+        // WebJET configuration overrides
         '-Dwebjet.smtpServer=smtp.interway.sk',
-        "-DwebjetDbname=${System.env.webjetDbname}",
-        //list of docid that can be directly opened without login for Launch Chrome debug mode
-        "-Dwebjet.showDocActionAllowedDocids=4,26"
+        "-DwebjetDbname=${webjetDbname}",
+        "-DWEBJET_KEYSTORE_PATH=" + file("${projectDir}/build/certificates/https-keystore.p12").absolutePath,
+        '-Dwebjet.showDocActionAllowedDocids=4,26',
+        '-Dwebjet.loggerUseAnsiColors=true'
     ]
-
-    //enable jacoco also for appStart and appStartDebug tasks
-    afterEvaluate {
-        tasks.appStart {
-            file("${rootDir}/build/jacoco/appStart.exec").delete()
-            jacoco {
-                enabled = true
-            }
-            finalizedBy tasks.generateJacocoReport
-        }
-        tasks.appStartDebug {
-            file("${rootDir}/build/jacoco/appStartDebug.exec").delete()
-            jacoco {
-                //enabled = true
-            }
-            //finalizedBy tasks.generateJacocoReport
-        }
-        tasks.appAfterIntegrationTest {
-            finalizedBy tasks.generateJacocoReport
-        }
-    }
+    systemProperties System.getProperties()
 }
+
+// Generate a development certificate outside packaged application resources.
+task generateCertificate(type: Exec) {
+    group = 'build'
+    description = 'Generates self-signed certificate for embedded Tomcat HTTPS'
+    def certFile = file("${projectDir}/build/certificates/https-keystore.p12")
+    def certDir = certFile.parentFile
+    onlyIf { !certFile.exists() }
+    doFirst {
+        certDir.mkdirs()
+    }
+    workingDir projectDir
+    // macOS: keytool, Linux: keytool (from JDK)
+    def keytool = 'keytool'
+    commandLine keytool,
+        '-genkeypair',
+        '-alias', 'tomcat',
+        '-keyalg', 'EC',
+        '-groupname', 'secp256r1',
+        '-keystore', certFile.absolutePath,
+        '-storetype', 'PKCS12',
+        '-storepass' , System.getenv('WEBJET_HTTPS_KEYSTORE_PASSWORD') ?: 'changeit',
+        '-keypass' , System.getenv('WEBJET_HTTPS_KEYSTORE_PASSWORD') ?: 'changeit',
+        '-validity', '365',
+        '-sigalg', 'SHA256withECDSA',
+        '-dname', 'CN=WebJET CMS, OU=Development, O=InterWay, L=Bratislava, C=SK',
+        '-ext', 'SAN=DNS:localhost,IP:127.0.0.1'
+}
+
+// Ensure certificate is generated before bootRun
+bootRun.dependsOn generateCertificate
 
 tasks.withType(JavaCompile) {
     //prevent warning messages during compile
     options.compilerArgs += ['-Xlint:none']
     //needed for Spring
     options.compilerArgs += ['-parameters']
+}
+
+// Verify both deployment forms against the dependencies actually resolved by this client.
+tasks.register('verifyBootWar') {
+    group = 'verification'
+    description = 'Checks the client WARs, WebJET classifiers and embedded Tomcat isolation'
+    dependsOn tasks.named('war'), tasks.named('bootWar')
+    doLast {
+        ['war', 'bootWar'].each { taskName ->
+            def archive = tasks.named(taskName).get().archiveFile.get().asFile
+            new java.util.zip.ZipFile(archive).withCloseable { zip ->
+                def entries = java.util.Collections.list(zip.entries())*.name
+                ['WEB-INF/web.xml', 'WEB-INF/classes/application.properties',
+                 'WEB-INF/classes/logback-spring.xml'].each { required ->
+                    if (!entries.contains(required)) {
+                        throw new GradleException("${archive.name} is missing ${required}")
+                    }
+                }
+                ['', '-admin', '-components', '-libs'].each { classifier ->
+                    def required = "WEB-INF/lib/webjetcms-${webjetVersion}${classifier}.jar".toString()
+                    if (!entries.contains(required)) {
+                        throw new GradleException("${archive.name} is missing ${required}")
+                    }
+                }
+                def containerJars = entries.findAll {
+                    it.startsWith('WEB-INF/lib/') &&
+                        (it.contains('/tomcat-') || it.contains('/jakarta.servlet-api-') ||
+                         it.contains('/jakarta.servlet.jsp-api-') ||
+                         it.contains('/jakarta.el-') || it.contains('/jakarta.annotation-'))
+                }
+                if (!containerJars.isEmpty()) {
+                    throw new GradleException("Container libraries in WEB-INF/lib: ${containerJars}")
+                }
+                if (entries.any { it.endsWith('.p12') || it.contains('/poolman-') }) {
+                    throw new GradleException("${archive.name} contains local database configuration or a private key")
+                }
+                if (taskName == 'bootWar') {
+                    def manifest = new java.util.jar.Manifest(zip.getInputStream(zip.getEntry('META-INF/MANIFEST.MF')))
+                    if (manifest.mainAttributes.getValue('Start-Class') != springBoot.mainClass.get()) {
+                        throw new GradleException('Executable WAR has an incorrect Start-Class')
+                    }
+                    ['core', 'el', 'jasper', 'websocket'].each { moduleName ->
+                        def prefix = "WEB-INF/lib-provided/tomcat-embed-${moduleName}-"
+                        if (entries.count { it.startsWith(prefix) && it.endsWith('.jar') } != 1) {
+                            throw new GradleException("Executable WAR must contain exactly one ${prefix} JAR")
+                        }
+                    }
+                } else if (entries.any { it.startsWith('WEB-INF/lib-provided/') }) {
+                    throw new GradleException('Plain WAR must not contain embedded container libraries')
+                }
+            }
+        }
+    }
 }

@@ -20,18 +20,18 @@ import sk.iway.iwcm.system.jpa.WebJETJavaSECMPInitializer;
 import sk.iway.iwcm.system.jpa.WebJETPersistenceProvider;
 
 /**
- * Ukazkova konfiguracia Spring DATA/JPA
- * http://docs.webjetcms.sk/v2022/#/custom-apps/spring-config/
+ * Spring DATA/JPA sample configuration
+ * https://docs.webjetcms.sk/latest/en/custom-apps/spring-config/
  */
 
 /**
- *     Dolezite:
- *     1.) nastavit anotaciu @EnableJpaRepositories na package ktore obsahuju @Repository
- *     2.) nastavit setPackagesToScan() na entity ktore pouzivame v repozitaroch
- *     3.) pokial sa trieda vola JpaDBConfig, zmenit name pri anotacii @Configuration, musi byt jedinecny
- *     4.) zmenit hodnoty entityManagerFactoryRef a transactionManagerRef, musia byt jedinecne
- *     5.) zmenit name pri @Bean podla hodnot entityManagerFactoryRef a transactionManagerRef
- *     6.) over ci neimplementujes triedu TransactionManagementConfigurer - to dat prec spolu aj s @Override metody annotationDrivenTransactionManager
+ *     Important:
+ *     1.) Set the `@EnableJpaRepositories` annotation to the package(s) containing the `@Repository` classes.
+ *     2.) Configure `setPackagesToScan()` to include the entities used in the repositories.
+ *     3.) If the class is named `JpaDBConfig`, change the `name` attribute in the `@Configuration` annotation; it must be unique.
+ *     4.) Change the values ​​for `entityManagerFactoryRef` and `transactionManagerRef`; they must be unique.
+ *     5.) Update the `@Bean` names to match the `entityManagerFactoryRef` and `transactionManagerRef` values.
+ *     6.) Check if the class implements `TransactionManagementConfigurer`—remove this implementation along with the `@Override` of the `annotationDrivenTransactionManager` method.
  */
 @Configuration("basecms:JpaDBConfig")
 @EnableTransactionManagement
@@ -43,6 +43,8 @@ import sk.iway.iwcm.system.jpa.WebJETPersistenceProvider;
     }
 )
 public class JpaDBConfig {
+
+    private static final String PERSISTENCE_UNIT_NAME = "basecms";
 
     @Bean("basecmsTransactionManager")
     public PlatformTransactionManager transactionManager() {
@@ -59,6 +61,7 @@ public class JpaDBConfig {
         emf.setPersistenceProvider(new WebJETPersistenceProvider());
         emf.setDataSource(DBPool.getInstance().getDataSource("iwcm"));
         emf.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
+        emf.setPersistenceUnitName(PERSISTENCE_UNIT_NAME);
 
         // Zoznam packages ktore sa maju skenovat pre databazove entity/DAO !!
         emf.setPackagesToScan(
@@ -69,12 +72,15 @@ public class JpaDBConfig {
         // https://stackoverflow.com/questions/10769051/eclipselinkjpavendoradapter-instead-of-hibernatejpavendoradapter-issue
         properties.setProperty("eclipselink.weaving", "false");
 
-        if (Constants.DB_TYPE == Constants.DB_ORACLE)
+        if (Constants.DB_TYPE == Constants.DB_ORACLE) {
             properties.setProperty(PersistenceUnitProperties.TARGET_DATABASE, TargetDatabase.Oracle);
-        else if (Constants.DB_TYPE == Constants.DB_MSSQL)
+        } else if (Constants.DB_TYPE == Constants.DB_MSSQL) {
             properties.setProperty(PersistenceUnitProperties.TARGET_DATABASE, TargetDatabase.SQLServer);
-        else
+        } else if (Constants.DB_TYPE == Constants.DB_PGSQL) {
+            properties.setProperty(PersistenceUnitProperties.TARGET_DATABASE, TargetDatabase.PostgreSQL);
+        } else {
             properties.setProperty(PersistenceUnitProperties.TARGET_DATABASE, TargetDatabase.MySQL);
+        }
 
         WebJETJavaSECMPInitializer.setDefaultProperties(properties);
         emf.setJpaProperties(properties);

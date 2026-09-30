@@ -2,12 +2,8 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_1.xsd" id="WebApp_ID" version="6.1">
 
   <filter>
-    <filter-name>Set Character Encoding</filter-name>
-    <filter-class>sk.iway.iwcm.SetCharacterEncodingFilter</filter-class>
-    <init-param>
-     <param-name>encoding</param-name>
-     <param-value>utf-8</param-value>
-    </init-param>
+    <filter-name>ContextFilter</filter-name>
+    <filter-class>sk.iway.iwcm.system.context.ContextFilter</filter-class>
   </filter>
 
   <filter>
@@ -22,7 +18,7 @@
 	</filter>
 
   <filter-mapping>
-     <filter-name>Set Character Encoding</filter-name>
+     <filter-name>ContextFilter</filter-name>
      <url-pattern>/*</url-pattern>
   </filter-mapping>
 
@@ -30,7 +26,6 @@
 		<filter-name>StripesFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
-        <dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 
 	<filter-mapping>
@@ -81,6 +76,11 @@
   <mime-mapping>
      <extension>msi</extension>
      <mime-type>application/octet-stream</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+     <extension>properties</extension>
+     <mime-type>text/plain</mime-type>
   </mime-mapping>
 
   <!-- The Usual Welcome File List -->

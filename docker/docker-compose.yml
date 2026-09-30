@@ -32,7 +32,11 @@ services:
 
   # Using the admin version of the image
   webjet:
-    image: webjetcms/basecms-admin:2024.40
+    image: webjetcms/basecms-admin:2026.0-boot
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: runtime-admin
     hostname: webjet
     environment:
       # server settings - you should allways set JAVA_OPTS and TZ for proper functioning
