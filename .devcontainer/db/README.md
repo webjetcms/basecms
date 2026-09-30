@@ -5,7 +5,22 @@ This directory contains Docker configurations for running test databases for Web
 
 In VS Code you can directly run `Debug Docker [DBTYPE]` to start Docker DB instance and debug WebJET CMS. So you don't need to start DB instance manually. For first run follow info in [Database Connection Details](#database-connection-details) section.
 
-After first start go to [WebJET CMS Setup page](http://localhost/wjerrorpages/setup/setup) to setup WebJET. There should be information populated from `poolman-docker-DBNAME.xml` config file. More info is on [official documentation](https://docs.webjetcms.sk/latest/en/install/setup/README).
+For the first start with an empty database, explicitly enable the protected setup mode. Generate a token and set these variables in the environment from which you start VS Code or `bootRun`:
+
+```bash
+export WEBJET_SETUP_ENABLED=true
+export WEBJET_SETUP_TOKEN="$(openssl rand -base64 32)"
+```
+
+Start `Debug Docker [DBTYPE]`, open [the WebJET CMS setup page](https://localhost/wjerrorpages/setup/setup), and sign in with username `setup` and the generated token as the password. Connection details may be populated from `poolman-docker-DBNAME.xml`, but passwords are never prefilled. Enter `${WEBJET_DB_PASS}` in the database password field; WebJET resolves this placeholder from the server environment.
+
+After setup succeeds, stop WebJET, remove the setup variables, and start the application again:
+
+```bash
+unset WEBJET_SETUP_ENABLED WEBJET_SETUP_TOKEN
+```
+
+The full manual restart is required to switch from the setup bean graph to production. More information is in the [setup documentation](../../docs/sk/install/setup/README.md).
 
 ## Usage
 
@@ -19,7 +34,7 @@ export WEBJET_DB_PASS="your_password_here"
 
 ## Notes
 
-- MariaDB uses `utf8mb4` charset
+- MariaDB 11.8.9 uses the `utf8mb4` charset and its built-in vector storage for RAG
 - PostgreSQL creates tables in the `webjet_cms` schema
 - Oracle may take longer to start (large image ~4GB) and initialization scripts may need manual execution
 - Persistent volumes are created for each database to maintain data between container restarts
@@ -29,8 +44,10 @@ export WEBJET_DB_PASS="your_password_here"
 ### MariaDB
 
 - **Files**: `docker-compose-mariadb.yml`, `Dockerfile-mariadb`
+- **Version**: 11.8.9
 - **Port**: 13306/3306
 - **VS Code Tasks**: "Docker DB MariaDB Start", "Docker DB MariaDB Stop"
+- **RAG storage**: native MariaDB `VECTOR`; like the PostgreSQL profile, the development pool defines a separate `rag_jpa` datasource pointing to the same database as `iwcm`. Keep this second connection so its driver, URL, and credentials can be changed independently to use another MariaDB or PostgreSQL vector database.
 
 ### Microsoft SQL Server
 
@@ -126,14 +143,14 @@ docker exec -it webjetcms-oracle bash
 sqlplus system/${WEBJET_DB_PASS}@localhost/XEPDB1
 ```
 
-Then create user and schema (paste commands line by line, do not forget to change `${WEBJET_DB_PASS}` to real password):
+Then create user and schema (paste commands **line by line**, do not forget to change `${WEBJET_DB_PASS}` to real password):
 
 ```sql
 CREATE USER webjetcms_autotest_web IDENTIFIED BY "${WEBJET_DB_PASS}";
 GRANT CONNECT, RESOURCE TO webjetcms_autotest_web;
 ALTER USER webjetcms_autotest_web DEFAULT TABLESPACE users;
 ALTER USER webjetcms_autotest_web QUOTA UNLIMITED ON users;
-EXIT
+EXIT;
 ```
 
 ### PostgreSQL

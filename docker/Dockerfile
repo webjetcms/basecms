@@ -24,11 +24,11 @@ COPY . .
 RUN ./gradlew buildAllArtifacts
 
 # Dev workaround - to speed up image build - copy war instead of building it
-#COPY build/libs/${ARTIFACT_NAME}.war /home/app/build/libs/${ARTIFACT_NAME}.war
+#COPY build/libs/${ARTIFACT_NAME}-plain.war /home/app/build/libs/${ARTIFACT_NAME}-plain.war
 #COPY build/libs/${ARTIFACT_NAME}-public.war /home/app/build/libs/${ARTIFACT_NAME}-public.war
 
 # unzip wars
-RUN unzip build/libs/${ARTIFACT_NAME}.war -d build/libs/${ARTIFACT_NAME}
+RUN unzip build/libs/${ARTIFACT_NAME}-plain.war -d build/libs/${ARTIFACT_NAME}
 RUN unzip build/libs/${ARTIFACT_NAME}-public.war -d build/libs/${ARTIFACT_NAME}-public
 
 # Copy default poolman
@@ -41,12 +41,12 @@ RUN chown -R tomcat:tomcat /home/app
 ########################################################################################
 
 # Runtime base image
-FROM tomcat:9.0.95-jre17-temurin AS runtime-base
+FROM tomcat:11.0.25-jdk17-temurin-noble AS runtime-base
 
 ARG ARTIFACT_NAME=basecms
 ARG TOMCAT_LOCAL_PATH=/docker/tomcat
 
-ENV REDISSON_VERSION=3.22.0
+ENV REDISSON_VERSION=3.52.0
 
 # Install ImageMagick
 RUN apt-get update && \
@@ -57,7 +57,7 @@ RUN apt-get update && \
 
 # Copy redis libraries
 RUN curl -o ${CATALINA_HOME}/lib/redisson-all-${REDISSON_VERSION}.jar https://repo1.maven.org/maven2/org/redisson/redisson-all/${REDISSON_VERSION}/redisson-all-${REDISSON_VERSION}.jar
-RUN curl -o ${CATALINA_HOME}/lib/redisson-tomcat-9-${REDISSON_VERSION}.jar https://repo1.maven.org/maven2/org/redisson/redisson-tomcat-9/${REDISSON_VERSION}/redisson-tomcat-9-${REDISSON_VERSION}.jar
+RUN curl -o ${CATALINA_HOME}/lib/redisson-tomcat-11-${REDISSON_VERSION}.jar https://repo1.maven.org/maven2/org/redisson/redisson-tomcat-11/${REDISSON_VERSION}/redisson-tomcat-11-${REDISSON_VERSION}.jar
 
 # Create tomcat user
 RUN groupadd tomcat

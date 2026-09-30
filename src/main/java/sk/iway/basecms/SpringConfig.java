@@ -4,11 +4,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Ukazkova konfiguracia Spring
+ * Spring configuration for the Base CMS application
  * http://docs.webjetcms.sk/v2022/#/custom-apps/spring-config/
  */
 
-@Configuration
+@Configuration("basecmsSpringConfig")
 @ComponentScan({
     "sk.iway.basecms",
     "sk.iway.basecms.contact"
